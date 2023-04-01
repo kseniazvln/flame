@@ -1,0 +1,1 @@
+export 'logo/named_logo.dart';

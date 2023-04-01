@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "618525269996",
+    "project_id": "flame-5bc56",
+    "storage_bucket": "flame-5bc56.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:618525269996:android:5a3a2c6fe6b89b42b52ac9",
+        "android_client_info": {
+          "package_name": "ru.vsu.cs.flame"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC6lJ_8zhFFeliu2QytZ0XbDV7moiRji6I"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

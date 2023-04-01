@@ -1,0 +1,10 @@
+{
+  "authNotify": "To continue using the application, you need to log in.",
+  "@authNotify": {
+    "type": "text"
+  },
+  "phoneLogin": "Login with phone",
+  "@phoneLogin": {
+    "type": "text"
+  }
+}
