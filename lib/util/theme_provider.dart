@@ -27,3 +27,17 @@ mixin ThemeProvider {
 
   StackRouter get router => context.router;
 }
+
+mixin SnackBarProvider {
+  BuildContext get context;
+
+  void showSnackBar(String message) {
+    ScaffoldMessenger.of(context).showSnackBar(
+      SnackBar(
+        content: Text(
+          message,
+        ),
+      ),
+    );
+  }
+}

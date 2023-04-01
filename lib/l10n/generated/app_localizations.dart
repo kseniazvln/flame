@@ -91,6 +91,36 @@ abstract class AppLocalizations {
     Locale('en')
   ];
 
+  /// No description provided for @logInWithGitHub.
+  ///
+  /// In en, this message translates to:
+  /// **'Log In With GitHub'**
+  String get logInWithGitHub;
+
+  /// No description provided for @phoneHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Phone number'**
+  String get phoneHint;
+
+  /// No description provided for @continueAction.
+  ///
+  /// In en, this message translates to:
+  /// **'CONTINUE'**
+  String get continueAction;
+
+  /// No description provided for @aboutPhone.
+  ///
+  /// In en, this message translates to:
+  /// **'After clicking on the \"Continue\" button, Flame will send you a message with a verification code. You may be charged for sending a message or transmitting data. After verifying your phone number, you can use it to sign in to Flame.'**
+  String get aboutPhone;
+
+  /// No description provided for @myPhone.
+  ///
+  /// In en, this message translates to:
+  /// **'My phone:'**
+  String get myPhone;
+
   /// No description provided for @profile.
   ///
   /// In en, this message translates to:

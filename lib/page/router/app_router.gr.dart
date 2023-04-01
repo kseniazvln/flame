@@ -100,6 +100,28 @@ abstract class _$AppRouter extends RootStackRouter {
         ),
       );
     },
+    PhoneRoute.name: (routeData) {
+      final args = routeData.argsAs<PhoneRouteArgs>(
+          orElse: () => const PhoneRouteArgs());
+      return AutoRoutePage<dynamic>(
+        routeData: routeData,
+        child: PhonePageWidget(
+          key: args.key,
+          wmFactory: args.wmFactory,
+        ),
+      );
+    },
+    CodeRoute.name: (routeData) {
+      final args =
+          routeData.argsAs<CodeRouteArgs>(orElse: () => const CodeRouteArgs());
+      return AutoRoutePage<String>(
+        routeData: routeData,
+        child: CodePageWidget(
+          key: args.key,
+          wmFactory: args.wmFactory,
+        ),
+      );
+    },
   };
 }
 
@@ -373,5 +395,85 @@ class ExploreRouteArgs {
   @override
   String toString() {
     return 'ExploreRouteArgs{key: $key, wmFactory: $wmFactory}';
+  }
+}
+
+/// generated route for
+/// [PhonePageWidget]
+class PhoneRoute extends PageRouteInfo<PhoneRouteArgs> {
+  PhoneRoute({
+    Key? key,
+    WidgetModel<ElementaryWidget<IWidgetModel>, ElementaryModel> Function(
+            BuildContext)
+        wmFactory = defaultPhonePageWidgetModelFactory,
+    List<PageRouteInfo>? children,
+  }) : super(
+          PhoneRoute.name,
+          args: PhoneRouteArgs(
+            key: key,
+            wmFactory: wmFactory,
+          ),
+          initialChildren: children,
+        );
+
+  static const String name = 'PhoneRoute';
+
+  static const PageInfo<PhoneRouteArgs> page = PageInfo<PhoneRouteArgs>(name);
+}
+
+class PhoneRouteArgs {
+  const PhoneRouteArgs({
+    this.key,
+    this.wmFactory = defaultPhonePageWidgetModelFactory,
+  });
+
+  final Key? key;
+
+  final WidgetModel<ElementaryWidget<IWidgetModel>, ElementaryModel> Function(
+      BuildContext) wmFactory;
+
+  @override
+  String toString() {
+    return 'PhoneRouteArgs{key: $key, wmFactory: $wmFactory}';
+  }
+}
+
+/// generated route for
+/// [CodePageWidget]
+class CodeRoute extends PageRouteInfo<CodeRouteArgs> {
+  CodeRoute({
+    Key? key,
+    WidgetModel<ElementaryWidget<IWidgetModel>, ElementaryModel> Function(
+            BuildContext)
+        wmFactory = defaultCodePageWidgetModelFactory,
+    List<PageRouteInfo>? children,
+  }) : super(
+          CodeRoute.name,
+          args: CodeRouteArgs(
+            key: key,
+            wmFactory: wmFactory,
+          ),
+          initialChildren: children,
+        );
+
+  static const String name = 'CodeRoute';
+
+  static const PageInfo<CodeRouteArgs> page = PageInfo<CodeRouteArgs>(name);
+}
+
+class CodeRouteArgs {
+  const CodeRouteArgs({
+    this.key,
+    this.wmFactory = defaultCodePageWidgetModelFactory,
+  });
+
+  final Key? key;
+
+  final WidgetModel<ElementaryWidget<IWidgetModel>, ElementaryModel> Function(
+      BuildContext) wmFactory;
+
+  @override
+  String toString() {
+    return 'CodeRouteArgs{key: $key, wmFactory: $wmFactory}';
   }
 }

@@ -14,6 +14,19 @@ class ProfilePageWidget extends ElementaryWidget<IProfilePageWidgetModel> {
 
   @override
   Widget build(IProfilePageWidgetModel wm) {
-    return Container();
+    return Scaffold(
+      body: Column(
+        children: [
+          OutlinedButton(
+            onPressed: wm.logout,
+            child: Center(
+              child: Text(
+                wm.localizations.phoneLogin,
+              ),
+            ),
+          ),
+        ],
+      ),
+    );
   }
 }

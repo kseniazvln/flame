@@ -12,6 +12,8 @@ Future<void> main() async {
     options: DefaultFirebaseOptions.currentPlatform,
   );
 
+  // FirebaseAuth.instance.useAuthEmulator("127.0.0.1", 9099);
+
   runApp(
     AppDependency(
       app: App(),

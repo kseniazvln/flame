@@ -1,4 +1,24 @@
 {
+  "logInWithGitHub": "Log In With GitHub",
+  "@logInWithGitHub": {
+    "type": "text"
+  },
+  "phoneHint": "Phone number",
+  "@phoneHint": {
+    "type": "text"
+  },
+  "continueAction": "CONTINUE",
+  "@continueAction": {
+    "type": "text"
+  },
+  "aboutPhone": "After clicking on the \"Continue\" button, Flame will send you a message with a verification code. You may be charged for sending a message or transmitting data. After verifying your phone number, you can use it to sign in to Flame.",
+  "@aboutPhone": {
+    "type": "text"
+  },
+  "myPhone": "My phone:",
+  "@myPhone": {
+    "type": "text"
+  },
   "profile": "profile",
   "@profile": {
     "type": "text"
