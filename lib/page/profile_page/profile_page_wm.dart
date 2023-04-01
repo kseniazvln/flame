@@ -8,7 +8,7 @@ abstract class IProfilePageWidgetModel extends IWidgetModel {
 }
 
 ProfilePageWidgetModel defaultProfilePageWidgetModelFactory(BuildContext context) {
-  return ProfilePageWidgetModel(context.read());
+  return ProfilePageWidgetModel(ProfilePageModel(context.read()));
 }
 
 // TODO: cover with documentation

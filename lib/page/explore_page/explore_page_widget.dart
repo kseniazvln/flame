@@ -1,9 +1,11 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:elementary/elementary.dart';
 import 'package:flutter/material.dart';
 import 'explore_page_wm.dart';
 
 // TODO: cover with documentation
 /// Main widget for ExplorePage module
+@RoutePage()
 class ExplorePageWidget extends ElementaryWidget<IExplorePageWidgetModel> {
   const ExplorePageWidget({
     Key? key,

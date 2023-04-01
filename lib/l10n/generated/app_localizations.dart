@@ -91,6 +91,30 @@ abstract class AppLocalizations {
     Locale('en')
   ];
 
+  /// No description provided for @profile.
+  ///
+  /// In en, this message translates to:
+  /// **'profile'**
+  String get profile;
+
+  /// No description provided for @chats.
+  ///
+  /// In en, this message translates to:
+  /// **'chats'**
+  String get chats;
+
+  /// No description provided for @explore.
+  ///
+  /// In en, this message translates to:
+  /// **'explore'**
+  String get explore;
+
+  /// No description provided for @search.
+  ///
+  /// In en, this message translates to:
+  /// **'search'**
+  String get search;
+
   /// No description provided for @authNotify.
   ///
   /// In en, this message translates to:

@@ -1,5 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:flame/internal/app.dart';
+import 'package:flame/internal/app_dependency.dart';
 import 'package:flutter/material.dart';
 
 import 'firebase_options.dart';
@@ -11,43 +13,8 @@ Future<void> main() async {
   );
 
   runApp(
-    MaterialApp(
-      home: Scaffold(
-        body: Column(
-          children: [
-            OutlinedButton(
-              onPressed: () {},
-              child: Text('auth'),
-            ),
-          ],
-        ),
-      ),
+    AppDependency(
+      app: App(),
     ),
   );
-}
-
-Future<void> login() async {
-  FirebaseAuth auth = FirebaseAuth.instance;
-
-  await auth.verifyPhoneNumber(
-    phoneNumber: '+7 920 422 75 34',
-    timeout: const Duration(seconds: 60),
-    codeAutoRetrievalTimeout: (String verificationId) {
-      // Auto-resolution timed out...
-    },
-    verificationCompleted: (PhoneAuthCredential phoneAuthCredential) {},
-    verificationFailed: (FirebaseAuthException error) {},
-    codeSent: (String verificationId, int? forceResendingToken) {
-
-    },
-  );
-}
-
-class Test extends StatelessWidget {
-  const Test({Key? key}) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return const Placeholder();
-  }
 }

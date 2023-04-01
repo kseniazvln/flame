@@ -8,7 +8,7 @@ abstract class IChatListPageWidgetModel extends IWidgetModel {
 }
 
 ChatListPageWidgetModel defaultChatListPageWidgetModelFactory(BuildContext context) {
-  return ChatListPageWidgetModel(context.read());
+  return ChatListPageWidgetModel(ChatListPageModel(context.read()));
 }
 
 // TODO: cover with documentation

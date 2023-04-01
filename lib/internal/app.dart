@@ -1,4 +1,5 @@
 import 'package:flame/assets/theme/color_schemes.g.dart';
+import 'package:flame/l10n/generated/app_localizations.dart';
 import 'package:flame/page/router/app_router.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
@@ -23,14 +24,10 @@ class App extends StatelessWidget {
         colorScheme: darkColorScheme,
         textTheme: GoogleFonts.montserratTextTheme(),
       ),
-      localizationsDelegates: const [
-        GlobalMaterialLocalizations.delegate,
-        GlobalWidgetsLocalizations.delegate,
-        GlobalCupertinoLocalizations.delegate,
-      ],
-      supportedLocales: const [
-        Locale('en'), // English
-      ],
+      themeMode: ThemeMode.light,
+      // themeMode: ThemeMode.dark,
+      localizationsDelegates: AppLocalizations.localizationsDelegates,
+      supportedLocales: AppLocalizations.supportedLocales,
       routerConfig: _router.config(),
     );
   }

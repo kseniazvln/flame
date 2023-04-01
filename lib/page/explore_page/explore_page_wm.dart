@@ -8,7 +8,7 @@ abstract class IExplorePageWidgetModel extends IWidgetModel {
 }
 
 ExplorePageWidgetModel defaultExplorePageWidgetModelFactory(BuildContext context) {
-  return ExplorePageWidgetModel(context.read());
+  return ExplorePageWidgetModel(ExplorePageModel(context.read()));
 }
 
 // TODO: cover with documentation

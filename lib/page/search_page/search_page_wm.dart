@@ -8,7 +8,7 @@ abstract class ISearchPageWidgetModel extends IWidgetModel {
 }
 
 SearchPageWidgetModel defaultSearchPageWidgetModelFactory(BuildContext context) {
-  return SearchPageWidgetModel(context.read());
+  return SearchPageWidgetModel(SearchPageModel(context.read()));
 }
 
 // TODO: cover with documentation

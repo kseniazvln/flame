@@ -1,4 +1,20 @@
 {
+  "profile": "profile",
+  "@profile": {
+    "type": "text"
+  },
+  "chats": "chats",
+  "@chats": {
+    "type": "text"
+  },
+  "explore": "explore",
+  "@explore": {
+    "type": "text"
+  },
+  "search": "search",
+  "@search": {
+    "type": "text"
+  },
   "authNotify": "To continue using the application, you need to log in.",
   "@authNotify": {
     "type": "text"
