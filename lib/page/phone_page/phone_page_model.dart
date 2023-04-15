@@ -1,5 +1,6 @@
 import 'package:elementary/elementary.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flame/internal/logger.dart';
 import 'package:flutter/foundation.dart';
 
 // TODO: cover with documentation
@@ -14,10 +15,9 @@ class PhonePageModel extends ElementaryModel {
   }) async {
     await FirebaseAuth.instance.verifyPhoneNumber(
       phoneNumber: phone,
-      verificationCompleted: (e) {
-        onResult(true);
-      },
+      verificationCompleted: (e) {},
       verificationFailed: (e) {
+        handleError(e);
         onResult(false, e);
       },
       codeSent: (verificationId, resendToken) async {
@@ -33,6 +33,7 @@ class PhonePageModel extends ElementaryModel {
           try {
             // Sign the user in (or link) with the credential
             await FirebaseAuth.instance.signInWithCredential(credential);
+            onResult(true);
           } on FirebaseAuthException catch (e, stackTrace) {
             handleError(e, stackTrace: stackTrace);
           }

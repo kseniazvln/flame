@@ -28,21 +28,18 @@ class App extends StatelessWidget {
         colorScheme: darkColorScheme,
         textTheme: GoogleFonts.montserratTextTheme(),
       ),
-      // themeMode: ThemeMode.light,
-      themeMode: ThemeMode.dark,
+      themeMode: ThemeMode.light,
+      // themeMode: ThemeMode.dark,
       localizationsDelegates: AppLocalizations.localizationsDelegates,
       supportedLocales: AppLocalizations.supportedLocales,
-      routerConfig: _router.config(
-        deepLinkBuilder: (d) async{
-          final isLogIn = await profile.isLoggedIn();
-          return DeepLink([
-            if(isLogIn)
-              const HomeRoute()
-            else
-              AuthRoute()
-          ]);
-        }
-      ),
+      routerConfig: _router.config(deepLinkBuilder: (d) async {
+        final isLogIn = await profile.isLoggedIn();
+        return DeepLink(
+          [
+            if (isLogIn) const HomeRoute() else AuthRoute(),
+          ],
+        );
+      }),
     );
   }
 }

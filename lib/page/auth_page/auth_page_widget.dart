@@ -117,7 +117,7 @@ class _AuthButton extends StatelessWidget {
                   child: Text(
                     localizations.logInWithGitHub,
                     style: theme.textTheme.bodySmall?.copyWith(
-                      color: theme.colorScheme.onBackground,
+                      color: Colors.white,
                     ),
                   ),
                 ),

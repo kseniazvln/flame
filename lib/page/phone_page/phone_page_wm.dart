@@ -22,7 +22,7 @@ PhonePageWidgetModel defaultPhonePageWidgetModelFactory(BuildContext context) {
 // TODO: cover with documentation
 /// Default widget model for PhonePageWidget
 class PhonePageWidgetModel extends WidgetModel<PhonePageWidget, PhonePageModel>
-    with ThemeProvider
+    with ThemeProvider, SnackBarProvider
     implements IPhonePageWidgetModel {
   static const _mask = '+7 000 000 00 00';
 
@@ -46,12 +46,16 @@ class PhonePageWidgetModel extends WidgetModel<PhonePageWidget, PhonePageModel>
     await model.login(
       phone: phoneController.text,
       codeProvider: () async {
-        return await router.push<String>(
+        final code = await router.push<String>(
           CodeRoute(),
         );
+        return code;
       },
-      onResult: (value, [error]) async {
-        logger.e('eer', error);
+      onResult: (success, [error]) async {
+        if (!success) {
+          showSnackBar('Can`t log in');
+          return;
+        }
         router.popUntilRoot();
         router.replace(const HomeRoute());
       },

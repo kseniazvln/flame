@@ -4,7 +4,12 @@ import 'package:flutter/material.dart';
 class NamedLogo extends StatelessWidget {
   const NamedLogo({
     super.key,
+    this.axis = Axis.vertical,
+    this.size = 200,
   });
+
+  final double size;
+  final Axis axis;
 
   @override
   Widget build(BuildContext context) {
@@ -25,15 +30,16 @@ class NamedLogo extends StatelessWidget {
         ],
         tileMode: TileMode.mirror,
       ).createShader(bounds),
-      child: Column(
+      child: Flex(
         mainAxisSize: MainAxisSize.min,
-        children:  [
-          const Flexible(
-            flex: 5,
+        direction: axis,
+        children: [
+           Flexible(
+            flex:  axis == Axis.vertical ? 5 : 1,
             child: Icon(
               Icons.local_fire_department_outlined,
-              size: 200,
-              shadows: [
+              size: size,
+              shadows: const [
                 Shadow(
                   blurRadius: 30,
                 )
@@ -41,6 +47,7 @@ class NamedLogo extends StatelessWidget {
             ),
           ),
           Flexible(
+            flex:  axis == Axis.vertical ? 1 : 5,
             child: FittedBox(
               child: Text(
                 'Flame',

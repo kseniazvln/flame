@@ -1,5 +1,7 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:elementary/elementary.dart';
+import 'package:flame/page/component/component.dart';
+import 'package:flame/page/component/dismissible_card_stack/dismissible_card_stack_widget.dart';
 import 'package:flutter/material.dart';
 import 'search_page_wm.dart';
 
@@ -14,6 +16,29 @@ class SearchPageWidget extends ElementaryWidget<ISearchPageWidgetModel> {
 
   @override
   Widget build(ISearchPageWidgetModel wm) {
-    return Container();
+    return Scaffold(
+      appBar: AppBar(
+        title: NamedLogo(
+          axis: Axis.horizontal,
+          size: 50,
+        ),
+        actions: [
+          IconButton(
+            onPressed: () {},
+            icon: const Icon(Icons.notifications),
+          ),
+          IconButton(
+            onPressed: () {},
+            icon: const Icon(
+              Icons.settings,
+            ),
+          ),
+        ],
+      ),
+      body: const Padding(
+        padding: EdgeInsets.all(8.0),
+        child: DismissibleCardStackWidget(),
+      ),
+    );
   }
 }
