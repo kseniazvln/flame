@@ -31,6 +31,27 @@ class UserRepository {
     return flameUser;
   }
 
+  Future<List<FlameUser>> getUsers({
+    required Sex sex,
+    required Sex search,
+    List<String> interests = const [],
+  }) async {
+    var snap = FirebaseFirestore.instance
+        .collection('users')
+        .withConverter(
+          fromFirestore: (json, _) => FlameUser.fromJson(json.data() ?? {}),
+          toFirestore: (u, _) => u.toJson(),
+        )
+        .where('sex', isEqualTo: search.name)
+        .where('search', isEqualTo: sex.name);
+
+    if(interests.isNotEmpty){
+      snap = snap.where('interests', whereIn: interests);
+    }
+
+    return (await snap.get()).docs.map((d) => d.data()).toList();
+  }
+
   Stream<FlameUser?> getUserStream([String? uuid]) {
     final uid = uuid ?? FirebaseAuth.instance.currentUser?.uid;
 
