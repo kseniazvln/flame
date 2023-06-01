@@ -1,4 +1,5 @@
 import 'package:auto_route/annotations.dart';
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:elementary/elementary.dart';
 import 'package:flame/entity/explore.dart';
 import 'package:flame/entity/flame_user.dart';
@@ -151,7 +152,7 @@ class RegistrationPageWidget
                             }
 
                             return SizedBox(
-                              height: 300,
+                              height: 170,
                               child: Wrap(
                                 runSpacing: 2,
                                 spacing: 5,
@@ -181,22 +182,62 @@ class RegistrationPageWidget
                     listenableEntityState: wm.photoState,
                     builder: (context, data) {
                       final photos = data ?? [];
-                      return SliverGrid(
-                        delegate: SliverChildBuilderDelegate(
-                          (context, index) {
-                            return Container();
-                          },
+                      return SliverPadding(
+                        padding: const EdgeInsets.symmetric(
+                          vertical: 10,
+                          horizontal: 10,
                         ),
-                        gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                          crossAxisCount: 3,
+                        sliver: SliverGrid(
+                          delegate: SliverChildBuilderDelegate(
+                            (context, index) {
+                              final photo = photos[index];
+
+                              Widget child;
+                              if (photo == null) {
+                                child = const Icon(Icons.add);
+                              } else if (photo.isEmpty) {
+                                child = const Center(
+                                  child: CircularProgressIndicator(),
+                                );
+                              } else {
+                                child = CachedNetworkImage(
+                                  imageUrl: photo,
+                                  fit: BoxFit.fill,
+                                );
+                              }
+                              return GestureDetector(
+                                onTap: () => wm.chosePhoto(index),
+                                child: Container(
+                                  clipBehavior: Clip.hardEdge,
+                                  decoration: BoxDecoration(
+                                    border: Border.all(
+                                      color: wm.colorScheme.primary,
+                                    ),
+                                    borderRadius: const BorderRadius.all(
+                                      Radius.circular(10),
+                                    ),
+                                  ),
+                                  child: child,
+                                ),
+                              );
+                            },
+                            childCount: photos.length,
+                          ),
+                          gridDelegate:
+                              const SliverGridDelegateWithFixedCrossAxisCount(
+                            crossAxisCount: 3,
+                            childAspectRatio: 3 / 4,
+                            mainAxisSpacing: 5,
+                            crossAxisSpacing: 5,
+                          ),
                         ),
                       );
                     },
                   ),
                   SliverToBoxAdapter(
                     child: FilledButton(
-                      onPressed: () {},
-                      child: Text(''),
+                      onPressed: wm.saveProfile,
+                      child: Text('Register'),
                     ),
                   )
                 ],

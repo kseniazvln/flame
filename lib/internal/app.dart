@@ -35,16 +35,19 @@ class App extends StatelessWidget {
       routerConfig: _router.config(
         deepLinkBuilder: (d) async {
           final isLogIn = await profile.isLoggedIn();
-          final registered = await profile.isLoggedIn();
+
 
           PageRouteInfo? page;
 
+
+
           if (isLogIn) {
             page = const HomeRoute();
-          }
 
-          if (!registered) {
-            page = RegistrationRoute();
+            final registered = await profile.registered();
+            if (!registered) {
+              page = RegistrationRoute();
+            }
           }
 
           page ??= AuthRoute();

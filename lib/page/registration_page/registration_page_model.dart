@@ -8,6 +8,8 @@ import 'package:flame/data/dto/temp_user.dart';
 import 'package:flame/data/repository/explore_repository.dart';
 import 'package:flame/data/repository/user_repository.dart';
 import 'package:flame/entity/explore.dart';
+import 'package:flame/entity/flame_user.dart';
+import 'package:flame/internal/logger.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:uuid/uuid.dart';
@@ -46,15 +48,16 @@ class RegistrationPageModel extends ElementaryModel {
     final storageRef = FirebaseStorage.instance.ref();
     final uuid = const Uuid().v4();
     final mountainsRef = storageRef.child(uuid);
-    Directory appDocDir = await getApplicationDocumentsDirectory();
-    String filePath = '${appDocDir.absolute}/$uuid${image.name}';
-    image.saveTo(filePath);
-    File file = File(filePath);
+    File file = File(image.path);
     await mountainsRef.putFile(file);
 
 
     final s = await mountainsRef.getDownloadURL();
 
     return s;
+  }
+
+  Future<void> save(FlameUser flameUser) async {
+    await userRepository.saveUser(flameUser);
   }
 }

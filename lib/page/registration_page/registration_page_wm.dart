@@ -3,9 +3,11 @@ import 'package:flame/data/dto/temp_user.dart';
 import 'package:flame/entity/explore.dart';
 import 'package:flame/entity/flame_user.dart';
 import 'package:flame/internal/logger.dart';
+import 'package:flame/page/router/app_router.dart';
 import 'package:flame/util/theme_provider.dart';
 import 'package:flutter/material.dart' hide Orientation;
 import 'package:flutter_masked_text2/flutter_masked_text2.dart';
+import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
 import 'registration_page_model.dart';
 import 'registration_page_widget.dart';
@@ -31,6 +33,10 @@ abstract class IRegistrationPageWidgetModel extends IWidgetModel
   void selectItem(String item);
 
   bool isSelected(ExploreItem e);
+
+  void chosePhoto(int index);
+
+  void saveProfile();
 }
 
 RegistrationPageWidgetModel defaultRegistrationPageWidgetModelFactory(
@@ -55,7 +61,7 @@ class RegistrationPageWidgetModel
   @override
   final nameController = TextEditingController();
   @override
-  final birthdayController = MaskedTextController(mask: '00 / 00 / 0000');
+  final birthdayController = MaskedTextController(mask: '00.00.0000');
   @override
   final userState = EntityStateNotifier();
   @override
@@ -112,31 +118,6 @@ class RegistrationPageWidgetModel
     );
   }
 
-  Future<void> pickFile() async {
-    final photo = photoState.value?.data ?? List.generate(9, (index) => null);
-    ;
-    final index = photo.indexWhere((element) => element == null);
-    final nextPhotos = List.of(photo);
-    nextPhotos[index] = '';
-    photoState.content(nextPhotos);
-    try {
-      final url = await model.pickFile();
-      nextPhotos[index] = url;
-      photoState.content(List.of(nextPhotos));
-      userState.content(
-        userState.value!.data!.copyWith(
-          pictures: nextPhotos
-              .whereType<String>()
-              .where((s) => s.isNotEmpty)
-              .toList(),
-        ),
-      );
-    } catch (e) {
-      showSnackBar('Can`t get user');
-      photoState.content(photo);
-    }
-  }
-
   Future<void> saveUser() async {}
 
   @override
@@ -173,5 +154,64 @@ class RegistrationPageWidgetModel
     final user = userState.value?.data;
 
     return user?.interests?.any((e) => e == item.name) ?? false;
+  }
+
+  @override
+  Future<void> chosePhoto(int index) async {
+    final photo = photoState.value?.data ?? List.generate(9, (index) => null);
+    final nextPhotos = List.of(photo);
+    nextPhotos[index] = '';
+    photoState.content(nextPhotos);
+    try {
+      final url = await model.pickFile();
+      nextPhotos[index] = url;
+      photoState.content(List.of(nextPhotos));
+      userState.content(
+        userState.value!.data!.copyWith(
+          pictures: nextPhotos
+              .whereType<String>()
+              .where((s) => s.isNotEmpty)
+              .toList(),
+        ),
+      );
+    } catch (e) {
+      showSnackBar('Can`t get user');
+      photoState.content(photo);
+    }
+  }
+
+  @override
+  Future<void> saveProfile() async {
+    final user = userState.value?.data;
+    final name = nameController.text;
+    final date = birthdayController.text;
+    final pictures = user?.pictures ?? [];
+
+    if (name.isNotEmpty &&
+        date.isNotEmpty &&
+        user?.sex != null &&
+        user?.search != null &&
+        user?.orientation != null &&
+        pictures.isNotEmpty) {
+      await model.save(
+        FlameUser(
+          id: user!.id,
+          name: name,
+          birthday: DateFormat('d / M / yyyy').parse(date),
+          sex: user.sex!,
+          search: user.search!,
+          orientation: user.orientation!,
+          pictures: user.pictures!,
+          interests: user.interests!,
+          verified: true,
+        ),
+      );
+
+      router.replace(const HomeRoute());
+
+      return;
+    }
+
+    showSnackBar('All fields required');
   }
 }
