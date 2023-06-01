@@ -10,6 +10,7 @@ import 'package:flame/page/home_page/home_page_widget.dart';
 import 'package:flame/page/phone_page/phone_page.dart';
 import 'package:flame/page/profile_page/profile_page.dart';
 import 'package:flame/page/search_page/search_page.dart';
+import 'package:flame/page/registration_page/registration_page.dart';
 import 'package:flutter/material.dart';
 
 part 'app_router.gr.dart';
@@ -27,6 +28,9 @@ class AppRouter extends _$AppRouter {
         ),
         AutoRoute(
           page: CodeRoute.page,
+        ),
+        AutoRoute(
+          page: RegistrationRoute.page,
         ),
         AutoRoute(
           page: HomeRoute.page,

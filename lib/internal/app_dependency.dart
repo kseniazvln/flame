@@ -1,4 +1,6 @@
 import 'package:elementary/elementary.dart';
+import 'package:flame/data/repository/explore_repository.dart';
+import 'package:flame/data/repository/user_repository.dart';
 import 'package:flame/domain/error_handler.dart';
 import 'package:flame/domain/profile_service.dart';
 import 'package:flutter/material.dart';
@@ -20,7 +22,15 @@ class AppDependency extends StatelessWidget {
           create: (context) => MainErrorHandler(),
         ),
         Provider(
-          create: (context) => ProfileService(),
+          create: (context) => UserRepository(),
+        ),
+        Provider(
+          create: (context) => ExploreRepository(),
+        ),
+        Provider(
+          create: (context) => ProfileService(
+            context.read(),
+          ),
         ),
       ],
       child: app,

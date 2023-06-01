@@ -15,6 +15,7 @@ class FlameUser with _$FlameUser {
     required Orientation orientation,
     required List<String> pictures,
     required List<String> interests,
+    required bool verified,
   }) = _FlameUser;
 
   factory FlameUser.fromJson(Map<String, dynamic> json) =>

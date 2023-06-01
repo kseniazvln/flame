@@ -20,6 +20,7 @@ AuthPageWidgetModel defaultAuthPageWidgetModelFactory(BuildContext context) {
   return AuthPageWidgetModel(
     AuthPageModel(
       context.read(),
+      context.read(),
     ),
   );
 }
@@ -38,14 +39,17 @@ class AuthPageWidgetModel extends WidgetModel<AuthPageWidget, AuthPageModel>
 
   @override
   Future<void> logInWithGithub() async {
-    try{
-      final user = await model.logInWithGithub();
+    try {
+      await model.logInWithGithub();
+      final registered = await model.registered();
       router.popUntilRoot();
-      router.replace(const HomeRoute());
-    }catch(e){
+      if (registered) {
+        router.replace(const HomeRoute());
+      } else {
+        router.replace(RegistrationRoute());
+      }
+    } catch (e) {
       showSnackBar('Can`t log in');
     }
   }
-
-
 }

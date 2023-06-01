@@ -1,12 +1,20 @@
 import 'package:elementary/elementary.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flame/domain/profile_service.dart';
 import 'package:flame/internal/logger.dart';
 import 'package:flutter/foundation.dart';
 
 // TODO: cover with documentation
 /// Default Elementary model for PhonePage module
 class PhonePageModel extends ElementaryModel {
-  PhonePageModel(ErrorHandler errorHandler) : super(errorHandler: errorHandler);
+  PhonePageModel(
+    ErrorHandler errorHandler,
+    this.profileService,
+  ) : super(errorHandler: errorHandler);
+
+  final ProfileService profileService;
+
+  Future<bool> registered() async => profileService.registered();
 
   Future<void> login({
     required String phone,

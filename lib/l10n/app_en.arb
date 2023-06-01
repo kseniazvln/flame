@@ -1,4 +1,40 @@
 {
+  "birthdayHint": "dd / mm / yyyy",
+  "@myOrientation": {
+    "type": "text"
+  },
+  "nameHint": "Name",
+  "@nameHint": {
+    "type": "text"
+  },
+  "myOrientation": "Your orientation",
+  "@myOrientation": {
+    "type": "text"
+  },
+  "mySearch": "Who are you looking for",
+  "@mySearch": {
+    "type": "text"
+  },
+  "mySex": "Your sex",
+  "@mySex": {
+    "type": "text"
+  },
+  "aboutBirthday": "Your date of birth will be taken into account when selecting a partner",
+  "@aboutBirthday": {
+    "type": "text"
+  },
+  "birthday": "Your birthday",
+  "@birthday": {
+    "type": "text"
+  },
+  "aboutName": "The name will be displayed in the profile and shown to other users when searching",
+  "@aboutName": {
+    "type": "text"
+  },
+  "name": "Your name",
+  "@name": {
+    "type": "text"
+  },
   "logInWithGitHub": "Log In With GitHub",
   "@logInWithGitHub": {
     "type": "text"

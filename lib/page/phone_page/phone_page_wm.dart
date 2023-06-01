@@ -16,7 +16,12 @@ abstract class IPhonePageWidgetModel extends IWidgetModel
 }
 
 PhonePageWidgetModel defaultPhonePageWidgetModelFactory(BuildContext context) {
-  return PhonePageWidgetModel(PhonePageModel(context.read()));
+  return PhonePageWidgetModel(
+    PhonePageModel(
+      context.read(),
+      context.read(),
+    ),
+  );
 }
 
 // TODO: cover with documentation
@@ -56,8 +61,13 @@ class PhonePageWidgetModel extends WidgetModel<PhonePageWidget, PhonePageModel>
           showSnackBar('Can`t log in');
           return;
         }
+        final registered = await model.registered();
         router.popUntilRoot();
-        router.replace(const HomeRoute());
+        if (registered) {
+          router.replace(const HomeRoute());
+        } else {
+          router.replace(RegistrationRoute());
+        }
       },
     );
   }

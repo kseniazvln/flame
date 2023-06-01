@@ -17,6 +17,7 @@ _$_FlameUser _$$_FlameUserFromJson(Map<String, dynamic> json) => _$_FlameUser(
           (json['pictures'] as List<dynamic>).map((e) => e as String).toList(),
       interests:
           (json['interests'] as List<dynamic>).map((e) => e as String).toList(),
+      verified: json['verified'] as bool,
     );
 
 Map<String, dynamic> _$$_FlameUserToJson(_$_FlameUser instance) =>
@@ -29,6 +30,7 @@ Map<String, dynamic> _$$_FlameUserToJson(_$_FlameUser instance) =>
       'orientation': _$OrientationEnumMap[instance.orientation]!,
       'pictures': instance.pictures,
       'interests': instance.interests,
+      'verified': instance.verified,
     };
 
 const _$SexEnumMap = {

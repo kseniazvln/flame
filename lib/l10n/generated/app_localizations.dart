@@ -91,6 +91,60 @@ abstract class AppLocalizations {
     Locale('en')
   ];
 
+  /// No description provided for @birthdayHint.
+  ///
+  /// In en, this message translates to:
+  /// **'dd / mm / yyyy'**
+  String get birthdayHint;
+
+  /// No description provided for @nameHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Name'**
+  String get nameHint;
+
+  /// No description provided for @myOrientation.
+  ///
+  /// In en, this message translates to:
+  /// **'Your orientation'**
+  String get myOrientation;
+
+  /// No description provided for @mySearch.
+  ///
+  /// In en, this message translates to:
+  /// **'Who are you looking for'**
+  String get mySearch;
+
+  /// No description provided for @mySex.
+  ///
+  /// In en, this message translates to:
+  /// **'Your sex'**
+  String get mySex;
+
+  /// No description provided for @aboutBirthday.
+  ///
+  /// In en, this message translates to:
+  /// **'Your date of birth will be taken into account when selecting a partner'**
+  String get aboutBirthday;
+
+  /// No description provided for @birthday.
+  ///
+  /// In en, this message translates to:
+  /// **'Your birthday'**
+  String get birthday;
+
+  /// No description provided for @aboutName.
+  ///
+  /// In en, this message translates to:
+  /// **'The name will be displayed in the profile and shown to other users when searching'**
+  String get aboutName;
+
+  /// No description provided for @name.
+  ///
+  /// In en, this message translates to:
+  /// **'Your name'**
+  String get name;
+
   /// No description provided for @logInWithGitHub.
   ///
   /// In en, this message translates to:
