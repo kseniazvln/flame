@@ -8,16 +8,12 @@ part of 'chat.dart';
 
 _$_Chat _$$_ChatFromJson(Map<String, dynamic> json) => _$_Chat(
       chatId: json['chatId'] as String,
-      alice: json['alice'] as String,
-      bob: json['bob'] as String,
-      messages: (json['messages'] as List<dynamic>)
-          .map((e) => Message.fromJson(e as Map<String, dynamic>))
+      participant: (json['participant'] as List<dynamic>)
+          .map((e) => e as String)
           .toList(),
     );
 
 Map<String, dynamic> _$$_ChatToJson(_$_Chat instance) => <String, dynamic>{
       'chatId': instance.chatId,
-      'alice': instance.alice,
-      'bob': instance.bob,
-      'messages': instance.messages,
+      'participant': instance.participant,
     };

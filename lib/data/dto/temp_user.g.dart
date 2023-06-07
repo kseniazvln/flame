@@ -9,6 +9,10 @@ part of 'temp_user.dart';
 _$_TempUser _$$_TempUserFromJson(Map<String, dynamic> json) => _$_TempUser(
       id: json['id'] as String,
       name: json['name'] as String?,
+      bio: json['bio'] as String?,
+      minAge: json['minAge'] as int?,
+      maxAge: json['maxAge'] as int?,
+      age: json['age'] as int?,
       birthday: json['birthday'] == null
           ? null
           : DateTime.parse(json['birthday'] as String),
@@ -29,6 +33,10 @@ Map<String, dynamic> _$$_TempUserToJson(_$_TempUser instance) =>
     <String, dynamic>{
       'id': instance.id,
       'name': instance.name,
+      'bio': instance.bio,
+      'minAge': instance.minAge,
+      'maxAge': instance.maxAge,
+      'age': instance.age,
       'birthday': instance.birthday?.toIso8601String(),
       'sex': _$SexEnumMap[instance.sex],
       'search': _$SexEnumMap[instance.search],

@@ -22,7 +22,11 @@ abstract class IRegistrationPageWidgetModel extends IWidgetModel
 
   TextEditingController get nameController;
 
+  TextEditingController get bioController;
+
   TextEditingController get birthdayController;
+
+  ValueNotifier<(int, int)> get ageRangeState;
 
   void selectSex(String value);
 
@@ -61,13 +65,17 @@ class RegistrationPageWidgetModel
   @override
   final nameController = TextEditingController();
   @override
-  final birthdayController = MaskedTextController(mask: '00.00.0000');
+  final birthdayController = MaskedTextController(mask: '00 / 00 / 0000');
   @override
   final userState = EntityStateNotifier();
   @override
   final exploreState = EntityStateNotifier();
   @override
   final photoState = EntityStateNotifier();
+  @override
+  final bioController = TextEditingController();
+  @override
+  final ageRangeState = ValueNotifier((18, 30));
 
   @override
   void initWidgetModel() {
@@ -93,6 +101,8 @@ class RegistrationPageWidgetModel
 
   @override
   void dispose() {
+    ageRangeState.dispose();
+    bioController.dispose();
     nameController.dispose();
     birthdayController.dispose();
     exploreState.dispose();
@@ -184,24 +194,40 @@ class RegistrationPageWidgetModel
   Future<void> saveProfile() async {
     final user = userState.value?.data;
     final name = nameController.text;
+    final bio = bioController.text;
     final date = birthdayController.text;
     final pictures = user?.pictures ?? [];
+    final (min, max) = ageRangeState.value;
+    final photo = photoState.value?.data ?? List.generate(9, (index) => null);
+
+    if(photo.where((p) => p != null && p.isNotEmpty).length > 2){
+      showSnackBar('Upload at leasst 2 photo');
+    }
 
     if (name.isNotEmpty &&
         date.isNotEmpty &&
+        bio.isNotEmpty &&
         user?.sex != null &&
         user?.search != null &&
         user?.orientation != null &&
         pictures.isNotEmpty) {
+
+      final birthday = DateFormat('d / M / yyyy').parse(date);
+      final age = DateTime.now().difference(birthday);
+
       await model.save(
         FlameUser(
           id: user!.id,
           name: name,
-          birthday: DateFormat('d / M / yyyy').parse(date),
+          bio: bio,
+          minAge: min,
+          maxAge: max,
+          age: age.inDays ~/ 365,
+          birthday: birthday,
           sex: user.sex!,
           search: user.search!,
           orientation: user.orientation!,
-          pictures: user.pictures!,
+          pictures: pictures,
           interests: user.interests!,
           verified: true,
         ),

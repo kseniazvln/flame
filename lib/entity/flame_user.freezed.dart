@@ -22,6 +22,10 @@ FlameUser _$FlameUserFromJson(Map<String, dynamic> json) {
 mixin _$FlameUser {
   String get id => throw _privateConstructorUsedError;
   String get name => throw _privateConstructorUsedError;
+  String get bio => throw _privateConstructorUsedError;
+  int get minAge => throw _privateConstructorUsedError;
+  int get maxAge => throw _privateConstructorUsedError;
+  int get age => throw _privateConstructorUsedError;
   DateTime get birthday => throw _privateConstructorUsedError;
   Sex get sex => throw _privateConstructorUsedError;
   Sex get search => throw _privateConstructorUsedError;
@@ -44,6 +48,10 @@ abstract class $FlameUserCopyWith<$Res> {
   $Res call(
       {String id,
       String name,
+      String bio,
+      int minAge,
+      int maxAge,
+      int age,
       DateTime birthday,
       Sex sex,
       Sex search,
@@ -68,6 +76,10 @@ class _$FlameUserCopyWithImpl<$Res, $Val extends FlameUser>
   $Res call({
     Object? id = null,
     Object? name = null,
+    Object? bio = null,
+    Object? minAge = null,
+    Object? maxAge = null,
+    Object? age = null,
     Object? birthday = null,
     Object? sex = null,
     Object? search = null,
@@ -85,6 +97,22 @@ class _$FlameUserCopyWithImpl<$Res, $Val extends FlameUser>
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
               as String,
+      bio: null == bio
+          ? _value.bio
+          : bio // ignore: cast_nullable_to_non_nullable
+              as String,
+      minAge: null == minAge
+          ? _value.minAge
+          : minAge // ignore: cast_nullable_to_non_nullable
+              as int,
+      maxAge: null == maxAge
+          ? _value.maxAge
+          : maxAge // ignore: cast_nullable_to_non_nullable
+              as int,
+      age: null == age
+          ? _value.age
+          : age // ignore: cast_nullable_to_non_nullable
+              as int,
       birthday: null == birthday
           ? _value.birthday
           : birthday // ignore: cast_nullable_to_non_nullable
@@ -127,6 +155,10 @@ abstract class _$$_FlameUserCopyWith<$Res> implements $FlameUserCopyWith<$Res> {
   $Res call(
       {String id,
       String name,
+      String bio,
+      int minAge,
+      int maxAge,
+      int age,
       DateTime birthday,
       Sex sex,
       Sex search,
@@ -149,6 +181,10 @@ class __$$_FlameUserCopyWithImpl<$Res>
   $Res call({
     Object? id = null,
     Object? name = null,
+    Object? bio = null,
+    Object? minAge = null,
+    Object? maxAge = null,
+    Object? age = null,
     Object? birthday = null,
     Object? sex = null,
     Object? search = null,
@@ -166,6 +202,22 @@ class __$$_FlameUserCopyWithImpl<$Res>
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
               as String,
+      bio: null == bio
+          ? _value.bio
+          : bio // ignore: cast_nullable_to_non_nullable
+              as String,
+      minAge: null == minAge
+          ? _value.minAge
+          : minAge // ignore: cast_nullable_to_non_nullable
+              as int,
+      maxAge: null == maxAge
+          ? _value.maxAge
+          : maxAge // ignore: cast_nullable_to_non_nullable
+              as int,
+      age: null == age
+          ? _value.age
+          : age // ignore: cast_nullable_to_non_nullable
+              as int,
       birthday: null == birthday
           ? _value.birthday
           : birthday // ignore: cast_nullable_to_non_nullable
@@ -204,6 +256,10 @@ class _$_FlameUser implements _FlameUser {
   _$_FlameUser(
       {required this.id,
       required this.name,
+      required this.bio,
+      required this.minAge,
+      required this.maxAge,
+      required this.age,
       required this.birthday,
       required this.sex,
       required this.search,
@@ -221,6 +277,14 @@ class _$_FlameUser implements _FlameUser {
   final String id;
   @override
   final String name;
+  @override
+  final String bio;
+  @override
+  final int minAge;
+  @override
+  final int maxAge;
+  @override
+  final int age;
   @override
   final DateTime birthday;
   @override
@@ -250,7 +314,7 @@ class _$_FlameUser implements _FlameUser {
 
   @override
   String toString() {
-    return 'FlameUser(id: $id, name: $name, birthday: $birthday, sex: $sex, search: $search, orientation: $orientation, pictures: $pictures, interests: $interests, verified: $verified)';
+    return 'FlameUser(id: $id, name: $name, bio: $bio, minAge: $minAge, maxAge: $maxAge, age: $age, birthday: $birthday, sex: $sex, search: $search, orientation: $orientation, pictures: $pictures, interests: $interests, verified: $verified)';
   }
 
   @override
@@ -260,6 +324,10 @@ class _$_FlameUser implements _FlameUser {
             other is _$_FlameUser &&
             (identical(other.id, id) || other.id == id) &&
             (identical(other.name, name) || other.name == name) &&
+            (identical(other.bio, bio) || other.bio == bio) &&
+            (identical(other.minAge, minAge) || other.minAge == minAge) &&
+            (identical(other.maxAge, maxAge) || other.maxAge == maxAge) &&
+            (identical(other.age, age) || other.age == age) &&
             (identical(other.birthday, birthday) ||
                 other.birthday == birthday) &&
             (identical(other.sex, sex) || other.sex == sex) &&
@@ -279,6 +347,10 @@ class _$_FlameUser implements _FlameUser {
       runtimeType,
       id,
       name,
+      bio,
+      minAge,
+      maxAge,
+      age,
       birthday,
       sex,
       search,
@@ -305,6 +377,10 @@ abstract class _FlameUser implements FlameUser {
   factory _FlameUser(
       {required final String id,
       required final String name,
+      required final String bio,
+      required final int minAge,
+      required final int maxAge,
+      required final int age,
       required final DateTime birthday,
       required final Sex sex,
       required final Sex search,
@@ -320,6 +396,14 @@ abstract class _FlameUser implements FlameUser {
   String get id;
   @override
   String get name;
+  @override
+  String get bio;
+  @override
+  int get minAge;
+  @override
+  int get maxAge;
+  @override
+  int get age;
   @override
   DateTime get birthday;
   @override

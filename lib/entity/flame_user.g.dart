@@ -9,6 +9,10 @@ part of 'flame_user.dart';
 _$_FlameUser _$$_FlameUserFromJson(Map<String, dynamic> json) => _$_FlameUser(
       id: json['id'] as String,
       name: json['name'] as String,
+      bio: json['bio'] as String,
+      minAge: json['minAge'] as int,
+      maxAge: json['maxAge'] as int,
+      age: json['age'] as int,
       birthday: DateTime.parse(json['birthday'] as String),
       sex: $enumDecode(_$SexEnumMap, json['sex']),
       search: $enumDecode(_$SexEnumMap, json['search']),
@@ -24,6 +28,10 @@ Map<String, dynamic> _$$_FlameUserToJson(_$_FlameUser instance) =>
     <String, dynamic>{
       'id': instance.id,
       'name': instance.name,
+      'bio': instance.bio,
+      'minAge': instance.minAge,
+      'maxAge': instance.maxAge,
+      'age': instance.age,
       'birthday': instance.birthday.toIso8601String(),
       'sex': _$SexEnumMap[instance.sex]!,
       'search': _$SexEnumMap[instance.search]!,

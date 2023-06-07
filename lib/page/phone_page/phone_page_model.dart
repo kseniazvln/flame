@@ -1,7 +1,6 @@
 import 'package:elementary/elementary.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flame/domain/profile_service.dart';
-import 'package:flame/internal/logger.dart';
 import 'package:flutter/foundation.dart';
 
 // TODO: cover with documentation

@@ -1,5 +1,7 @@
 import 'package:elementary/elementary.dart';
 import 'package:flame/entity/flame_user.dart';
+import 'package:flame/internal/logger.dart';
+import 'package:flame/util/theme_provider.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -7,6 +9,7 @@ import 'package:provider/provider.dart';
 import 'dismissible_card_animation_model.dart';
 import 'dismissible_card_stack_model.dart';
 import 'dismissible_card_stack_widget.dart';
+import 'dissmiss_state.dart';
 
 abstract class IDismissibleCardStackWidgetModel extends IWidgetModel {
   ValueListenable<DismissibleCardAnimationModel> get animationState;
@@ -14,6 +17,8 @@ abstract class IDismissibleCardStackWidgetModel extends IWidgetModel {
   EntityStateNotifier<FlameUser> get currentCodeShowCaseState;
 
   EntityStateNotifier<FlameUser> get nextCodeShowCaseState;
+
+  ValueNotifier<DismissibleState> get dismissibleState;
 
   void onHorizontalDragStart(DragStartDetails details);
 
@@ -26,15 +31,25 @@ abstract class IDismissibleCardStackWidgetModel extends IWidgetModel {
   void onVerticalDragUpdate(DragUpdateDetails details);
 
   void onVerticalDragEnd(DragEndDetails details);
+
+  void setLike();
+
+  void setDisLike();
+
+  void setSuperLike();
+
+  void returnProfile();
 }
 
 DismissibleCardStackWidgetModel defaultDismissibleCardStackWidgetModelFactory(
     BuildContext context) {
   return DismissibleCardStackWidgetModel(
     DismissibleCardStackModel(
-        //todo(netos23): enable exception handler
-        // errorHandler: context.read(),
-        ),
+      userRepository: context.read(),
+      profileService: context.read(),
+      likeRepository: context.read(),
+      errorHandler: context.read(),
+    ),
   );
 }
 
@@ -42,10 +57,13 @@ DismissibleCardStackWidgetModel defaultDismissibleCardStackWidgetModelFactory(
 /// Default widget model for DismissibleCardStackWidget
 class DismissibleCardStackWidgetModel
     extends WidgetModel<DismissibleCardStackWidget, DismissibleCardStackModel>
-    with SingleTickerProviderWidgetModelMixin
+    with SingleTickerProviderWidgetModelMixin, SnackBarProvider
     implements IDismissibleCardStackWidgetModel {
   @override
   final currentCodeShowCaseState = EntityStateNotifier();
+
+  @override
+  final dismissibleState = ValueNotifier(DismissibleState.none);
 
   @override
   final nextCodeShowCaseState = EntityStateNotifier();
@@ -77,34 +95,27 @@ class DismissibleCardStackWidgetModel
       ),
     );
 
-   /* currentCodeShowCaseState.content(
-      FlameUser(
-        id: '1',
-        name: 'Маша',
-        birthday: DateTime.parse('1999-10-10'),
-        sex: true,
-        search: true,
-        pictures: [
-          'https://i.pinimg.com/736x/69/54/e8/6954e860cc4ac2cb61994aabb4b2a435.jpg',
-          'https://drasler.ru/wp-content/uploads/2019/07/%D0%9A%D0%B0%D1%80%D1%82%D0%B8%D0%BD%D0%BA%D0%B8-%D0%B4%D0%B5%D0%B2%D1%83%D1%88%D0%B5%D0%BA-%D0%BD%D0%B0-%D0%B0%D0%B2%D1%83-19-%D0%BB%D0%B5%D1%82025.jpg',
-        ],
-        interests: [],
-      ),
-    );
-    nextCodeShowCaseState.content(
-      FlameUser(
-        id: '2',
-        name: 'Маша',
-        birthday: DateTime.parse('1999-10-10'),
-        sex: true,
-        search: true,
-        pictures: [
-          'https://i.pinimg.com/736x/69/54/e8/6954e860cc4ac2cb61994aabb4b2a435.jpg',
-          'https://drasler.ru/wp-content/uploads/2019/07/%D0%9A%D0%B0%D1%80%D1%82%D0%B8%D0%BD%D0%BA%D0%B8-%D0%B4%D0%B5%D0%B2%D1%83%D1%88%D0%B5%D0%BA-%D0%BD%D0%B0-%D0%B0%D0%B2%D1%83-19-%D0%BB%D0%B5%D1%82025.jpg',
-        ],
-        interests: [],
-      ),
-    );*/
+    currentCodeShowCaseState.loading();
+    nextCodeShowCaseState.loading();
+    _initCards();
+  }
+
+  Future<void> _initCards() async {
+    await model.searchUsers();
+    _updateCards();
+  }
+
+  void _updateCards() {
+    final (current, next) = model.getCurrentUserPair();
+    logger.wtf(current);
+    logger.wtf(next);
+
+    if (current != null) {
+      currentCodeShowCaseState.content(current);
+    }
+    if (next != null) {
+      nextCodeShowCaseState.content(next);
+    }
   }
 
   DismissibleCardAnimationModel _buildAnimations([Offset? initialOffset]) {
@@ -131,6 +142,7 @@ class DismissibleCardStackWidgetModel
     );
 
     return DismissibleCardAnimationModel(
+      restore: endOffset == Offset.zero,
       rotationAnimation: rotation / 8,
       positionedAnimation: positionedAnimation,
       scaleAnimation: scaleAnimation,
@@ -151,15 +163,20 @@ class DismissibleCardStackWidgetModel
     final size = MediaQuery.of(context).size;
 
     if (lastUpdate.dx > 100) {
+      dismissibleState.value = DismissibleState.like;
       return Offset(2 * size.width, 100);
     } else if (lastUpdate.dx < -100) {
+      dismissibleState.value = DismissibleState.dislike;
       return Offset(-2 * size.width, 100);
     } else if (lastUpdate.dy > 100) {
+      dismissibleState.value = DismissibleState.dislike;
       return Offset(0, 2 * size.height);
     } else if (lastUpdate.dy < -100) {
+      dismissibleState.value = DismissibleState.superLike;
       return Offset(0, -2 * size.height);
     }
 
+    dismissibleState.value = DismissibleState.none;
     return Offset.zero;
   }
 
@@ -212,9 +229,72 @@ class DismissibleCardStackWidgetModel
 
   void _listenStatus(AnimationStatus status) {
     if (status == AnimationStatus.completed) {
+      _handleResult(
+        state: dismissibleState.value,
+        user: currentCodeShowCaseState.value!.data!,
+      );
+
+      if (!animationState.value.restore) {
+        _updateCards();
+      }
+
+      dismissibleState.value = DismissibleState.none;
       _animationController.reset();
       _sign = null;
       animationState.value = _buildAnimations(Offset.zero);
     }
+  }
+
+  Future<void> _handleResult({
+    required DismissibleState state,
+    required FlameUser user,
+  }) async {
+    final match = await model.handleUpdate(
+      state: dismissibleState.value,
+      user: user,
+    );
+
+    if (match) {
+      showSnackBar('its match');
+    }
+  }
+
+  @override
+  void returnProfile() {
+    final pair = model.getLastUserPair();
+
+    if (pair == null) {
+      showSnackBar('Visit more profiles');
+      return;
+    }
+
+    final (current, next) = pair;
+    logger.wtf(current);
+    logger.wtf(next);
+
+    if (current != null) {
+      currentCodeShowCaseState.content(current);
+    }
+    if (next != null) {
+      nextCodeShowCaseState.content(next);
+    }
+  }
+
+  @override
+  void setDisLike() {
+    animationState.value = _buildAnimations(const Offset(-200, 50));
+    _releaseCard();
+  }
+
+  @override
+  void setLike() {
+    animationState.value = _buildAnimations(const Offset(200, 50));
+    _releaseCard();
+  }
+
+  @override
+  void setSuperLike() {
+    animationState.value = _buildAnimations(const Offset(0, -150));
+    _releaseCard();
   }
 }

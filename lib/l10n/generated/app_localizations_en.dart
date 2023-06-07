@@ -5,6 +5,15 @@ class AppLocalizationsEn extends AppLocalizations {
   AppLocalizationsEn([String locale = 'en']) : super(locale);
 
   @override
+  String get ageRange => 'Your age partner';
+
+  @override
+  String get bio => 'Your bio';
+
+  @override
+  String get bioHint => 'bio';
+
+  @override
   String get birthdayHint => 'dd / mm / yyyy';
 
   @override

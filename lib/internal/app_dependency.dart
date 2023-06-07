@@ -1,5 +1,6 @@
 import 'package:elementary/elementary.dart';
 import 'package:flame/data/repository/explore_repository.dart';
+import 'package:flame/data/repository/like_repository.dart';
 import 'package:flame/data/repository/user_repository.dart';
 import 'package:flame/domain/error_handler.dart';
 import 'package:flame/domain/profile_service.dart';
@@ -20,6 +21,9 @@ class AppDependency extends StatelessWidget {
       providers: [
         Provider<ErrorHandler>(
           create: (context) => MainErrorHandler(),
+        ),
+        Provider(
+          create: (context) => LikeRepository(),
         ),
         Provider(
           create: (context) => UserRepository(),

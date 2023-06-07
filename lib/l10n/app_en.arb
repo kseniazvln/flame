@@ -1,6 +1,18 @@
 {
+  "ageRange": "Your age partner",
+  "@ageRange": {
+    "type": "text"
+  },
+  "bio": "Your bio",
+  "@bio": {
+    "type": "text"
+  },
+  "bioHint": "bio",
+  "@bioHint": {
+    "type": "text"
+  },
   "birthdayHint": "dd / mm / yyyy",
-  "@myOrientation": {
+  "@birthdayHint": {
     "type": "text"
   },
   "nameHint": "Name",

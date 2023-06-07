@@ -21,9 +21,7 @@ Chat _$ChatFromJson(Map<String, dynamic> json) {
 /// @nodoc
 mixin _$Chat {
   String get chatId => throw _privateConstructorUsedError;
-  String get alice => throw _privateConstructorUsedError;
-  String get bob => throw _privateConstructorUsedError;
-  List<Message> get messages => throw _privateConstructorUsedError;
+  List<String> get participant => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -35,7 +33,7 @@ abstract class $ChatCopyWith<$Res> {
   factory $ChatCopyWith(Chat value, $Res Function(Chat) then) =
       _$ChatCopyWithImpl<$Res, Chat>;
   @useResult
-  $Res call({String chatId, String alice, String bob, List<Message> messages});
+  $Res call({String chatId, List<String> participant});
 }
 
 /// @nodoc
@@ -52,27 +50,17 @@ class _$ChatCopyWithImpl<$Res, $Val extends Chat>
   @override
   $Res call({
     Object? chatId = null,
-    Object? alice = null,
-    Object? bob = null,
-    Object? messages = null,
+    Object? participant = null,
   }) {
     return _then(_value.copyWith(
       chatId: null == chatId
           ? _value.chatId
           : chatId // ignore: cast_nullable_to_non_nullable
               as String,
-      alice: null == alice
-          ? _value.alice
-          : alice // ignore: cast_nullable_to_non_nullable
-              as String,
-      bob: null == bob
-          ? _value.bob
-          : bob // ignore: cast_nullable_to_non_nullable
-              as String,
-      messages: null == messages
-          ? _value.messages
-          : messages // ignore: cast_nullable_to_non_nullable
-              as List<Message>,
+      participant: null == participant
+          ? _value.participant
+          : participant // ignore: cast_nullable_to_non_nullable
+              as List<String>,
     ) as $Val);
   }
 }
@@ -83,7 +71,7 @@ abstract class _$$_ChatCopyWith<$Res> implements $ChatCopyWith<$Res> {
       __$$_ChatCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({String chatId, String alice, String bob, List<Message> messages});
+  $Res call({String chatId, List<String> participant});
 }
 
 /// @nodoc
@@ -96,27 +84,17 @@ class __$$_ChatCopyWithImpl<$Res> extends _$ChatCopyWithImpl<$Res, _$_Chat>
   @override
   $Res call({
     Object? chatId = null,
-    Object? alice = null,
-    Object? bob = null,
-    Object? messages = null,
+    Object? participant = null,
   }) {
     return _then(_$_Chat(
       chatId: null == chatId
           ? _value.chatId
           : chatId // ignore: cast_nullable_to_non_nullable
               as String,
-      alice: null == alice
-          ? _value.alice
-          : alice // ignore: cast_nullable_to_non_nullable
-              as String,
-      bob: null == bob
-          ? _value.bob
-          : bob // ignore: cast_nullable_to_non_nullable
-              as String,
-      messages: null == messages
-          ? _value._messages
-          : messages // ignore: cast_nullable_to_non_nullable
-              as List<Message>,
+      participant: null == participant
+          ? _value._participant
+          : participant // ignore: cast_nullable_to_non_nullable
+              as List<String>,
     ));
   }
 }
@@ -124,32 +102,24 @@ class __$$_ChatCopyWithImpl<$Res> extends _$ChatCopyWithImpl<$Res, _$_Chat>
 /// @nodoc
 @JsonSerializable()
 class _$_Chat implements _Chat {
-  _$_Chat(
-      {required this.chatId,
-      required this.alice,
-      required this.bob,
-      required final List<Message> messages})
-      : _messages = messages;
+  _$_Chat({required this.chatId, required final List<String> participant})
+      : _participant = participant;
 
   factory _$_Chat.fromJson(Map<String, dynamic> json) => _$$_ChatFromJson(json);
 
   @override
   final String chatId;
+  final List<String> _participant;
   @override
-  final String alice;
-  @override
-  final String bob;
-  final List<Message> _messages;
-  @override
-  List<Message> get messages {
-    if (_messages is EqualUnmodifiableListView) return _messages;
+  List<String> get participant {
+    if (_participant is EqualUnmodifiableListView) return _participant;
     // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(_messages);
+    return EqualUnmodifiableListView(_participant);
   }
 
   @override
   String toString() {
-    return 'Chat(chatId: $chatId, alice: $alice, bob: $bob, messages: $messages)';
+    return 'Chat(chatId: $chatId, participant: $participant)';
   }
 
   @override
@@ -158,15 +128,14 @@ class _$_Chat implements _Chat {
         (other.runtimeType == runtimeType &&
             other is _$_Chat &&
             (identical(other.chatId, chatId) || other.chatId == chatId) &&
-            (identical(other.alice, alice) || other.alice == alice) &&
-            (identical(other.bob, bob) || other.bob == bob) &&
-            const DeepCollectionEquality().equals(other._messages, _messages));
+            const DeepCollectionEquality()
+                .equals(other._participant, _participant));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, chatId, alice, bob,
-      const DeepCollectionEquality().hash(_messages));
+  int get hashCode => Object.hash(
+      runtimeType, chatId, const DeepCollectionEquality().hash(_participant));
 
   @JsonKey(ignore: true)
   @override
@@ -185,20 +154,14 @@ class _$_Chat implements _Chat {
 abstract class _Chat implements Chat {
   factory _Chat(
       {required final String chatId,
-      required final String alice,
-      required final String bob,
-      required final List<Message> messages}) = _$_Chat;
+      required final List<String> participant}) = _$_Chat;
 
   factory _Chat.fromJson(Map<String, dynamic> json) = _$_Chat.fromJson;
 
   @override
   String get chatId;
   @override
-  String get alice;
-  @override
-  String get bob;
-  @override
-  List<Message> get messages;
+  List<String> get participant;
   @override
   @JsonKey(ignore: true)
   _$$_ChatCopyWith<_$_Chat> get copyWith => throw _privateConstructorUsedError;

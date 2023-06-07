@@ -9,9 +9,7 @@ part 'chat.g.dart';
 class Chat with _$Chat {
     factory Chat({
         required String chatId,
-        required String alice,
-        required String bob,
-        required List<Message> messages,
+        required List<String> participant,
 }) = _Chat;
 
     factory Chat.fromJson(Map<String, dynamic> json) => _$ChatFromJson(json);

@@ -9,6 +9,10 @@ class FlameUser with _$FlameUser {
   factory FlameUser({
     required String id,
     required String name,
+    required String bio,
+    required int minAge,
+    required int maxAge,
+    required int age,
     required DateTime birthday,
     required Sex sex,
     required Sex search,

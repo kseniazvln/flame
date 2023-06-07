@@ -9,6 +9,7 @@ class Like with _$Like {
   factory Like({
     required String from,
     required String to,
+    required bool superLike,
   }) = _Like;
 
   factory Like.fromJson(Map<String, dynamic> json) => _$LikeFromJson(json);

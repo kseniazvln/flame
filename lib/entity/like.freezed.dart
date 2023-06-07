@@ -22,6 +22,7 @@ Like _$LikeFromJson(Map<String, dynamic> json) {
 mixin _$Like {
   String get from => throw _privateConstructorUsedError;
   String get to => throw _privateConstructorUsedError;
+  bool get superLike => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -33,7 +34,7 @@ abstract class $LikeCopyWith<$Res> {
   factory $LikeCopyWith(Like value, $Res Function(Like) then) =
       _$LikeCopyWithImpl<$Res, Like>;
   @useResult
-  $Res call({String from, String to});
+  $Res call({String from, String to, bool superLike});
 }
 
 /// @nodoc
@@ -51,6 +52,7 @@ class _$LikeCopyWithImpl<$Res, $Val extends Like>
   $Res call({
     Object? from = null,
     Object? to = null,
+    Object? superLike = null,
   }) {
     return _then(_value.copyWith(
       from: null == from
@@ -61,6 +63,10 @@ class _$LikeCopyWithImpl<$Res, $Val extends Like>
           ? _value.to
           : to // ignore: cast_nullable_to_non_nullable
               as String,
+      superLike: null == superLike
+          ? _value.superLike
+          : superLike // ignore: cast_nullable_to_non_nullable
+              as bool,
     ) as $Val);
   }
 }
@@ -71,7 +77,7 @@ abstract class _$$_LikeCopyWith<$Res> implements $LikeCopyWith<$Res> {
       __$$_LikeCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({String from, String to});
+  $Res call({String from, String to, bool superLike});
 }
 
 /// @nodoc
@@ -85,6 +91,7 @@ class __$$_LikeCopyWithImpl<$Res> extends _$LikeCopyWithImpl<$Res, _$_Like>
   $Res call({
     Object? from = null,
     Object? to = null,
+    Object? superLike = null,
   }) {
     return _then(_$_Like(
       from: null == from
@@ -95,6 +102,10 @@ class __$$_LikeCopyWithImpl<$Res> extends _$LikeCopyWithImpl<$Res, _$_Like>
           ? _value.to
           : to // ignore: cast_nullable_to_non_nullable
               as String,
+      superLike: null == superLike
+          ? _value.superLike
+          : superLike // ignore: cast_nullable_to_non_nullable
+              as bool,
     ));
   }
 }
@@ -102,7 +113,7 @@ class __$$_LikeCopyWithImpl<$Res> extends _$LikeCopyWithImpl<$Res, _$_Like>
 /// @nodoc
 @JsonSerializable()
 class _$_Like implements _Like {
-  _$_Like({required this.from, required this.to});
+  _$_Like({required this.from, required this.to, required this.superLike});
 
   factory _$_Like.fromJson(Map<String, dynamic> json) => _$$_LikeFromJson(json);
 
@@ -110,10 +121,12 @@ class _$_Like implements _Like {
   final String from;
   @override
   final String to;
+  @override
+  final bool superLike;
 
   @override
   String toString() {
-    return 'Like(from: $from, to: $to)';
+    return 'Like(from: $from, to: $to, superLike: $superLike)';
   }
 
   @override
@@ -122,12 +135,14 @@ class _$_Like implements _Like {
         (other.runtimeType == runtimeType &&
             other is _$_Like &&
             (identical(other.from, from) || other.from == from) &&
-            (identical(other.to, to) || other.to == to));
+            (identical(other.to, to) || other.to == to) &&
+            (identical(other.superLike, superLike) ||
+                other.superLike == superLike));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, from, to);
+  int get hashCode => Object.hash(runtimeType, from, to, superLike);
 
   @JsonKey(ignore: true)
   @override
@@ -144,8 +159,10 @@ class _$_Like implements _Like {
 }
 
 abstract class _Like implements Like {
-  factory _Like({required final String from, required final String to}) =
-      _$_Like;
+  factory _Like(
+      {required final String from,
+      required final String to,
+      required final bool superLike}) = _$_Like;
 
   factory _Like.fromJson(Map<String, dynamic> json) = _$_Like.fromJson;
 
@@ -153,6 +170,8 @@ abstract class _Like implements Like {
   String get from;
   @override
   String get to;
+  @override
+  bool get superLike;
   @override
   @JsonKey(ignore: true)
   _$$_LikeCopyWith<_$_Like> get copyWith => throw _privateConstructorUsedError;

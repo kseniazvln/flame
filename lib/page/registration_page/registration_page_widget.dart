@@ -4,6 +4,7 @@ import 'package:elementary/elementary.dart';
 import 'package:flame/entity/explore.dart';
 import 'package:flame/entity/flame_user.dart';
 import 'package:flutter/material.dart' hide Orientation;
+import 'package:flutter/services.dart';
 import 'registration_page_wm.dart';
 
 // TODO: cover with documentation
@@ -54,13 +55,42 @@ class RegistrationPageWidget
                           decoration: InputDecoration(
                             hintText: wm.localizations.nameHint,
                           ),
-                          keyboardType: TextInputType.phone,
+                          inputFormatters: [
+                            LengthLimitingTextInputFormatter(100),
+                          ],
+                          keyboardType: TextInputType.name,
                         ),
                         Text(
                           wm.localizations.aboutName,
                           style: wm.textTheme.bodyMedium?.copyWith(
                             color: wm.colorScheme.onBackground,
                           ),
+                        ),
+                        const SizedBox(
+                          height: 20,
+                        ),
+                        Text(
+                          wm.localizations.bio,
+                          maxLines: null,
+                          style: wm.textTheme.displayMedium?.copyWith(
+                            color: wm.colorScheme.onBackground,
+                            fontWeight: FontWeight.w700,
+                          ),
+                        ),
+                        TextField(
+                          controller: wm.bioController,
+                          style: wm.textTheme.bodyLarge?.copyWith(
+                            color: wm.colorScheme.onBackground,
+                            fontWeight: FontWeight.w700,
+                          ),
+                          maxLines: 2,
+                          decoration: InputDecoration(
+                            hintText: wm.localizations.bioHint,
+                          ),
+                          inputFormatters: [
+                            LengthLimitingTextInputFormatter(300),
+                          ],
+                          keyboardType: TextInputType.multiline,
                         ),
                         const SizedBox(
                           height: 20,
@@ -81,13 +111,68 @@ class RegistrationPageWidget
                           decoration: InputDecoration(
                             hintText: wm.localizations.birthdayHint,
                           ),
-                          keyboardType: TextInputType.phone,
+                          keyboardType: TextInputType.datetime,
                         ),
                         Text(
                           wm.localizations.aboutBirthday,
                           style: wm.textTheme.bodyMedium?.copyWith(
                             color: wm.colorScheme.onBackground,
                           ),
+                        ),
+                        const SizedBox(
+                          height: 20,
+                        ),
+                        Text(
+                          wm.localizations.ageRange,
+                          style: wm.textTheme.displayMedium?.copyWith(
+                            color: wm.colorScheme.onBackground,
+                            fontWeight: FontWeight.w700,
+                          ),
+                        ),
+                        ValueListenableBuilder(
+                          valueListenable: wm.ageRangeState,
+                          builder: (context, value, _) {
+                            final (min, max) = value;
+
+                            return Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                Expanded(
+                                  child: Text(
+                                    min.toString(),
+                                    textAlign: TextAlign.center,
+                                    style: wm.textTheme.bodyMedium?.copyWith(
+                                      color: wm.colorScheme.onBackground,
+                                    ),
+                                  ),
+                                ),
+                                Expanded(
+                                  flex: 5,
+                                  child: RangeSlider(
+                                    min: 18.0,
+                                    max: 100.0,
+                                    values: RangeValues(
+                                      min.toDouble(),
+                                      max.toDouble(),
+                                    ),
+                                    onChanged: (r) => wm.ageRangeState.value = (
+                                      r.start.round(),
+                                      r.end.round(),
+                                    ),
+                                  ),
+                                ),
+                                Expanded(
+                                  child: Text(
+                                    max.toString(),
+                                    textAlign: TextAlign.center,
+                                    style: wm.textTheme.bodyMedium?.copyWith(
+                                      color: wm.colorScheme.onBackground,
+                                    ),
+                                  ),
+                                ),
+                              ],
+                            );
+                          },
                         ),
                         const SizedBox(
                           height: 20,
@@ -152,7 +237,7 @@ class RegistrationPageWidget
                             }
 
                             return SizedBox(
-                              height: 170,
+                              height: 200,
                               child: Wrap(
                                 runSpacing: 2,
                                 spacing: 5,
@@ -237,7 +322,7 @@ class RegistrationPageWidget
                   SliverToBoxAdapter(
                     child: FilledButton(
                       onPressed: wm.saveProfile,
-                      child: Text('Register'),
+                      child: const Text('Register'),
                     ),
                   )
                 ],

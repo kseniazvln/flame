@@ -10,6 +10,10 @@ class TempUser with _$TempUser {
   factory TempUser({
     required String id,
     String? name,
+    String? bio,
+    int? minAge,
+    int? maxAge,
+    int? age,
     DateTime? birthday,
     Sex? sex,
     Sex? search,

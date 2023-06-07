@@ -22,6 +22,10 @@ TempUser _$TempUserFromJson(Map<String, dynamic> json) {
 mixin _$TempUser {
   String get id => throw _privateConstructorUsedError;
   String? get name => throw _privateConstructorUsedError;
+  String? get bio => throw _privateConstructorUsedError;
+  int? get minAge => throw _privateConstructorUsedError;
+  int? get maxAge => throw _privateConstructorUsedError;
+  int? get age => throw _privateConstructorUsedError;
   DateTime? get birthday => throw _privateConstructorUsedError;
   Sex? get sex => throw _privateConstructorUsedError;
   Sex? get search => throw _privateConstructorUsedError;
@@ -44,6 +48,10 @@ abstract class $TempUserCopyWith<$Res> {
   $Res call(
       {String id,
       String? name,
+      String? bio,
+      int? minAge,
+      int? maxAge,
+      int? age,
       DateTime? birthday,
       Sex? sex,
       Sex? search,
@@ -68,6 +76,10 @@ class _$TempUserCopyWithImpl<$Res, $Val extends TempUser>
   $Res call({
     Object? id = null,
     Object? name = freezed,
+    Object? bio = freezed,
+    Object? minAge = freezed,
+    Object? maxAge = freezed,
+    Object? age = freezed,
     Object? birthday = freezed,
     Object? sex = freezed,
     Object? search = freezed,
@@ -85,6 +97,22 @@ class _$TempUserCopyWithImpl<$Res, $Val extends TempUser>
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
               as String?,
+      bio: freezed == bio
+          ? _value.bio
+          : bio // ignore: cast_nullable_to_non_nullable
+              as String?,
+      minAge: freezed == minAge
+          ? _value.minAge
+          : minAge // ignore: cast_nullable_to_non_nullable
+              as int?,
+      maxAge: freezed == maxAge
+          ? _value.maxAge
+          : maxAge // ignore: cast_nullable_to_non_nullable
+              as int?,
+      age: freezed == age
+          ? _value.age
+          : age // ignore: cast_nullable_to_non_nullable
+              as int?,
       birthday: freezed == birthday
           ? _value.birthday
           : birthday // ignore: cast_nullable_to_non_nullable
@@ -127,6 +155,10 @@ abstract class _$$_TempUserCopyWith<$Res> implements $TempUserCopyWith<$Res> {
   $Res call(
       {String id,
       String? name,
+      String? bio,
+      int? minAge,
+      int? maxAge,
+      int? age,
       DateTime? birthday,
       Sex? sex,
       Sex? search,
@@ -149,6 +181,10 @@ class __$$_TempUserCopyWithImpl<$Res>
   $Res call({
     Object? id = null,
     Object? name = freezed,
+    Object? bio = freezed,
+    Object? minAge = freezed,
+    Object? maxAge = freezed,
+    Object? age = freezed,
     Object? birthday = freezed,
     Object? sex = freezed,
     Object? search = freezed,
@@ -166,6 +202,22 @@ class __$$_TempUserCopyWithImpl<$Res>
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
               as String?,
+      bio: freezed == bio
+          ? _value.bio
+          : bio // ignore: cast_nullable_to_non_nullable
+              as String?,
+      minAge: freezed == minAge
+          ? _value.minAge
+          : minAge // ignore: cast_nullable_to_non_nullable
+              as int?,
+      maxAge: freezed == maxAge
+          ? _value.maxAge
+          : maxAge // ignore: cast_nullable_to_non_nullable
+              as int?,
+      age: freezed == age
+          ? _value.age
+          : age // ignore: cast_nullable_to_non_nullable
+              as int?,
       birthday: freezed == birthday
           ? _value.birthday
           : birthday // ignore: cast_nullable_to_non_nullable
@@ -204,6 +256,10 @@ class _$_TempUser implements _TempUser {
   _$_TempUser(
       {required this.id,
       this.name,
+      this.bio,
+      this.minAge,
+      this.maxAge,
+      this.age,
       this.birthday,
       this.sex,
       this.search,
@@ -221,6 +277,14 @@ class _$_TempUser implements _TempUser {
   final String id;
   @override
   final String? name;
+  @override
+  final String? bio;
+  @override
+  final int? minAge;
+  @override
+  final int? maxAge;
+  @override
+  final int? age;
   @override
   final DateTime? birthday;
   @override
@@ -254,7 +318,7 @@ class _$_TempUser implements _TempUser {
 
   @override
   String toString() {
-    return 'TempUser(id: $id, name: $name, birthday: $birthday, sex: $sex, search: $search, orientation: $orientation, pictures: $pictures, interests: $interests, verified: $verified)';
+    return 'TempUser(id: $id, name: $name, bio: $bio, minAge: $minAge, maxAge: $maxAge, age: $age, birthday: $birthday, sex: $sex, search: $search, orientation: $orientation, pictures: $pictures, interests: $interests, verified: $verified)';
   }
 
   @override
@@ -264,6 +328,10 @@ class _$_TempUser implements _TempUser {
             other is _$_TempUser &&
             (identical(other.id, id) || other.id == id) &&
             (identical(other.name, name) || other.name == name) &&
+            (identical(other.bio, bio) || other.bio == bio) &&
+            (identical(other.minAge, minAge) || other.minAge == minAge) &&
+            (identical(other.maxAge, maxAge) || other.maxAge == maxAge) &&
+            (identical(other.age, age) || other.age == age) &&
             (identical(other.birthday, birthday) ||
                 other.birthday == birthday) &&
             (identical(other.sex, sex) || other.sex == sex) &&
@@ -283,6 +351,10 @@ class _$_TempUser implements _TempUser {
       runtimeType,
       id,
       name,
+      bio,
+      minAge,
+      maxAge,
+      age,
       birthday,
       sex,
       search,
@@ -309,6 +381,10 @@ abstract class _TempUser implements TempUser {
   factory _TempUser(
       {required final String id,
       final String? name,
+      final String? bio,
+      final int? minAge,
+      final int? maxAge,
+      final int? age,
       final DateTime? birthday,
       final Sex? sex,
       final Sex? search,
@@ -323,6 +399,14 @@ abstract class _TempUser implements TempUser {
   String get id;
   @override
   String? get name;
+  @override
+  String? get bio;
+  @override
+  int? get minAge;
+  @override
+  int? get maxAge;
+  @override
+  int? get age;
   @override
   DateTime? get birthday;
   @override

@@ -91,6 +91,24 @@ abstract class AppLocalizations {
     Locale('en')
   ];
 
+  /// No description provided for @ageRange.
+  ///
+  /// In en, this message translates to:
+  /// **'Your age partner'**
+  String get ageRange;
+
+  /// No description provided for @bio.
+  ///
+  /// In en, this message translates to:
+  /// **'Your bio'**
+  String get bio;
+
+  /// No description provided for @bioHint.
+  ///
+  /// In en, this message translates to:
+  /// **'bio'**
+  String get bioHint;
+
   /// No description provided for @birthdayHint.
   ///
   /// In en, this message translates to:
