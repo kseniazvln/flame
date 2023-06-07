@@ -1,6 +1,8 @@
 import 'package:elementary/elementary.dart';
+import 'package:flame/data/repository/chat_repository.dart';
 import 'package:flame/data/repository/explore_repository.dart';
 import 'package:flame/data/repository/like_repository.dart';
+import 'package:flame/data/repository/message_repository.dart';
 import 'package:flame/data/repository/user_repository.dart';
 import 'package:flame/domain/error_handler.dart';
 import 'package:flame/domain/profile_service.dart';
@@ -19,6 +21,9 @@ class AppDependency extends StatelessWidget {
   Widget build(BuildContext context) {
     return MultiProvider(
       providers: [
+        ChangeNotifierProvider(
+          create: (_) => ValueNotifier<ThemeMode>(ThemeMode.light),
+        ),
         Provider<ErrorHandler>(
           create: (context) => MainErrorHandler(),
         ),
@@ -27,6 +32,12 @@ class AppDependency extends StatelessWidget {
         ),
         Provider(
           create: (context) => UserRepository(),
+        ),
+        Provider(
+          create: (context) => MessageRepository(),
+        ),
+        Provider(
+          create: (context) => ChatRepository(),
         ),
         Provider(
           create: (context) => ExploreRepository(),

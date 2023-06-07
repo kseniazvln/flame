@@ -133,6 +133,17 @@ abstract class _$AppRouter extends RootStackRouter {
         child: const ProfileTabPage(),
       );
     },
+    ChatRoute.name: (routeData) {
+      final args = routeData.argsAs<ChatRouteArgs>();
+      return AutoRoutePage<dynamic>(
+        routeData: routeData,
+        child: ChatPageWidget(
+          key: args.key,
+          userChat: args.userChat,
+          wmFactory: args.wmFactory,
+        ),
+      );
+    },
   };
 }
 
@@ -528,4 +539,49 @@ class ProfileTab extends PageRouteInfo<void> {
   static const String name = 'ProfileTab';
 
   static const PageInfo<void> page = PageInfo<void>(name);
+}
+
+/// generated route for
+/// [ChatPageWidget]
+class ChatRoute extends PageRouteInfo<ChatRouteArgs> {
+  ChatRoute({
+    Key? key,
+    required UserChat userChat,
+    WidgetModel<ElementaryWidget<IWidgetModel>, ElementaryModel> Function(
+            BuildContext)
+        wmFactory = defaultChatPageWidgetModelFactory,
+    List<PageRouteInfo>? children,
+  }) : super(
+          ChatRoute.name,
+          args: ChatRouteArgs(
+            key: key,
+            userChat: userChat,
+            wmFactory: wmFactory,
+          ),
+          initialChildren: children,
+        );
+
+  static const String name = 'ChatRoute';
+
+  static const PageInfo<ChatRouteArgs> page = PageInfo<ChatRouteArgs>(name);
+}
+
+class ChatRouteArgs {
+  const ChatRouteArgs({
+    this.key,
+    required this.userChat,
+    this.wmFactory = defaultChatPageWidgetModelFactory,
+  });
+
+  final Key? key;
+
+  final UserChat userChat;
+
+  final WidgetModel<ElementaryWidget<IWidgetModel>, ElementaryModel> Function(
+      BuildContext) wmFactory;
+
+  @override
+  String toString() {
+    return 'ChatRouteArgs{key: $key, userChat: $userChat, wmFactory: $wmFactory}';
+  }
 }

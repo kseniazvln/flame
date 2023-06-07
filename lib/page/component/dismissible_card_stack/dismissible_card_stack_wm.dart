@@ -11,7 +11,8 @@ import 'dismissible_card_stack_model.dart';
 import 'dismissible_card_stack_widget.dart';
 import 'dissmiss_state.dart';
 
-abstract class IDismissibleCardStackWidgetModel extends IWidgetModel {
+abstract class IDismissibleCardStackWidgetModel extends IWidgetModel
+    implements IThemeProvider {
   ValueListenable<DismissibleCardAnimationModel> get animationState;
 
   EntityStateNotifier<FlameUser> get currentCodeShowCaseState;
@@ -45,6 +46,7 @@ DismissibleCardStackWidgetModel defaultDismissibleCardStackWidgetModelFactory(
     BuildContext context) {
   return DismissibleCardStackWidgetModel(
     DismissibleCardStackModel(
+      chatRepository: context.read(),
       userRepository: context.read(),
       profileService: context.read(),
       likeRepository: context.read(),
@@ -57,7 +59,7 @@ DismissibleCardStackWidgetModel defaultDismissibleCardStackWidgetModelFactory(
 /// Default widget model for DismissibleCardStackWidget
 class DismissibleCardStackWidgetModel
     extends WidgetModel<DismissibleCardStackWidget, DismissibleCardStackModel>
-    with SingleTickerProviderWidgetModelMixin, SnackBarProvider
+    with SingleTickerProviderWidgetModelMixin, SnackBarProvider, ThemeProvider
     implements IDismissibleCardStackWidgetModel {
   @override
   final currentCodeShowCaseState = EntityStateNotifier();
@@ -112,9 +114,13 @@ class DismissibleCardStackWidgetModel
 
     if (current != null) {
       currentCodeShowCaseState.content(current);
+    } else {
+      currentCodeShowCaseState.loading();
     }
     if (next != null) {
       nextCodeShowCaseState.content(next);
+    } else {
+      nextCodeShowCaseState.loading();
     }
   }
 
@@ -229,10 +235,13 @@ class DismissibleCardStackWidgetModel
 
   void _listenStatus(AnimationStatus status) {
     if (status == AnimationStatus.completed) {
-      _handleResult(
-        state: dismissibleState.value,
-        user: currentCodeShowCaseState.value!.data!,
-      );
+      var user = currentCodeShowCaseState.value?.data;
+      if(user != null){
+        _handleResult(
+          state: dismissibleState.value,
+          user: user,
+        );
+      }
 
       if (!animationState.value.restore) {
         _updateCards();

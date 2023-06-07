@@ -2,8 +2,10 @@ import 'dart:async';
 
 import 'package:auto_route/auto_route.dart';
 import 'package:elementary/elementary.dart';
+import 'package:flame/entity/user_chat.dart';
 import 'package:flame/page/auth_page/auth_page.dart';
 import 'package:flame/page/chat_list_page/chat_list_page.dart';
+import 'package:flame/page/chat_page/chat_page.dart';
 import 'package:flame/page/code_page/code_page.dart';
 import 'package:flame/page/explore_page/explore_page.dart';
 import 'package:flame/page/home_page/home_page_widget.dart';
@@ -31,6 +33,9 @@ class AppRouter extends _$AppRouter {
         ),
         AutoRoute(
           page: RegistrationRoute.page,
+        ),
+        AutoRoute(
+          page: ChatRoute.page,
         ),
         AutoRoute(
           page: HomeRoute.page,

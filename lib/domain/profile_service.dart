@@ -17,8 +17,8 @@ class ProfileService {
     return user?.verified ?? false;
   }
 
-  Future<FlameUser?> getUser() async {
-    final user = await repository.getUser();
+  Future<FlameUser?> getUser([String? uuid]) async {
+    final user = await repository.getUser(uuid);
     final verified = user?.verified ?? false;
 
     if (!verified) {

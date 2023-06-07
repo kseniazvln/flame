@@ -41,11 +41,19 @@ class DismissibleCardStackWidget
                         child: Column(
                           children: [
                             Expanded(
+                              flex: 3,
                               child: Image.asset(
                                 'assets/happy_flame.png',
                               ),
                             ),
-                            const Expanded(child: Text('Cant find anything')),
+                            Expanded(
+                              child: Text(
+                                'Cant find anything',
+                                style: wm.textTheme.headlineMedium?.copyWith(
+                                  color: wm.colorScheme.onBackground,
+                                ),
+                              ),
+                            ),
                           ],
                         ),
                       );
@@ -79,12 +87,21 @@ class DismissibleCardStackWidget
                 ),
               ),
               Positioned.fill(
-                child: ButtonsRow(
-                  setLike: wm.setLike,
-                  setDislike: wm.setDisLike,
-                  setSuperLike: wm.setSuperLike,
-                  returnProfile: wm.returnProfile,
-                  dismissibleState: wm.dismissibleState,
+                child: EntityStateNotifierBuilder(
+                  listenableEntityState: wm.currentCodeShowCaseState,
+                  builder: (context, data) {
+                    if (data == null) {
+                      return Container();
+                    }
+
+                    return ButtonsRow(
+                      setLike: wm.setLike,
+                      setDislike: wm.setDisLike,
+                      setSuperLike: wm.setSuperLike,
+                      returnProfile: wm.returnProfile,
+                      dismissibleState: wm.dismissibleState,
+                    );
+                  },
                 ),
               ),
             ],

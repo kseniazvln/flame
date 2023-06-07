@@ -28,7 +28,7 @@ class App extends StatelessWidget {
         colorScheme: darkColorScheme,
         textTheme: GoogleFonts.montserratTextTheme(),
       ),
-      themeMode: ThemeMode.light,
+      themeMode: context.watch<ValueNotifier<ThemeMode>>().value,
       // themeMode: ThemeMode.dark,
       localizationsDelegates: AppLocalizations.localizationsDelegates,
       supportedLocales: AppLocalizations.supportedLocales,
