@@ -88,6 +88,25 @@ class RegistrationPageWidgetModel
     try {
       final user = await model.getUser();
       userState.content(user);
+      nameController.text = user.name ?? '';
+      bioController.text = user.bio ?? '';
+      ageRangeState.value = (user.minAge ?? 18, user.maxAge ?? 30);
+
+      final birthday = user.birthday;
+      if (birthday != null) {
+        birthdayController.text = DateFormat('d / M / yyyy').format(birthday);
+      }
+
+      final explore = user.interests ?? [];
+      exploreState.content(
+        explore.map((name) => ExploreItem(name: name)).toList(),
+      );
+
+      final List<String?> photos = user.pictures ?? [];
+      for (var i = photos.length; i <= 9; i++) {
+        photos.add(null);
+      }
+      photoState.content(photos);
     } catch (e) {
       showSnackBar('Can`t get user');
     }
@@ -200,7 +219,7 @@ class RegistrationPageWidgetModel
     final (min, max) = ageRangeState.value;
     final photo = photoState.value?.data ?? List.generate(9, (index) => null);
 
-    if(photo.where((p) => p != null && p.isNotEmpty).length > 2){
+    if (photo.where((p) => p != null && p.isNotEmpty).length > 2) {
       showSnackBar('Upload at leasst 2 photo');
     }
 
@@ -211,7 +230,6 @@ class RegistrationPageWidgetModel
         user?.search != null &&
         user?.orientation != null &&
         pictures.isNotEmpty) {
-
       final birthday = DateFormat('d / M / yyyy').parse(date);
       final age = DateTime.now().difference(birthday);
 

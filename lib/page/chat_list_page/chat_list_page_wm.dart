@@ -21,6 +21,7 @@ ChatListPageWidgetModel defaultChatListPageWidgetModelFactory(
       errorHandler: context.read(),
       chatRepository: context.read(),
       profileService: context.read(),
+      messageRepository: context.read(),
     ),
   );
 }
