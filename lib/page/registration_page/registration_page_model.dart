@@ -57,4 +57,8 @@ class RegistrationPageModel extends ElementaryModel {
   Future<void> save(FlameUser flameUser) async {
     await userRepository.saveUser(flameUser);
   }
+
+  Future<void> logout() async{
+    await FirebaseAuth.instance.signOut();
+  }
 }

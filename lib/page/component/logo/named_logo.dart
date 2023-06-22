@@ -34,23 +34,24 @@ class NamedLogo extends StatelessWidget {
         mainAxisSize: MainAxisSize.min,
         direction: axis,
         children: [
-           Flexible(
-            flex:  axis == Axis.vertical ? 5 : 1,
-            child: Icon(
-              Icons.local_fire_department_outlined,
-              size: size,
-              shadows: const [
-                Shadow(
-                  blurRadius: 30,
-                )
-              ],
+          if (!Navigator.canPop(context))
+            Flexible(
+              flex: axis == Axis.vertical ? 5 : 1,
+              child: Icon(
+                Icons.local_fire_department_outlined,
+                size: size,
+                shadows: const [
+                  Shadow(
+                    blurRadius: 30,
+                  )
+                ],
+              ),
             ),
-          ),
           Flexible(
-            flex:  axis == Axis.vertical ? 1 : 5,
+            flex: axis == Axis.vertical ? 1 : 5,
             child: FittedBox(
               child: Text(
-                'Flame',
+                Navigator.canPop(context) ? 'Explore' : 'Flame',
                 style: textTheme.displayLarge,
               ),
             ),

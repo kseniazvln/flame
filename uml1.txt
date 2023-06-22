@@ -1,0 +1,1998 @@
+@startuml
+set namespaceSeparator ::
+
+class "flame::page::profile_page::profile_page_widget.dart::ProfilePageWidget" {
+  +Widget build()
+}
+
+"elementary::src::core.dart::ElementaryWidget" <|-- "flame::page::profile_page::profile_page_widget.dart::ProfilePageWidget"
+
+class "flame::page::profile_page::profile_page_model.dart::ProfilePageModel" {
+  +dynamic logout()
+}
+
+"elementary::src::core.dart::ElementaryModel" <|-- "flame::page::profile_page::profile_page_model.dart::ProfilePageModel"
+
+abstract class "flame::page::profile_page::profile_page_wm.dart::IProfilePageWidgetModel" {
+  +void logout()
+}
+
+"elementary::src::core.dart::IWidgetModel" <|-- "flame::page::profile_page::profile_page_wm.dart::IProfilePageWidgetModel"
+"flame::util::theme_provider.dart::IThemeProvider" <|-- "flame::page::profile_page::profile_page_wm.dart::IProfilePageWidgetModel"
+
+class "flame::page::profile_page::profile_page_wm.dart::ProfilePageWidgetModel" {
+  +dynamic logout()
+}
+
+"elementary::src::core.dart::WidgetModel" <|-- "flame::page::profile_page::profile_page_wm.dart::ProfilePageWidgetModel"
+"flame::util::theme_provider.dart::ThemeProvider" <|-- "flame::page::profile_page::profile_page_wm.dart::ProfilePageWidgetModel"
+"flame::page::profile_page::profile_page_wm.dart::IProfilePageWidgetModel" <|-- "flame::page::profile_page::profile_page_wm.dart::ProfilePageWidgetModel"
+
+class "flame::page::phone_page::phone_page_model.dart::PhonePageModel" {
+  +ProfileService profileService
+  +dynamic registered()
+  +dynamic login()
+}
+
+"flame::page::phone_page::phone_page_model.dart::PhonePageModel" o-- "flame::domain::profile_service.dart::ProfileService"
+"elementary::src::core.dart::ElementaryModel" <|-- "flame::page::phone_page::phone_page_model.dart::PhonePageModel"
+
+abstract class "flame::page::phone_page::phone_page_wm.dart::IPhonePageWidgetModel" {
+  +TextEditingController phoneController
+  +void Function()? sendCodeCallback()
+}
+
+"flame::page::phone_page::phone_page_wm.dart::IPhonePageWidgetModel" o-- "flutter::src::widgets::editable_text.dart::TextEditingController"
+"elementary::src::core.dart::IWidgetModel" <|-- "flame::page::phone_page::phone_page_wm.dart::IPhonePageWidgetModel"
+"flame::util::theme_provider.dart::IThemeProvider" <|-- "flame::page::phone_page::phone_page_wm.dart::IPhonePageWidgetModel"
+
+class "flame::page::phone_page::phone_page_wm.dart::PhonePageWidgetModel" {
+  {static} -String _mask
+  +TextEditingController phoneController
+  +void Function()? sendCodeCallback()
+  -dynamic _login()
+  +void dispose()
+}
+
+"flame::page::phone_page::phone_page_wm.dart::PhonePageWidgetModel" o-- "flutter::src::widgets::editable_text.dart::TextEditingController"
+"elementary::src::core.dart::WidgetModel" <|-- "flame::page::phone_page::phone_page_wm.dart::PhonePageWidgetModel"
+"flame::util::theme_provider.dart::ThemeProvider" <|-- "flame::page::phone_page::phone_page_wm.dart::PhonePageWidgetModel"
+"flame::util::theme_provider.dart::SnackBarProvider" <|-- "flame::page::phone_page::phone_page_wm.dart::PhonePageWidgetModel"
+"flame::page::phone_page::phone_page_wm.dart::IPhonePageWidgetModel" <|-- "flame::page::phone_page::phone_page_wm.dart::PhonePageWidgetModel"
+
+class "flame::page::phone_page::phone_page_widget.dart::PhonePageWidget" {
+  +Widget build()
+}
+
+"elementary::src::core.dart::ElementaryWidget" <|-- "flame::page::phone_page::phone_page_widget.dart::PhonePageWidget"
+
+class "flame::page::home_page::home_page_widget.dart::HomePageWidget" {
+  +Widget build()
+}
+
+"flutter::src::widgets::framework.dart::StatelessWidget" <|-- "flame::page::home_page::home_page_widget.dart::HomePageWidget"
+
+class "flame::page::auth_page::auth_page_widget.dart::AuthPageWidget" {
+  +Widget build()
+}
+
+"elementary::src::core.dart::ElementaryWidget" <|-- "flame::page::auth_page::auth_page_widget.dart::AuthPageWidget"
+
+class "flame::page::auth_page::auth_page_widget.dart::_AuthButton" {
+  +void Function()? onTap
+  +Widget build()
+}
+
+"flame::page::auth_page::auth_page_widget.dart::_AuthButton" o-- "dart::ui::void Function()"
+"flutter::src::widgets::framework.dart::StatelessWidget" <|-- "flame::page::auth_page::auth_page_widget.dart::_AuthButton"
+
+class "flame::page::auth_page::auth_page_model.dart::AuthPageModel" {
+  +ProfileService profileService
+  +dynamic registered()
+  +dynamic logInWithGithub()
+}
+
+"flame::page::auth_page::auth_page_model.dart::AuthPageModel" o-- "flame::domain::profile_service.dart::ProfileService"
+"elementary::src::core.dart::ElementaryModel" <|-- "flame::page::auth_page::auth_page_model.dart::AuthPageModel"
+
+abstract class "flame::page::auth_page::auth_page_wm.dart::IAuthPageWidgetModel" {
+  +void logInWithPhone()
+  +void logInWithGithub()
+}
+
+"elementary::src::core.dart::IWidgetModel" <|-- "flame::page::auth_page::auth_page_wm.dart::IAuthPageWidgetModel"
+"flame::util::theme_provider.dart::IThemeProvider" <|-- "flame::page::auth_page::auth_page_wm.dart::IAuthPageWidgetModel"
+
+class "flame::page::auth_page::auth_page_wm.dart::AuthPageWidgetModel" {
+  +void logInWithPhone()
+  +dynamic logInWithGithub()
+}
+
+"elementary::src::core.dart::WidgetModel" <|-- "flame::page::auth_page::auth_page_wm.dart::AuthPageWidgetModel"
+"flame::util::theme_provider.dart::ThemeProvider" <|-- "flame::page::auth_page::auth_page_wm.dart::AuthPageWidgetModel"
+"flame::util::theme_provider.dart::SnackBarProvider" <|-- "flame::page::auth_page::auth_page_wm.dart::AuthPageWidgetModel"
+"flame::page::auth_page::auth_page_wm.dart::IAuthPageWidgetModel" <|-- "flame::page::auth_page::auth_page_wm.dart::AuthPageWidgetModel"
+
+class "flame::page::notifications_page::notifications_page_widget.dart::NotificationsPageWidget" {
+  +Widget build()
+}
+
+"elementary::src::core.dart::ElementaryWidget" <|-- "flame::page::notifications_page::notifications_page_widget.dart::NotificationsPageWidget"
+
+class "flame::page::notifications_page::notifications_page_model.dart::NotificationsPageModel" {
+}
+
+"elementary::src::core.dart::ElementaryModel" <|-- "flame::page::notifications_page::notifications_page_model.dart::NotificationsPageModel"
+
+abstract class "flame::page::notifications_page::notifications_page_wm.dart::INotificationsPageWidgetModel" {
+}
+
+"elementary::src::core.dart::IWidgetModel" <|-- "flame::page::notifications_page::notifications_page_wm.dart::INotificationsPageWidgetModel"
+
+class "flame::page::notifications_page::notifications_page_wm.dart::NotificationsPageWidgetModel" {
+}
+
+"elementary::src::core.dart::WidgetModel" <|-- "flame::page::notifications_page::notifications_page_wm.dart::NotificationsPageWidgetModel"
+"flame::page::notifications_page::notifications_page_wm.dart::INotificationsPageWidgetModel" <|-- "flame::page::notifications_page::notifications_page_wm.dart::NotificationsPageWidgetModel"
+
+class "flame::page::component::dismissible_card_stack::dissmiss_state.dart::DismissibleState" {
+  +int index
+  {static} +List<DismissibleState> values
+  {static} +DismissibleState like
+  {static} +DismissibleState dislike
+  {static} +DismissibleState superLike
+  {static} +DismissibleState none
+}
+
+"flame::page::component::dismissible_card_stack::dissmiss_state.dart::DismissibleState" o-- "flame::page::component::dismissible_card_stack::dissmiss_state.dart::DismissibleState"
+"dart::core::Enum" <|-- "flame::page::component::dismissible_card_stack::dissmiss_state.dart::DismissibleState"
+
+abstract class "flame::page::component::dismissible_card_stack::dismissible_card_stack_wm.dart::IDismissibleCardStackWidgetModel" {
+  +ValueListenable<DismissibleCardAnimationModel> animationState
+  +EntityStateNotifier<FlameUser> currentCodeShowCaseState
+  +EntityStateNotifier<FlameUser> nextCodeShowCaseState
+  +ValueNotifier<DismissibleState> dismissibleState
+  +void onHorizontalDragStart()
+  +void onHorizontalDragUpdate()
+  +void onHorizontalDragEnd()
+  +void onVerticalDragStart()
+  +void onVerticalDragUpdate()
+  +void onVerticalDragEnd()
+  +void setLike()
+  +void setDisLike()
+  +void setSuperLike()
+  +void returnProfile()
+}
+
+"flame::page::component::dismissible_card_stack::dismissible_card_stack_wm.dart::IDismissibleCardStackWidgetModel" o-- "flutter::src::foundation::change_notifier.dart::ValueListenable<DismissibleCardAnimationModel>"
+"flame::page::component::dismissible_card_stack::dismissible_card_stack_wm.dart::IDismissibleCardStackWidgetModel" o-- "elementary::src::relations::notifier::state_notifier.dart::EntityStateNotifier<FlameUser>"
+"flame::page::component::dismissible_card_stack::dismissible_card_stack_wm.dart::IDismissibleCardStackWidgetModel" o-- "flutter::src::foundation::change_notifier.dart::ValueNotifier<DismissibleState>"
+"elementary::src::core.dart::IWidgetModel" <|-- "flame::page::component::dismissible_card_stack::dismissible_card_stack_wm.dart::IDismissibleCardStackWidgetModel"
+"flame::util::theme_provider.dart::IThemeProvider" <|-- "flame::page::component::dismissible_card_stack::dismissible_card_stack_wm.dart::IDismissibleCardStackWidgetModel"
+
+class "flame::page::component::dismissible_card_stack::dismissible_card_stack_wm.dart::DismissibleCardStackWidgetModel" {
+  +EntityStateNotifier<FlameUser> currentCodeShowCaseState
+  +ValueNotifier<DismissibleState> dismissibleState
+  +EntityStateNotifier<FlameUser> nextCodeShowCaseState
+  +ValueNotifier<DismissibleCardAnimationModel> animationState
+  -AnimationController _animationController
+  -Offset? _start
+  -Offset _lastUpdate
+  -double? _sign
+  -bool _hasHorizontalDrag
+  -bool _hasVerticalDrag
+  +void initWidgetModel()
+  -dynamic _initCards()
+  -void _updateCards()
+  -DismissibleCardAnimationModel _buildAnimations()
+  +void dispose()
+  -Offset _determineEndOffset()
+  -void _releaseCard()
+  +void onHorizontalDragEnd()
+  +void onHorizontalDragStart()
+  +void onHorizontalDragUpdate()
+  +void onVerticalDragEnd()
+  +void onVerticalDragStart()
+  +void onVerticalDragUpdate()
+  -void _listenStatus()
+  -dynamic _handleResult()
+  +void returnProfile()
+  +void setDisLike()
+  +void setLike()
+  +void setSuperLike()
+}
+
+"flame::page::component::dismissible_card_stack::dismissible_card_stack_wm.dart::DismissibleCardStackWidgetModel" o-- "elementary::src::relations::notifier::state_notifier.dart::EntityStateNotifier<FlameUser>"
+"flame::page::component::dismissible_card_stack::dismissible_card_stack_wm.dart::DismissibleCardStackWidgetModel" o-- "flutter::src::foundation::change_notifier.dart::ValueNotifier<DismissibleState>"
+"flame::page::component::dismissible_card_stack::dismissible_card_stack_wm.dart::DismissibleCardStackWidgetModel" o-- "flutter::src::foundation::change_notifier.dart::ValueNotifier<DismissibleCardAnimationModel>"
+"flame::page::component::dismissible_card_stack::dismissible_card_stack_wm.dart::DismissibleCardStackWidgetModel" o-- "flutter::src::animation::animation_controller.dart::AnimationController"
+"flame::page::component::dismissible_card_stack::dismissible_card_stack_wm.dart::DismissibleCardStackWidgetModel" o-- "dart::ui::Offset"
+"elementary::src::core.dart::WidgetModel" <|-- "flame::page::component::dismissible_card_stack::dismissible_card_stack_wm.dart::DismissibleCardStackWidgetModel"
+"elementary::src::ticker::ticker_providers.dart::SingleTickerProviderWidgetModelMixin" <|-- "flame::page::component::dismissible_card_stack::dismissible_card_stack_wm.dart::DismissibleCardStackWidgetModel"
+"flame::util::theme_provider.dart::SnackBarProvider" <|-- "flame::page::component::dismissible_card_stack::dismissible_card_stack_wm.dart::DismissibleCardStackWidgetModel"
+"flame::util::theme_provider.dart::ThemeProvider" <|-- "flame::page::component::dismissible_card_stack::dismissible_card_stack_wm.dart::DismissibleCardStackWidgetModel"
+"flame::page::component::dismissible_card_stack::dismissible_card_stack_wm.dart::IDismissibleCardStackWidgetModel" <|-- "flame::page::component::dismissible_card_stack::dismissible_card_stack_wm.dart::DismissibleCardStackWidgetModel"
+
+class "flame::page::component::dismissible_card_stack::dismissible_card_animation_model.dart::DismissibleCardAnimationModel" {
+  +double rotationAnimation
+  +Animation<RelativeRect> positionedAnimation
+  +Animation<double> scaleAnimation
+  +bool restore
+}
+
+"flame::page::component::dismissible_card_stack::dismissible_card_animation_model.dart::DismissibleCardAnimationModel" o-- "flutter::src::animation::animation.dart::Animation<RelativeRect>"
+"flame::page::component::dismissible_card_stack::dismissible_card_animation_model.dart::DismissibleCardAnimationModel" o-- "flutter::src::animation::animation.dart::Animation<double>"
+
+class "flame::page::component::dismissible_card_stack::dismissible_card_stack_widget.dart::DismissibleCardStackWidget" {
+  +Widget build()
+}
+
+"elementary::src::core.dart::ElementaryWidget" <|-- "flame::page::component::dismissible_card_stack::dismissible_card_stack_widget.dart::DismissibleCardStackWidget"
+
+class "flame::page::component::dismissible_card_stack::dismissible_card_stack_widget.dart::ButtonsRow" {
+  +ValueNotifier<DismissibleState> dismissibleState
+  +void Function()? setLike
+  +void Function()? setDislike
+  +void Function()? setSuperLike
+  +void Function()? returnProfile
+  +Widget build()
+}
+
+"flame::page::component::dismissible_card_stack::dismissible_card_stack_widget.dart::ButtonsRow" o-- "flutter::src::foundation::change_notifier.dart::ValueNotifier<DismissibleState>"
+"flame::page::component::dismissible_card_stack::dismissible_card_stack_widget.dart::ButtonsRow" o-- "dart::ui::void Function()"
+"flutter::src::widgets::framework.dart::StatelessWidget" <|-- "flame::page::component::dismissible_card_stack::dismissible_card_stack_widget.dart::ButtonsRow"
+
+class "flame::page::component::dismissible_card_stack::dismissible_card_stack_widget.dart::FlameCard" {
+  +void Function(String)? selectExplore
+  +FlameUser codeSowCase
+  +State<FlameCard> createState()
+}
+
+"flame::page::component::dismissible_card_stack::dismissible_card_stack_widget.dart::FlameCard" o-- "flutter::src::foundation::basic_types.dart::void Function(String)"
+"flame::page::component::dismissible_card_stack::dismissible_card_stack_widget.dart::FlameCard" o-- "flame::entity::flame_user.dart::FlameUser"
+"flutter::src::widgets::framework.dart::StatefulWidget" <|-- "flame::page::component::dismissible_card_stack::dismissible_card_stack_widget.dart::FlameCard"
+
+class "flame::page::component::dismissible_card_stack::dismissible_card_stack_widget.dart::_FlameCardState" {
+  -ValueNotifier<int> _indexState
+  -void _movePrevious()
+  -void _moveNext()
+  +void dispose()
+  -Widget _buildDescription()
+  +Widget build()
+}
+
+"flame::page::component::dismissible_card_stack::dismissible_card_stack_widget.dart::_FlameCardState" o-- "flutter::src::foundation::change_notifier.dart::ValueNotifier<int>"
+"flutter::src::widgets::framework.dart::State" <|-- "flame::page::component::dismissible_card_stack::dismissible_card_stack_widget.dart::_FlameCardState"
+
+class "flame::page::component::dismissible_card_stack::dismissible_card_stack_widget.dart::_InterestsBio" {
+  +void Function(String)? setExplore
+  +FlameUser data
+  +Widget build()
+}
+
+"flame::page::component::dismissible_card_stack::dismissible_card_stack_widget.dart::_InterestsBio" o-- "flutter::src::foundation::basic_types.dart::void Function(String)"
+"flame::page::component::dismissible_card_stack::dismissible_card_stack_widget.dart::_InterestsBio" o-- "flame::entity::flame_user.dart::FlameUser"
+"flutter::src::widgets::framework.dart::StatelessWidget" <|-- "flame::page::component::dismissible_card_stack::dismissible_card_stack_widget.dart::_InterestsBio"
+
+class "flame::page::component::dismissible_card_stack::dismissible_card_stack_widget.dart::_MainBio" {
+  +FlameUser data
+  +Widget build()
+}
+
+"flame::page::component::dismissible_card_stack::dismissible_card_stack_widget.dart::_MainBio" o-- "flame::entity::flame_user.dart::FlameUser"
+"flutter::src::widgets::framework.dart::StatelessWidget" <|-- "flame::page::component::dismissible_card_stack::dismissible_card_stack_widget.dart::_MainBio"
+
+class "flame::page::component::dismissible_card_stack::dismissible_card_stack_widget.dart::_PhotoIndicators" {
+  +int count
+  +int? selected
+  +Widget build()
+}
+
+"flutter::src::widgets::framework.dart::StatelessWidget" <|-- "flame::page::component::dismissible_card_stack::dismissible_card_stack_widget.dart::_PhotoIndicators"
+
+class "flame::page::component::dismissible_card_stack::dismissible_card_stack_model.dart::DismissibleCardStackModel" {
+  +ChatRepository chatRepository
+  +LikeRepository likeRepository
+  +ProfileService profileService
+  +UserRepository userRepository
+  -Queue<FlameUser> _userBuffer
+  -Queue<FlameUser> _historyBuffer
+  -Set<String> _visited
+  +dynamic searchUsers()
+  +dynamic ()
+  +dynamic ?()
+  +dynamic getLastUserPair()
+  +dynamic ()
+  +dynamic getCurrentUserPair()
+  +dynamic handleUpdate()
+  -dynamic _handleLike()
+}
+
+"flame::page::component::dismissible_card_stack::dismissible_card_stack_model.dart::DismissibleCardStackModel" o-- "flame::data::repository::chat_repository.dart::ChatRepository"
+"flame::page::component::dismissible_card_stack::dismissible_card_stack_model.dart::DismissibleCardStackModel" o-- "flame::data::repository::like_repository.dart::LikeRepository"
+"flame::page::component::dismissible_card_stack::dismissible_card_stack_model.dart::DismissibleCardStackModel" o-- "flame::domain::profile_service.dart::ProfileService"
+"flame::page::component::dismissible_card_stack::dismissible_card_stack_model.dart::DismissibleCardStackModel" o-- "flame::data::repository::user_repository.dart::UserRepository"
+"flame::page::component::dismissible_card_stack::dismissible_card_stack_model.dart::DismissibleCardStackModel" o-- "dart::collection::Queue<FlameUser>"
+"elementary::src::core.dart::ElementaryModel" <|-- "flame::page::component::dismissible_card_stack::dismissible_card_stack_model.dart::DismissibleCardStackModel"
+
+class "flame::page::component::logo::named_logo.dart::NamedLogo" {
+  +double size
+  +Axis axis
+  +Widget build()
+}
+
+"flame::page::component::logo::named_logo.dart::NamedLogo" o-- "flutter::src::painting::basic_types.dart::Axis"
+"flutter::src::widgets::framework.dart::StatelessWidget" <|-- "flame::page::component::logo::named_logo.dart::NamedLogo"
+
+class "flame::page::component::theme_switch.dart::ThemeSwitch" {
+  +Widget build()
+}
+
+"flutter::src::widgets::framework.dart::StatelessWidget" <|-- "flame::page::component::theme_switch.dart::ThemeSwitch"
+
+abstract class "flame::page::chat_list_page::chat_list_page_wm.dart::IChatListPageWidgetModel" {
+  +Stream<List<UserChat>> chats
+  +void openChat()
+}
+
+"flame::page::chat_list_page::chat_list_page_wm.dart::IChatListPageWidgetModel" o-- "dart::async::Stream<List<UserChat>>"
+"elementary::src::core.dart::IWidgetModel" <|-- "flame::page::chat_list_page::chat_list_page_wm.dart::IChatListPageWidgetModel"
+"flame::util::theme_provider.dart::IThemeProvider" <|-- "flame::page::chat_list_page::chat_list_page_wm.dart::IChatListPageWidgetModel"
+
+class "flame::page::chat_list_page::chat_list_page_wm.dart::ChatListPageWidgetModel" {
+  +Stream<List<UserChat>> chats
+  +void openChat()
+}
+
+"flame::page::chat_list_page::chat_list_page_wm.dart::ChatListPageWidgetModel" o-- "dart::async::Stream<List<UserChat>>"
+"elementary::src::core.dart::WidgetModel" <|-- "flame::page::chat_list_page::chat_list_page_wm.dart::ChatListPageWidgetModel"
+"flame::util::theme_provider.dart::ThemeProvider" <|-- "flame::page::chat_list_page::chat_list_page_wm.dart::ChatListPageWidgetModel"
+"flame::page::chat_list_page::chat_list_page_wm.dart::IChatListPageWidgetModel" <|-- "flame::page::chat_list_page::chat_list_page_wm.dart::ChatListPageWidgetModel"
+
+class "flame::page::chat_list_page::chat_list_page_model.dart::ChatListPageModel" {
+  +MessageRepository messageRepository
+  +ProfileService profileService
+  +ChatRepository chatRepository
+  +Stream<List<UserChat>> chats
+  -dynamic _mapChatUser()
+}
+
+"flame::page::chat_list_page::chat_list_page_model.dart::ChatListPageModel" o-- "flame::data::repository::message_repository.dart::MessageRepository"
+"flame::page::chat_list_page::chat_list_page_model.dart::ChatListPageModel" o-- "flame::domain::profile_service.dart::ProfileService"
+"flame::page::chat_list_page::chat_list_page_model.dart::ChatListPageModel" o-- "flame::data::repository::chat_repository.dart::ChatRepository"
+"flame::page::chat_list_page::chat_list_page_model.dart::ChatListPageModel" o-- "dart::async::Stream<List<UserChat>>"
+"elementary::src::core.dart::ElementaryModel" <|-- "flame::page::chat_list_page::chat_list_page_model.dart::ChatListPageModel"
+
+class "flame::page::chat_list_page::chat_list_page_widget.dart::ChatListPageWidget" {
+  +Widget build()
+}
+
+"elementary::src::core.dart::ElementaryWidget" <|-- "flame::page::chat_list_page::chat_list_page_widget.dart::ChatListPageWidget"
+
+class "flame::page::quick_settings_page::quick_settings_page_model.dart::QuickSettingsPageModel" {
+}
+
+"elementary::src::core.dart::ElementaryModel" <|-- "flame::page::quick_settings_page::quick_settings_page_model.dart::QuickSettingsPageModel"
+
+abstract class "flame::page::quick_settings_page::quick_settings_page_wm.dart::IQuickSettingsPageWidgetModel" {
+}
+
+"elementary::src::core.dart::IWidgetModel" <|-- "flame::page::quick_settings_page::quick_settings_page_wm.dart::IQuickSettingsPageWidgetModel"
+
+class "flame::page::quick_settings_page::quick_settings_page_wm.dart::QuickSettingsPageWidgetModel" {
+}
+
+"elementary::src::core.dart::WidgetModel" <|-- "flame::page::quick_settings_page::quick_settings_page_wm.dart::QuickSettingsPageWidgetModel"
+"flame::page::quick_settings_page::quick_settings_page_wm.dart::IQuickSettingsPageWidgetModel" <|-- "flame::page::quick_settings_page::quick_settings_page_wm.dart::QuickSettingsPageWidgetModel"
+
+class "flame::page::quick_settings_page::quick_settings_page_widget.dart::QuickSettingsPageWidget" {
+  +Widget build()
+}
+
+"elementary::src::core.dart::ElementaryWidget" <|-- "flame::page::quick_settings_page::quick_settings_page_widget.dart::QuickSettingsPageWidget"
+
+class "flame::page::registration_page::registration_page_model.dart::RegistrationPageModel" {
+  +UserRepository userRepository
+  +ExploreRepository exploreRepository
+  +dynamic getUser()
+  +dynamic getExplore()
+  +dynamic pickFile()
+  +dynamic save()
+}
+
+"flame::page::registration_page::registration_page_model.dart::RegistrationPageModel" o-- "flame::data::repository::user_repository.dart::UserRepository"
+"flame::page::registration_page::registration_page_model.dart::RegistrationPageModel" o-- "flame::data::repository::explore_repository.dart::ExploreRepository"
+"elementary::src::core.dart::ElementaryModel" <|-- "flame::page::registration_page::registration_page_model.dart::RegistrationPageModel"
+
+class "flame::page::registration_page::registration_page_widget.dart::RegistrationPageWidget" {
+  +Widget build()
+}
+
+"elementary::src::core.dart::ElementaryWidget" <|-- "flame::page::registration_page::registration_page_widget.dart::RegistrationPageWidget"
+
+class "flame::page::registration_page::registration_page_widget.dart::_ExploreChip" {
+  +IRegistrationPageWidgetModel wm
+  +ExploreItem item
+  +Widget build()
+}
+
+"flame::page::registration_page::registration_page_widget.dart::_ExploreChip" o-- "flame::page::registration_page::registration_page_wm.dart::IRegistrationPageWidgetModel"
+"flame::page::registration_page::registration_page_widget.dart::_ExploreChip" o-- "flame::entity::explore.dart::ExploreItem"
+"flutter::src::widgets::framework.dart::StatelessWidget" <|-- "flame::page::registration_page::registration_page_widget.dart::_ExploreChip"
+
+class "flame::page::registration_page::registration_page_widget.dart::CheckBoxGroup" {
+  +String? selected
+  +List<String> values
+  +void Function(String)? onTap
+  +Widget build()
+}
+
+"flame::page::registration_page::registration_page_widget.dart::CheckBoxGroup" o-- "flutter::src::foundation::basic_types.dart::void Function(String)"
+"flutter::src::widgets::framework.dart::StatelessWidget" <|-- "flame::page::registration_page::registration_page_widget.dart::CheckBoxGroup"
+
+abstract class "flame::page::registration_page::registration_page_wm.dart::IRegistrationPageWidgetModel" {
+  +EntityStateNotifier<TempUser> userState
+  +EntityStateNotifier<List<ExploreItem>> exploreState
+  +EntityStateNotifier<List<String?>> photoState
+  +TextEditingController nameController
+  +TextEditingController bioController
+  +TextEditingController birthdayController
+  +dynamic ageRangeState
+  +dynamic ValueNotifier()
+  +dynamic ()
+  +dynamic >()
+  +void selectSex()
+  +void selectSearch()
+  +void selectOrientation()
+  +void selectItem()
+  +bool isSelected()
+  +void chosePhoto()
+  +void saveProfile()
+}
+
+"flame::page::registration_page::registration_page_wm.dart::IRegistrationPageWidgetModel" o-- "elementary::src::relations::notifier::state_notifier.dart::EntityStateNotifier<TempUser>"
+"flame::page::registration_page::registration_page_wm.dart::IRegistrationPageWidgetModel" o-- "elementary::src::relations::notifier::state_notifier.dart::EntityStateNotifier<List<ExploreItem>>"
+"flame::page::registration_page::registration_page_wm.dart::IRegistrationPageWidgetModel" o-- "elementary::src::relations::notifier::state_notifier.dart::EntityStateNotifier<List<String>>"
+"flame::page::registration_page::registration_page_wm.dart::IRegistrationPageWidgetModel" o-- "flutter::src::widgets::editable_text.dart::TextEditingController"
+"elementary::src::core.dart::IWidgetModel" <|-- "flame::page::registration_page::registration_page_wm.dart::IRegistrationPageWidgetModel"
+"flame::util::theme_provider.dart::IThemeProvider" <|-- "flame::page::registration_page::registration_page_wm.dart::IRegistrationPageWidgetModel"
+
+class "flame::page::registration_page::registration_page_wm.dart::RegistrationPageWidgetModel" {
+  +TextEditingController nameController
+  +TextEditingController birthdayController
+  +EntityStateNotifier<TempUser> userState
+  +EntityStateNotifier<List<ExploreItem>> exploreState
+  +EntityStateNotifier<List<String?>> photoState
+  +TextEditingController bioController
+  +dynamic ageRangeState
+  +void initWidgetModel()
+  -dynamic _init()
+  +void dispose()
+  +void selectOrientation()
+  +void selectSearch()
+  +dynamic saveUser()
+  +void selectSex()
+  +void selectItem()
+  +bool isSelected()
+  +dynamic chosePhoto()
+  +dynamic saveProfile()
+}
+
+"flame::page::registration_page::registration_page_wm.dart::RegistrationPageWidgetModel" o-- "flutter::src::widgets::editable_text.dart::TextEditingController"
+"flame::page::registration_page::registration_page_wm.dart::RegistrationPageWidgetModel" o-- "elementary::src::relations::notifier::state_notifier.dart::EntityStateNotifier<TempUser>"
+"flame::page::registration_page::registration_page_wm.dart::RegistrationPageWidgetModel" o-- "elementary::src::relations::notifier::state_notifier.dart::EntityStateNotifier<List<ExploreItem>>"
+"flame::page::registration_page::registration_page_wm.dart::RegistrationPageWidgetModel" o-- "elementary::src::relations::notifier::state_notifier.dart::EntityStateNotifier<List<String>>"
+"elementary::src::core.dart::WidgetModel" <|-- "flame::page::registration_page::registration_page_wm.dart::RegistrationPageWidgetModel"
+"flame::util::theme_provider.dart::ThemeProvider" <|-- "flame::page::registration_page::registration_page_wm.dart::RegistrationPageWidgetModel"
+"flame::util::theme_provider.dart::SnackBarProvider" <|-- "flame::page::registration_page::registration_page_wm.dart::RegistrationPageWidgetModel"
+"flame::page::registration_page::registration_page_wm.dart::IRegistrationPageWidgetModel" <|-- "flame::page::registration_page::registration_page_wm.dart::RegistrationPageWidgetModel"
+
+class "flame::page::search_page::search_page_model.dart::SearchPageModel" {
+}
+
+"elementary::src::core.dart::ElementaryModel" <|-- "flame::page::search_page::search_page_model.dart::SearchPageModel"
+
+class "flame::page::search_page::search_page_widget.dart::SearchPageWidget" {
+  +Widget build()
+}
+
+"elementary::src::core.dart::ElementaryWidget" <|-- "flame::page::search_page::search_page_widget.dart::SearchPageWidget"
+
+abstract class "flame::page::search_page::search_page_wm.dart::ISearchPageWidgetModel" {
+}
+
+"elementary::src::core.dart::IWidgetModel" <|-- "flame::page::search_page::search_page_wm.dart::ISearchPageWidgetModel"
+
+class "flame::page::search_page::search_page_wm.dart::SearchPageWidgetModel" {
+}
+
+"elementary::src::core.dart::WidgetModel" <|-- "flame::page::search_page::search_page_wm.dart::SearchPageWidgetModel"
+"flame::page::search_page::search_page_wm.dart::ISearchPageWidgetModel" <|-- "flame::page::search_page::search_page_wm.dart::SearchPageWidgetModel"
+
+abstract class "flame::page::code_page::code_page_wm.dart::ICodePageWidgetModel" {
+  +TextEditingController codeController
+  +void Function()? confirmCodeCallback()
+}
+
+"flame::page::code_page::code_page_wm.dart::ICodePageWidgetModel" o-- "flutter::src::widgets::editable_text.dart::TextEditingController"
+"elementary::src::core.dart::IWidgetModel" <|-- "flame::page::code_page::code_page_wm.dart::ICodePageWidgetModel"
+"flame::util::theme_provider.dart::IThemeProvider" <|-- "flame::page::code_page::code_page_wm.dart::ICodePageWidgetModel"
+
+class "flame::page::code_page::code_page_wm.dart::CodePageWidgetModel" {
+  +TextEditingController codeController
+  +void dispose()
+  +void Function()? confirmCodeCallback()
+  -dynamic _login()
+}
+
+"flame::page::code_page::code_page_wm.dart::CodePageWidgetModel" o-- "flutter::src::widgets::editable_text.dart::TextEditingController"
+"elementary::src::core.dart::WidgetModel" <|-- "flame::page::code_page::code_page_wm.dart::CodePageWidgetModel"
+"flame::util::theme_provider.dart::ThemeProvider" <|-- "flame::page::code_page::code_page_wm.dart::CodePageWidgetModel"
+"flame::page::code_page::code_page_wm.dart::ICodePageWidgetModel" <|-- "flame::page::code_page::code_page_wm.dart::CodePageWidgetModel"
+
+class "flame::page::code_page::code_page_widget.dart::CodePageWidget" {
+  +Widget build()
+}
+
+"elementary::src::core.dart::ElementaryWidget" <|-- "flame::page::code_page::code_page_widget.dart::CodePageWidget"
+
+class "flame::page::code_page::code_page_model.dart::CodePageModel" {
+}
+
+"elementary::src::core.dart::ElementaryModel" <|-- "flame::page::code_page::code_page_model.dart::CodePageModel"
+
+class "flame::page::explore_page::explore_page_model.dart::ExplorePageModel" {
+  +PhotoService exploreService
+  +dynamic loadExplore()
+}
+
+"flame::page::explore_page::explore_page_model.dart::ExplorePageModel" o-- "flame::domain::photo_service.dart::PhotoService"
+"elementary::src::core.dart::ElementaryModel" <|-- "flame::page::explore_page::explore_page_model.dart::ExplorePageModel"
+
+abstract class "flame::page::explore_page::explore_page_wm.dart::IExplorePageWidgetModel" {
+  +EntityStateNotifier<List<ExplorePhoto>> exploreState
+  +void openExplore()
+}
+
+"flame::page::explore_page::explore_page_wm.dart::IExplorePageWidgetModel" o-- "elementary::src::relations::notifier::state_notifier.dart::EntityStateNotifier<List<ExplorePhoto>>"
+"elementary::src::core.dart::IWidgetModel" <|-- "flame::page::explore_page::explore_page_wm.dart::IExplorePageWidgetModel"
+"flame::util::theme_provider.dart::IThemeProvider" <|-- "flame::page::explore_page::explore_page_wm.dart::IExplorePageWidgetModel"
+
+class "flame::page::explore_page::explore_page_wm.dart::ExplorePageWidgetModel" {
+  +EntityStateNotifier<List<ExplorePhoto>> exploreState
+  +void initWidgetModel()
+  -dynamic _initExplore()
+  +void dispose()
+  +void openExplore()
+}
+
+"flame::page::explore_page::explore_page_wm.dart::ExplorePageWidgetModel" o-- "elementary::src::relations::notifier::state_notifier.dart::EntityStateNotifier<List<ExplorePhoto>>"
+"elementary::src::core.dart::WidgetModel" <|-- "flame::page::explore_page::explore_page_wm.dart::ExplorePageWidgetModel"
+"flame::util::theme_provider.dart::ThemeProvider" <|-- "flame::page::explore_page::explore_page_wm.dart::ExplorePageWidgetModel"
+"flame::util::theme_provider.dart::SnackBarProvider" <|-- "flame::page::explore_page::explore_page_wm.dart::ExplorePageWidgetModel"
+"flame::page::explore_page::explore_page_wm.dart::IExplorePageWidgetModel" <|-- "flame::page::explore_page::explore_page_wm.dart::ExplorePageWidgetModel"
+
+class "flame::page::explore_page::explore_page_widget.dart::ExplorePageWidget" {
+  +Widget build()
+}
+
+"elementary::src::core.dart::ElementaryWidget" <|-- "flame::page::explore_page::explore_page_widget.dart::ExplorePageWidget"
+
+abstract class "flame::page::chat_page::chat_page_wm.dart::IChatPageWidgetModel" {
+  +TextEditingController messageController
+  +EntityStateNotifier<List<Message>> messagesState
+  +void sendMessage()
+}
+
+"flame::page::chat_page::chat_page_wm.dart::IChatPageWidgetModel" o-- "flutter::src::widgets::editable_text.dart::TextEditingController"
+"flame::page::chat_page::chat_page_wm.dart::IChatPageWidgetModel" o-- "elementary::src::relations::notifier::state_notifier.dart::EntityStateNotifier<List<Message>>"
+"elementary::src::core.dart::IWidgetModel" <|-- "flame::page::chat_page::chat_page_wm.dart::IChatPageWidgetModel"
+"flame::util::theme_provider.dart::IThemeProvider" <|-- "flame::page::chat_page::chat_page_wm.dart::IChatPageWidgetModel"
+
+class "flame::page::chat_page::chat_page_wm.dart::ChatPageWidgetModel" {
+  -StreamSubscription<dynamic>? _messagesSubscribtion
+  +TextEditingController messageController
+  +EntityStateNotifier<List<Message>> messagesState
+  +void initWidgetModel()
+  +void sendMessage()
+  +void dispose()
+}
+
+"flame::page::chat_page::chat_page_wm.dart::ChatPageWidgetModel" o-- "dart::async::StreamSubscription<dynamic>"
+"flame::page::chat_page::chat_page_wm.dart::ChatPageWidgetModel" o-- "flutter::src::widgets::editable_text.dart::TextEditingController"
+"flame::page::chat_page::chat_page_wm.dart::ChatPageWidgetModel" o-- "elementary::src::relations::notifier::state_notifier.dart::EntityStateNotifier<List<Message>>"
+"elementary::src::core.dart::WidgetModel" <|-- "flame::page::chat_page::chat_page_wm.dart::ChatPageWidgetModel"
+"flame::util::theme_provider.dart::ThemeProvider" <|-- "flame::page::chat_page::chat_page_wm.dart::ChatPageWidgetModel"
+"flame::page::chat_page::chat_page_wm.dart::IChatPageWidgetModel" <|-- "flame::page::chat_page::chat_page_wm.dart::ChatPageWidgetModel"
+
+class "flame::page::chat_page::chat_page_model.dart::ChatPageModel" {
+  +MessageRepository messageRepository
+  +Stream<List<Message>> getMessagesStream()
+  +Message sendMessage()
+  +void updateReadStatus()
+}
+
+"flame::page::chat_page::chat_page_model.dart::ChatPageModel" o-- "flame::data::repository::message_repository.dart::MessageRepository"
+"elementary::src::core.dart::ElementaryModel" <|-- "flame::page::chat_page::chat_page_model.dart::ChatPageModel"
+
+class "flame::page::chat_page::chat_message.dart::TimestampedChatMessage" {
+  +String text
+  +String sentAt
+  +TextStyle? style
+  +RenderObject createRenderObject()
+  +void updateRenderObject()
+}
+
+"flame::page::chat_page::chat_message.dart::TimestampedChatMessage" o-- "flutter::src::painting::text_style.dart::TextStyle"
+"flutter::src::widgets::framework.dart::LeafRenderObjectWidget" <|-- "flame::page::chat_page::chat_message.dart::TimestampedChatMessage"
+
+class "flame::page::chat_page::chat_message.dart::TimestampedChatMessageRenderObject" {
+  -TextDirection _textDirection
+  -String _text
+  -String _sentAt
+  -TextPainter _textPainter
+  -TextPainter _sentAtTextPainter
+  -TextStyle _sentAtStyle
+  -TextStyle _textStyle
+  -bool _sentAtFitsOnLastLine
+  -double _lineHeight
+  -double _lastMessageLineWidth
+  -double _longestLineWidth
+  -double _sentAtLineWidth
+  -int _numMessageLines
+  +String sentAt
+  +TextStyle sentAtStyle
+  +String text
+  +TextStyle textStyle
+  +TextDirection textDirection
+  +TextSpan textTextSpan
+  +TextSpan sentAtTextSpan
+  +void describeSemanticsConfiguration()
+  +double computeMinIntrinsicWidth()
+  +double computeMinIntrinsicHeight()
+  +double computeMaxIntrinsicHeight()
+  +void performLayout()
+  -Size _layoutText()
+  +void paint()
+}
+
+"flame::page::chat_page::chat_message.dart::TimestampedChatMessageRenderObject" o-- "dart::ui::TextDirection"
+"flame::page::chat_page::chat_message.dart::TimestampedChatMessageRenderObject" o-- "flutter::src::painting::text_painter.dart::TextPainter"
+"flame::page::chat_page::chat_message.dart::TimestampedChatMessageRenderObject" o-- "flutter::src::painting::text_style.dart::TextStyle"
+"flame::page::chat_page::chat_message.dart::TimestampedChatMessageRenderObject" o-- "flutter::src::painting::text_span.dart::TextSpan"
+"flutter::src::rendering::box.dart::RenderBox" <|-- "flame::page::chat_page::chat_message.dart::TimestampedChatMessageRenderObject"
+
+class "flame::page::chat_page::chat_page_widget.dart::ChatPageWidget" {
+  +UserChat userChat
+  +Widget build()
+}
+
+"flame::page::chat_page::chat_page_widget.dart::ChatPageWidget" o-- "flame::entity::user_chat.dart::UserChat"
+"elementary::src::core.dart::ElementaryWidget" <|-- "flame::page::chat_page::chat_page_widget.dart::ChatPageWidget"
+
+class "flame::page::router::app_router.dart::AppRouter" {
+  +List<AutoRoute> routes
+}
+
+"flame::page::router::app_router.dart::_$AppRouter" <|-- "flame::page::router::app_router.dart::AppRouter"
+
+class "flame::page::router::app_router.dart::SearchTabPage" {
+}
+
+"auto_route::src::router::widgets::auto_router.dart::AutoRouter" <|-- "flame::page::router::app_router.dart::SearchTabPage"
+
+class "flame::page::router::app_router.dart::ExploreTabPage" {
+}
+
+"auto_route::src::router::widgets::auto_router.dart::AutoRouter" <|-- "flame::page::router::app_router.dart::ExploreTabPage"
+
+class "flame::page::router::app_router.dart::ChatTabPage" {
+}
+
+"auto_route::src::router::widgets::auto_router.dart::AutoRouter" <|-- "flame::page::router::app_router.dart::ChatTabPage"
+
+class "flame::page::router::app_router.dart::ProfileTabPage" {
+}
+
+"auto_route::src::router::widgets::auto_router.dart::AutoRouter" <|-- "flame::page::router::app_router.dart::ProfileTabPage"
+
+abstract class "flame::page::router::app_router.dart::_$AppRouter" {
+  +Map<String, Page<dynamic> Function(RouteData)> pagesMap
+}
+
+"auto_route::src::router::controller::routing_controller.dart::RootStackRouter" <|-- "flame::page::router::app_router.dart::_$AppRouter"
+
+class "flame::page::router::app_router.dart::ProfileRoute" {
+  {static} +String name
+  {static} +PageInfo<ProfileRouteArgs> page
+}
+
+"flame::page::router::app_router.dart::ProfileRoute" o-- "auto_route::src::route::page_info.dart::PageInfo<ProfileRouteArgs>"
+"auto_route::src::route::page_route_info.dart::PageRouteInfo" <|-- "flame::page::router::app_router.dart::ProfileRoute"
+
+class "flame::page::router::app_router.dart::ProfileRouteArgs" {
+  +Key? key
+  +WidgetModel<ElementaryWidget<IWidgetModel>, ElementaryModel> Function(BuildContext) wmFactory
+  +String toString()
+}
+
+"flame::page::router::app_router.dart::ProfileRouteArgs" o-- "flutter::src::foundation::key.dart::Key"
+"flame::page::router::app_router.dart::ProfileRouteArgs" o-- "null::WidgetModel<ElementaryWidget<IWidgetModel>, ElementaryModel> Function(BuildContext)"
+
+class "flame::page::router::app_router.dart::PhoneRoute" {
+  {static} +String name
+  {static} +PageInfo<PhoneRouteArgs> page
+}
+
+"flame::page::router::app_router.dart::PhoneRoute" o-- "auto_route::src::route::page_info.dart::PageInfo<PhoneRouteArgs>"
+"auto_route::src::route::page_route_info.dart::PageRouteInfo" <|-- "flame::page::router::app_router.dart::PhoneRoute"
+
+class "flame::page::router::app_router.dart::PhoneRouteArgs" {
+  +Key? key
+  +WidgetModel<ElementaryWidget<IWidgetModel>, ElementaryModel> Function(BuildContext) wmFactory
+  +String toString()
+}
+
+"flame::page::router::app_router.dart::PhoneRouteArgs" o-- "flutter::src::foundation::key.dart::Key"
+"flame::page::router::app_router.dart::PhoneRouteArgs" o-- "null::WidgetModel<ElementaryWidget<IWidgetModel>, ElementaryModel> Function(BuildContext)"
+
+class "flame::page::router::app_router.dart::HomeRoute" {
+  {static} +String name
+  {static} +PageInfo<void> page
+}
+
+"flame::page::router::app_router.dart::HomeRoute" o-- "auto_route::src::route::page_info.dart::PageInfo<void>"
+"auto_route::src::route::page_route_info.dart::PageRouteInfo" <|-- "flame::page::router::app_router.dart::HomeRoute"
+
+class "flame::page::router::app_router.dart::AuthRoute" {
+  {static} +String name
+  {static} +PageInfo<AuthRouteArgs> page
+}
+
+"flame::page::router::app_router.dart::AuthRoute" o-- "auto_route::src::route::page_info.dart::PageInfo<AuthRouteArgs>"
+"auto_route::src::route::page_route_info.dart::PageRouteInfo" <|-- "flame::page::router::app_router.dart::AuthRoute"
+
+class "flame::page::router::app_router.dart::AuthRouteArgs" {
+  +Key? key
+  +WidgetModel<ElementaryWidget<IWidgetModel>, ElementaryModel> Function(BuildContext) wmFactory
+  +String toString()
+}
+
+"flame::page::router::app_router.dart::AuthRouteArgs" o-- "flutter::src::foundation::key.dart::Key"
+"flame::page::router::app_router.dart::AuthRouteArgs" o-- "null::WidgetModel<ElementaryWidget<IWidgetModel>, ElementaryModel> Function(BuildContext)"
+
+class "flame::page::router::app_router.dart::ChatListRoute" {
+  {static} +String name
+  {static} +PageInfo<ChatListRouteArgs> page
+}
+
+"flame::page::router::app_router.dart::ChatListRoute" o-- "auto_route::src::route::page_info.dart::PageInfo<ChatListRouteArgs>"
+"auto_route::src::route::page_route_info.dart::PageRouteInfo" <|-- "flame::page::router::app_router.dart::ChatListRoute"
+
+class "flame::page::router::app_router.dart::ChatListRouteArgs" {
+  +Key? key
+  +WidgetModel<ElementaryWidget<IWidgetModel>, ElementaryModel> Function(BuildContext) wmFactory
+  +String toString()
+}
+
+"flame::page::router::app_router.dart::ChatListRouteArgs" o-- "flutter::src::foundation::key.dart::Key"
+"flame::page::router::app_router.dart::ChatListRouteArgs" o-- "null::WidgetModel<ElementaryWidget<IWidgetModel>, ElementaryModel> Function(BuildContext)"
+
+class "flame::page::router::app_router.dart::RegistrationRoute" {
+  {static} +String name
+  {static} +PageInfo<RegistrationRouteArgs> page
+}
+
+"flame::page::router::app_router.dart::RegistrationRoute" o-- "auto_route::src::route::page_info.dart::PageInfo<RegistrationRouteArgs>"
+"auto_route::src::route::page_route_info.dart::PageRouteInfo" <|-- "flame::page::router::app_router.dart::RegistrationRoute"
+
+class "flame::page::router::app_router.dart::RegistrationRouteArgs" {
+  +Key? key
+  +WidgetModel<ElementaryWidget<IWidgetModel>, ElementaryModel> Function(BuildContext) wmFactory
+  +String toString()
+}
+
+"flame::page::router::app_router.dart::RegistrationRouteArgs" o-- "flutter::src::foundation::key.dart::Key"
+"flame::page::router::app_router.dart::RegistrationRouteArgs" o-- "null::WidgetModel<ElementaryWidget<IWidgetModel>, ElementaryModel> Function(BuildContext)"
+
+class "flame::page::router::app_router.dart::SearchRoute" {
+  {static} +String name
+  {static} +PageInfo<SearchRouteArgs> page
+}
+
+"flame::page::router::app_router.dart::SearchRoute" o-- "auto_route::src::route::page_info.dart::PageInfo<SearchRouteArgs>"
+"auto_route::src::route::page_route_info.dart::PageRouteInfo" <|-- "flame::page::router::app_router.dart::SearchRoute"
+
+class "flame::page::router::app_router.dart::SearchRouteArgs" {
+  +Key? key
+  +WidgetModel<ElementaryWidget<IWidgetModel>, ElementaryModel> Function(BuildContext) wmFactory
+  +String toString()
+}
+
+"flame::page::router::app_router.dart::SearchRouteArgs" o-- "flutter::src::foundation::key.dart::Key"
+"flame::page::router::app_router.dart::SearchRouteArgs" o-- "null::WidgetModel<ElementaryWidget<IWidgetModel>, ElementaryModel> Function(BuildContext)"
+
+class "flame::page::router::app_router.dart::CodeRoute" {
+  {static} +String name
+  {static} +PageInfo<CodeRouteArgs> page
+}
+
+"flame::page::router::app_router.dart::CodeRoute" o-- "auto_route::src::route::page_info.dart::PageInfo<CodeRouteArgs>"
+"auto_route::src::route::page_route_info.dart::PageRouteInfo" <|-- "flame::page::router::app_router.dart::CodeRoute"
+
+class "flame::page::router::app_router.dart::CodeRouteArgs" {
+  +Key? key
+  +WidgetModel<ElementaryWidget<IWidgetModel>, ElementaryModel> Function(BuildContext) wmFactory
+  +String toString()
+}
+
+"flame::page::router::app_router.dart::CodeRouteArgs" o-- "flutter::src::foundation::key.dart::Key"
+"flame::page::router::app_router.dart::CodeRouteArgs" o-- "null::WidgetModel<ElementaryWidget<IWidgetModel>, ElementaryModel> Function(BuildContext)"
+
+class "flame::page::router::app_router.dart::ExploreRoute" {
+  {static} +String name
+  {static} +PageInfo<ExploreRouteArgs> page
+}
+
+"flame::page::router::app_router.dart::ExploreRoute" o-- "auto_route::src::route::page_info.dart::PageInfo<ExploreRouteArgs>"
+"auto_route::src::route::page_route_info.dart::PageRouteInfo" <|-- "flame::page::router::app_router.dart::ExploreRoute"
+
+class "flame::page::router::app_router.dart::ExploreRouteArgs" {
+  +Key? key
+  +WidgetModel<ElementaryWidget<IWidgetModel>, ElementaryModel> Function(BuildContext) wmFactory
+  +String toString()
+}
+
+"flame::page::router::app_router.dart::ExploreRouteArgs" o-- "flutter::src::foundation::key.dart::Key"
+"flame::page::router::app_router.dart::ExploreRouteArgs" o-- "null::WidgetModel<ElementaryWidget<IWidgetModel>, ElementaryModel> Function(BuildContext)"
+
+class "flame::page::router::app_router.dart::SearchTab" {
+  {static} +String name
+  {static} +PageInfo<void> page
+}
+
+"flame::page::router::app_router.dart::SearchTab" o-- "auto_route::src::route::page_info.dart::PageInfo<void>"
+"auto_route::src::route::page_route_info.dart::PageRouteInfo" <|-- "flame::page::router::app_router.dart::SearchTab"
+
+class "flame::page::router::app_router.dart::ExploreTab" {
+  {static} +String name
+  {static} +PageInfo<void> page
+}
+
+"flame::page::router::app_router.dart::ExploreTab" o-- "auto_route::src::route::page_info.dart::PageInfo<void>"
+"auto_route::src::route::page_route_info.dart::PageRouteInfo" <|-- "flame::page::router::app_router.dart::ExploreTab"
+
+class "flame::page::router::app_router.dart::ChatTab" {
+  {static} +String name
+  {static} +PageInfo<void> page
+}
+
+"flame::page::router::app_router.dart::ChatTab" o-- "auto_route::src::route::page_info.dart::PageInfo<void>"
+"auto_route::src::route::page_route_info.dart::PageRouteInfo" <|-- "flame::page::router::app_router.dart::ChatTab"
+
+class "flame::page::router::app_router.dart::ProfileTab" {
+  {static} +String name
+  {static} +PageInfo<void> page
+}
+
+"flame::page::router::app_router.dart::ProfileTab" o-- "auto_route::src::route::page_info.dart::PageInfo<void>"
+"auto_route::src::route::page_route_info.dart::PageRouteInfo" <|-- "flame::page::router::app_router.dart::ProfileTab"
+
+class "flame::page::router::app_router.dart::ChatRoute" {
+  {static} +String name
+  {static} +PageInfo<ChatRouteArgs> page
+}
+
+"flame::page::router::app_router.dart::ChatRoute" o-- "auto_route::src::route::page_info.dart::PageInfo<ChatRouteArgs>"
+"auto_route::src::route::page_route_info.dart::PageRouteInfo" <|-- "flame::page::router::app_router.dart::ChatRoute"
+
+class "flame::page::router::app_router.dart::ChatRouteArgs" {
+  +Key? key
+  +UserChat userChat
+  +WidgetModel<ElementaryWidget<IWidgetModel>, ElementaryModel> Function(BuildContext) wmFactory
+  +String toString()
+}
+
+"flame::page::router::app_router.dart::ChatRouteArgs" o-- "flutter::src::foundation::key.dart::Key"
+"flame::page::router::app_router.dart::ChatRouteArgs" o-- "flame::entity::user_chat.dart::UserChat"
+"flame::page::router::app_router.dart::ChatRouteArgs" o-- "null::WidgetModel<ElementaryWidget<IWidgetModel>, ElementaryModel> Function(BuildContext)"
+
+class "flame::page::router::app_router.dart::NotificationsRoute" {
+  {static} +String name
+  {static} +PageInfo<NotificationsRouteArgs> page
+}
+
+"flame::page::router::app_router.dart::NotificationsRoute" o-- "auto_route::src::route::page_info.dart::PageInfo<NotificationsRouteArgs>"
+"auto_route::src::route::page_route_info.dart::PageRouteInfo" <|-- "flame::page::router::app_router.dart::NotificationsRoute"
+
+class "flame::page::router::app_router.dart::NotificationsRouteArgs" {
+  +Key? key
+  +WidgetModel<ElementaryWidget<IWidgetModel>, ElementaryModel> Function(BuildContext) wmFactory
+  +String toString()
+}
+
+"flame::page::router::app_router.dart::NotificationsRouteArgs" o-- "flutter::src::foundation::key.dart::Key"
+"flame::page::router::app_router.dart::NotificationsRouteArgs" o-- "null::WidgetModel<ElementaryWidget<IWidgetModel>, ElementaryModel> Function(BuildContext)"
+
+class "flame::page::router::app_router.dart::QuickSettingsRoute" {
+  {static} +String name
+  {static} +PageInfo<QuickSettingsRouteArgs> page
+}
+
+"flame::page::router::app_router.dart::QuickSettingsRoute" o-- "auto_route::src::route::page_info.dart::PageInfo<QuickSettingsRouteArgs>"
+"auto_route::src::route::page_route_info.dart::PageRouteInfo" <|-- "flame::page::router::app_router.dart::QuickSettingsRoute"
+
+class "flame::page::router::app_router.dart::QuickSettingsRouteArgs" {
+  +Key? key
+  +WidgetModel<ElementaryWidget<IWidgetModel>, ElementaryModel> Function(BuildContext) wmFactory
+  +String toString()
+}
+
+"flame::page::router::app_router.dart::QuickSettingsRouteArgs" o-- "flutter::src::foundation::key.dart::Key"
+"flame::page::router::app_router.dart::QuickSettingsRouteArgs" o-- "null::WidgetModel<ElementaryWidget<IWidgetModel>, ElementaryModel> Function(BuildContext)"
+
+class "flame::page::router::un_focus_detector.dart::UnFocusDetector" {
+  +Widget child
+  +Widget build()
+}
+
+"flame::page::router::un_focus_detector.dart::UnFocusDetector" o-- "flutter::src::widgets::framework.dart::Widget"
+"flutter::src::widgets::framework.dart::StatelessWidget" <|-- "flame::page::router::un_focus_detector.dart::UnFocusDetector"
+
+abstract class "flame::l10n::generated::app_localizations.dart::AppLocalizations" {
+  +String localeName
+  {static} +LocalizationsDelegate<AppLocalizations> delegate
+  {static} +List<LocalizationsDelegate<dynamic>> localizationsDelegates
+  {static} +List<Locale> supportedLocales
+  +String ageRange
+  +String bio
+  +String bioHint
+  +String birthdayHint
+  +String nameHint
+  +String myOrientation
+  +String mySearch
+  +String mySex
+  +String aboutBirthday
+  +String birthday
+  +String aboutName
+  +String name
+  +String logInWithGitHub
+  +String phoneHint
+  +String continueAction
+  +String aboutPhone
+  +String myPhone
+  +String profile
+  +String chats
+  +String explore
+  +String search
+  +String authNotify
+  +String phoneLogin
+  {static} +AppLocalizations of()
+}
+
+"flame::l10n::generated::app_localizations.dart::AppLocalizations" o-- "flutter::src::widgets::localizations.dart::LocalizationsDelegate<AppLocalizations>"
+
+class "flame::l10n::generated::app_localizations.dart::_AppLocalizationsDelegate" {
+  +dynamic load()
+  +bool isSupported()
+  +bool shouldReload()
+}
+
+"flutter::src::widgets::localizations.dart::LocalizationsDelegate" <|-- "flame::l10n::generated::app_localizations.dart::_AppLocalizationsDelegate"
+
+class "flame::l10n::generated::app_localizations_en.dart::AppLocalizationsEn" {
+  +String ageRange
+  +String bio
+  +String bioHint
+  +String birthdayHint
+  +String nameHint
+  +String myOrientation
+  +String mySearch
+  +String mySex
+  +String aboutBirthday
+  +String birthday
+  +String aboutName
+  +String name
+  +String logInWithGitHub
+  +String phoneHint
+  +String continueAction
+  +String aboutPhone
+  +String myPhone
+  +String profile
+  +String chats
+  +String explore
+  +String search
+  +String authNotify
+  +String phoneLogin
+}
+
+"flame::l10n::generated::app_localizations.dart::AppLocalizations" <|-- "flame::l10n::generated::app_localizations_en.dart::AppLocalizationsEn"
+
+class "flame::util::dummy_model.dart::DummyModel" {
+}
+
+"elementary::src::core.dart::ElementaryModel" <|-- "flame::util::dummy_model.dart::DummyModel"
+
+class "flame::util::theme_provider.dart::IThemeProvider" {
+  +ThemeData theme
+  +TextTheme textTheme
+  +ColorScheme colorScheme
+  +AppLocalizations localizations
+  +StackRouter router
+}
+
+"flame::util::theme_provider.dart::IThemeProvider" o-- "flutter::src::material::theme_data.dart::ThemeData"
+"flame::util::theme_provider.dart::IThemeProvider" o-- "flutter::src::material::text_theme.dart::TextTheme"
+"flame::util::theme_provider.dart::IThemeProvider" o-- "flutter::src::material::color_scheme.dart::ColorScheme"
+"flame::util::theme_provider.dart::IThemeProvider" o-- "flame::l10n::generated::app_localizations.dart::AppLocalizations"
+"flame::util::theme_provider.dart::IThemeProvider" o-- "auto_route::src::router::controller::routing_controller.dart::StackRouter"
+
+abstract class "flame::util::theme_provider.dart::ThemeProvider" {
+  +BuildContext context
+  +AppLocalizations localizations
+  +ThemeData theme
+  +TextTheme textTheme
+  +ColorScheme colorScheme
+  +StackRouter router
+}
+
+"flame::util::theme_provider.dart::ThemeProvider" o-- "flutter::src::widgets::framework.dart::BuildContext"
+"flame::util::theme_provider.dart::ThemeProvider" o-- "flame::l10n::generated::app_localizations.dart::AppLocalizations"
+"flame::util::theme_provider.dart::ThemeProvider" o-- "flutter::src::material::theme_data.dart::ThemeData"
+"flame::util::theme_provider.dart::ThemeProvider" o-- "flutter::src::material::text_theme.dart::TextTheme"
+"flame::util::theme_provider.dart::ThemeProvider" o-- "flutter::src::material::color_scheme.dart::ColorScheme"
+"flame::util::theme_provider.dart::ThemeProvider" o-- "auto_route::src::router::controller::routing_controller.dart::StackRouter"
+
+abstract class "flame::util::theme_provider.dart::SnackBarProvider" {
+  +BuildContext context
+  +void showSnackBar()
+}
+
+"flame::util::theme_provider.dart::SnackBarProvider" o-- "flutter::src::widgets::framework.dart::BuildContext"
+
+class "flame::entity::explore_photo.dart::ExplorePhoto" {
+}
+
+"flame::entity::explore_photo.dart::_$ExplorePhoto" <|-- "flame::entity::explore_photo.dart::ExplorePhoto"
+
+abstract class "flame::entity::explore_photo.dart::$ExplorePhotoCopyWith" {
+  +$Res call()
+}
+
+class "flame::entity::explore_photo.dart::_$ExplorePhotoCopyWithImpl" {
+  -$Val _value
+  -$Res Function($Val) _then
+  +$Res call()
+}
+
+"flame::entity::explore_photo.dart::_$ExplorePhotoCopyWithImpl" o-- "null::$Res Function($Val)"
+"flame::entity::explore_photo.dart::$ExplorePhotoCopyWith" <|-- "flame::entity::explore_photo.dart::_$ExplorePhotoCopyWithImpl"
+
+abstract class "flame::entity::explore_photo.dart::_$$_ExplorePhotoCopyWith" {
+  +$Res call()
+}
+
+"flame::entity::explore_photo.dart::$ExplorePhotoCopyWith" <|-- "flame::entity::explore_photo.dart::_$$_ExplorePhotoCopyWith"
+
+class "flame::entity::explore_photo.dart::__$$_ExplorePhotoCopyWithImpl" {
+  +$Res call()
+}
+
+"flame::entity::explore_photo.dart::_$ExplorePhotoCopyWithImpl" <|-- "flame::entity::explore_photo.dart::__$$_ExplorePhotoCopyWithImpl"
+"flame::entity::explore_photo.dart::_$$_ExplorePhotoCopyWith" <|-- "flame::entity::explore_photo.dart::__$$_ExplorePhotoCopyWithImpl"
+
+class "flame::entity::explore_photo.dart::_$_ExplorePhoto" {
+  +String name
+  +String url
+  +int hashCode
+  +_$$_ExplorePhotoCopyWith<_$_ExplorePhoto> copyWith
+  +String toString()
+  +bool ==()
+  +Map<String, dynamic> toJson()
+}
+
+"flame::entity::explore_photo.dart::_$_ExplorePhoto" o-- "flame::entity::explore_photo.dart::_$$_ExplorePhotoCopyWith<_$_ExplorePhoto>"
+"flame::entity::explore_photo.dart::_ExplorePhoto" <|-- "flame::entity::explore_photo.dart::_$_ExplorePhoto"
+
+abstract class "flame::entity::explore_photo.dart::_ExplorePhoto" {
+  +String name
+  +String url
+  +_$$_ExplorePhotoCopyWith<_$_ExplorePhoto> copyWith
+}
+
+"flame::entity::explore_photo.dart::_ExplorePhoto" o-- "flame::entity::explore_photo.dart::_$$_ExplorePhotoCopyWith<_$_ExplorePhoto>"
+"flame::entity::explore_photo.dart::ExplorePhoto" <|-- "flame::entity::explore_photo.dart::_ExplorePhoto"
+
+abstract class "flame::entity::explore_photo.dart::_$ExplorePhoto" {
+  +String name
+  +String url
+  +$ExplorePhotoCopyWith<ExplorePhoto> copyWith
+  +Map<String, dynamic> toJson()
+}
+
+"flame::entity::explore_photo.dart::_$ExplorePhoto" o-- "flame::entity::explore_photo.dart::$ExplorePhotoCopyWith<ExplorePhoto>"
+
+class "flame::entity::message.dart::Message" {
+}
+
+"flame::entity::message.dart::_$Message" <|-- "flame::entity::message.dart::Message"
+
+abstract class "flame::entity::message.dart::$MessageCopyWith" {
+  +$Res call()
+}
+
+class "flame::entity::message.dart::_$MessageCopyWithImpl" {
+  -$Val _value
+  -$Res Function($Val) _then
+  +$Res call()
+}
+
+"flame::entity::message.dart::_$MessageCopyWithImpl" o-- "null::$Res Function($Val)"
+"flame::entity::message.dart::$MessageCopyWith" <|-- "flame::entity::message.dart::_$MessageCopyWithImpl"
+
+abstract class "flame::entity::message.dart::_$$_MessageCopyWith" {
+  +$Res call()
+}
+
+"flame::entity::message.dart::$MessageCopyWith" <|-- "flame::entity::message.dart::_$$_MessageCopyWith"
+
+class "flame::entity::message.dart::__$$_MessageCopyWithImpl" {
+  +$Res call()
+}
+
+"flame::entity::message.dart::_$MessageCopyWithImpl" <|-- "flame::entity::message.dart::__$$_MessageCopyWithImpl"
+"flame::entity::message.dart::_$$_MessageCopyWith" <|-- "flame::entity::message.dart::__$$_MessageCopyWithImpl"
+
+class "flame::entity::message.dart::_$_Message" {
+  +String id
+  +String chatId
+  +String from
+  +String to
+  +int timestamp
+  +bool viewed
+  +String message
+  +int hashCode
+  +_$$_MessageCopyWith<_$_Message> copyWith
+  +String toString()
+  +bool ==()
+  +Map<String, dynamic> toJson()
+}
+
+"flame::entity::message.dart::_$_Message" o-- "flame::entity::message.dart::_$$_MessageCopyWith<_$_Message>"
+"flame::entity::message.dart::_Message" <|-- "flame::entity::message.dart::_$_Message"
+
+abstract class "flame::entity::message.dart::_Message" {
+  +String id
+  +String chatId
+  +String from
+  +String to
+  +int timestamp
+  +bool viewed
+  +String message
+  +_$$_MessageCopyWith<_$_Message> copyWith
+}
+
+"flame::entity::message.dart::_Message" o-- "flame::entity::message.dart::_$$_MessageCopyWith<_$_Message>"
+"flame::entity::message.dart::Message" <|-- "flame::entity::message.dart::_Message"
+
+abstract class "flame::entity::message.dart::_$Message" {
+  +String id
+  +String chatId
+  +String from
+  +String to
+  +int timestamp
+  +bool viewed
+  +String message
+  +$MessageCopyWith<Message> copyWith
+  +Map<String, dynamic> toJson()
+}
+
+"flame::entity::message.dart::_$Message" o-- "flame::entity::message.dart::$MessageCopyWith<Message>"
+
+class "flame::entity::user_chat.dart::UserChat" {
+}
+
+"flame::entity::user_chat.dart::_$UserChat" <|-- "flame::entity::user_chat.dart::UserChat"
+
+abstract class "flame::entity::user_chat.dart::$UserChatCopyWith" {
+  +$Res call()
+}
+
+class "flame::entity::user_chat.dart::_$UserChatCopyWithImpl" {
+  -$Val _value
+  -$Res Function($Val) _then
+  +$Res call()
+}
+
+"flame::entity::user_chat.dart::_$UserChatCopyWithImpl" o-- "null::$Res Function($Val)"
+"flame::entity::user_chat.dart::$UserChatCopyWith" <|-- "flame::entity::user_chat.dart::_$UserChatCopyWithImpl"
+
+abstract class "flame::entity::user_chat.dart::_$$_UserChatCopyWith" {
+  +$Res call()
+}
+
+"flame::entity::user_chat.dart::$UserChatCopyWith" <|-- "flame::entity::user_chat.dart::_$$_UserChatCopyWith"
+
+class "flame::entity::user_chat.dart::__$$_UserChatCopyWithImpl" {
+  +$Res call()
+}
+
+"flame::entity::user_chat.dart::_$UserChatCopyWithImpl" <|-- "flame::entity::user_chat.dart::__$$_UserChatCopyWithImpl"
+"flame::entity::user_chat.dart::_$$_UserChatCopyWith" <|-- "flame::entity::user_chat.dart::__$$_UserChatCopyWithImpl"
+
+class "flame::entity::user_chat.dart::_$_UserChat" {
+  +String chatId
+  +String from
+  +String to
+  +String name
+  +String image
+  +String? lastMessage
+  +int hashCode
+  +_$$_UserChatCopyWith<_$_UserChat> copyWith
+  +String toString()
+  +bool ==()
+  +Map<String, dynamic> toJson()
+}
+
+"flame::entity::user_chat.dart::_$_UserChat" o-- "flame::entity::user_chat.dart::_$$_UserChatCopyWith<_$_UserChat>"
+"flame::entity::user_chat.dart::_UserChat" <|-- "flame::entity::user_chat.dart::_$_UserChat"
+
+abstract class "flame::entity::user_chat.dart::_UserChat" {
+  +String chatId
+  +String from
+  +String to
+  +String name
+  +String image
+  +String? lastMessage
+  +_$$_UserChatCopyWith<_$_UserChat> copyWith
+}
+
+"flame::entity::user_chat.dart::_UserChat" o-- "flame::entity::user_chat.dart::_$$_UserChatCopyWith<_$_UserChat>"
+"flame::entity::user_chat.dart::UserChat" <|-- "flame::entity::user_chat.dart::_UserChat"
+
+abstract class "flame::entity::user_chat.dart::_$UserChat" {
+  +String chatId
+  +String from
+  +String to
+  +String name
+  +String image
+  +String? lastMessage
+  +$UserChatCopyWith<UserChat> copyWith
+  +Map<String, dynamic> toJson()
+}
+
+"flame::entity::user_chat.dart::_$UserChat" o-- "flame::entity::user_chat.dart::$UserChatCopyWith<UserChat>"
+
+class "flame::entity::flame_user.dart::FlameUser" {
+}
+
+"flame::entity::flame_user.dart::_$FlameUser" <|-- "flame::entity::flame_user.dart::FlameUser"
+
+class "flame::entity::flame_user.dart::Orientation" {
+  +int index
+  {static} +List<Orientation> values
+  {static} +Orientation traditional
+  {static} +Orientation bi
+  {static} +Orientation lgbtq
+}
+
+"flame::entity::flame_user.dart::Orientation" o-- "flame::entity::flame_user.dart::Orientation"
+"dart::core::Enum" <|-- "flame::entity::flame_user.dart::Orientation"
+
+class "flame::entity::flame_user.dart::Sex" {
+  +int index
+  {static} +List<Sex> values
+  {static} +Sex man
+  {static} +Sex women
+  {static} +Sex hidden
+}
+
+"flame::entity::flame_user.dart::Sex" o-- "flame::entity::flame_user.dart::Sex"
+"dart::core::Enum" <|-- "flame::entity::flame_user.dart::Sex"
+
+abstract class "flame::entity::flame_user.dart::$FlameUserCopyWith" {
+  +$Res call()
+}
+
+class "flame::entity::flame_user.dart::_$FlameUserCopyWithImpl" {
+  -$Val _value
+  -$Res Function($Val) _then
+  +$Res call()
+}
+
+"flame::entity::flame_user.dart::_$FlameUserCopyWithImpl" o-- "null::$Res Function($Val)"
+"flame::entity::flame_user.dart::$FlameUserCopyWith" <|-- "flame::entity::flame_user.dart::_$FlameUserCopyWithImpl"
+
+abstract class "flame::entity::flame_user.dart::_$$_FlameUserCopyWith" {
+  +$Res call()
+}
+
+"flame::entity::flame_user.dart::$FlameUserCopyWith" <|-- "flame::entity::flame_user.dart::_$$_FlameUserCopyWith"
+
+class "flame::entity::flame_user.dart::__$$_FlameUserCopyWithImpl" {
+  +$Res call()
+}
+
+"flame::entity::flame_user.dart::_$FlameUserCopyWithImpl" <|-- "flame::entity::flame_user.dart::__$$_FlameUserCopyWithImpl"
+"flame::entity::flame_user.dart::_$$_FlameUserCopyWith" <|-- "flame::entity::flame_user.dart::__$$_FlameUserCopyWithImpl"
+
+class "flame::entity::flame_user.dart::_$_FlameUser" {
+  +String id
+  +String name
+  +String bio
+  +int minAge
+  +int maxAge
+  +int age
+  +DateTime birthday
+  +Sex sex
+  +Sex search
+  +Orientation orientation
+  -List<String> _pictures
+  -List<String> _interests
+  +bool verified
+  +List<String> pictures
+  +List<String> interests
+  +int hashCode
+  +_$$_FlameUserCopyWith<_$_FlameUser> copyWith
+  +String toString()
+  +bool ==()
+  +Map<String, dynamic> toJson()
+}
+
+"flame::entity::flame_user.dart::_$_FlameUser" o-- "flame::entity::flame_user.dart::Sex"
+"flame::entity::flame_user.dart::_$_FlameUser" o-- "flame::entity::flame_user.dart::Orientation"
+"flame::entity::flame_user.dart::_$_FlameUser" o-- "flame::entity::flame_user.dart::_$$_FlameUserCopyWith<_$_FlameUser>"
+"flame::entity::flame_user.dart::_FlameUser" <|-- "flame::entity::flame_user.dart::_$_FlameUser"
+
+abstract class "flame::entity::flame_user.dart::_FlameUser" {
+  +String id
+  +String name
+  +String bio
+  +int minAge
+  +int maxAge
+  +int age
+  +DateTime birthday
+  +Sex sex
+  +Sex search
+  +Orientation orientation
+  +List<String> pictures
+  +List<String> interests
+  +bool verified
+  +_$$_FlameUserCopyWith<_$_FlameUser> copyWith
+}
+
+"flame::entity::flame_user.dart::_FlameUser" o-- "flame::entity::flame_user.dart::Sex"
+"flame::entity::flame_user.dart::_FlameUser" o-- "flame::entity::flame_user.dart::Orientation"
+"flame::entity::flame_user.dart::_FlameUser" o-- "flame::entity::flame_user.dart::_$$_FlameUserCopyWith<_$_FlameUser>"
+"flame::entity::flame_user.dart::FlameUser" <|-- "flame::entity::flame_user.dart::_FlameUser"
+
+abstract class "flame::entity::flame_user.dart::_$FlameUser" {
+  +String id
+  +String name
+  +String bio
+  +int minAge
+  +int maxAge
+  +int age
+  +DateTime birthday
+  +Sex sex
+  +Sex search
+  +Orientation orientation
+  +List<String> pictures
+  +List<String> interests
+  +bool verified
+  +$FlameUserCopyWith<FlameUser> copyWith
+  +Map<String, dynamic> toJson()
+}
+
+"flame::entity::flame_user.dart::_$FlameUser" o-- "flame::entity::flame_user.dart::Sex"
+"flame::entity::flame_user.dart::_$FlameUser" o-- "flame::entity::flame_user.dart::Orientation"
+"flame::entity::flame_user.dart::_$FlameUser" o-- "flame::entity::flame_user.dart::$FlameUserCopyWith<FlameUser>"
+
+class "flame::entity::like.dart::Like" {
+}
+
+"flame::entity::like.dart::_$Like" <|-- "flame::entity::like.dart::Like"
+
+abstract class "flame::entity::like.dart::$LikeCopyWith" {
+  +$Res call()
+}
+
+class "flame::entity::like.dart::_$LikeCopyWithImpl" {
+  -$Val _value
+  -$Res Function($Val) _then
+  +$Res call()
+}
+
+"flame::entity::like.dart::_$LikeCopyWithImpl" o-- "null::$Res Function($Val)"
+"flame::entity::like.dart::$LikeCopyWith" <|-- "flame::entity::like.dart::_$LikeCopyWithImpl"
+
+abstract class "flame::entity::like.dart::_$$_LikeCopyWith" {
+  +$Res call()
+}
+
+"flame::entity::like.dart::$LikeCopyWith" <|-- "flame::entity::like.dart::_$$_LikeCopyWith"
+
+class "flame::entity::like.dart::__$$_LikeCopyWithImpl" {
+  +$Res call()
+}
+
+"flame::entity::like.dart::_$LikeCopyWithImpl" <|-- "flame::entity::like.dart::__$$_LikeCopyWithImpl"
+"flame::entity::like.dart::_$$_LikeCopyWith" <|-- "flame::entity::like.dart::__$$_LikeCopyWithImpl"
+
+class "flame::entity::like.dart::_$_Like" {
+  +String from
+  +String to
+  +bool superLike
+  +int hashCode
+  +_$$_LikeCopyWith<_$_Like> copyWith
+  +String toString()
+  +bool ==()
+  +Map<String, dynamic> toJson()
+}
+
+"flame::entity::like.dart::_$_Like" o-- "flame::entity::like.dart::_$$_LikeCopyWith<_$_Like>"
+"flame::entity::like.dart::_Like" <|-- "flame::entity::like.dart::_$_Like"
+
+abstract class "flame::entity::like.dart::_Like" {
+  +String from
+  +String to
+  +bool superLike
+  +_$$_LikeCopyWith<_$_Like> copyWith
+}
+
+"flame::entity::like.dart::_Like" o-- "flame::entity::like.dart::_$$_LikeCopyWith<_$_Like>"
+"flame::entity::like.dart::Like" <|-- "flame::entity::like.dart::_Like"
+
+abstract class "flame::entity::like.dart::_$Like" {
+  +String from
+  +String to
+  +bool superLike
+  +$LikeCopyWith<Like> copyWith
+  +Map<String, dynamic> toJson()
+}
+
+"flame::entity::like.dart::_$Like" o-- "flame::entity::like.dart::$LikeCopyWith<Like>"
+
+class "flame::entity::explore.dart::ExploreItem" {
+}
+
+"flame::entity::explore.dart::_$ExploreItem" <|-- "flame::entity::explore.dart::ExploreItem"
+
+abstract class "flame::entity::explore.dart::$ExploreItemCopyWith" {
+  +$Res call()
+}
+
+class "flame::entity::explore.dart::_$ExploreItemCopyWithImpl" {
+  -$Val _value
+  -$Res Function($Val) _then
+  +$Res call()
+}
+
+"flame::entity::explore.dart::_$ExploreItemCopyWithImpl" o-- "null::$Res Function($Val)"
+"flame::entity::explore.dart::$ExploreItemCopyWith" <|-- "flame::entity::explore.dart::_$ExploreItemCopyWithImpl"
+
+abstract class "flame::entity::explore.dart::_$$_ExploreItemCopyWith" {
+  +$Res call()
+}
+
+"flame::entity::explore.dart::$ExploreItemCopyWith" <|-- "flame::entity::explore.dart::_$$_ExploreItemCopyWith"
+
+class "flame::entity::explore.dart::__$$_ExploreItemCopyWithImpl" {
+  +$Res call()
+}
+
+"flame::entity::explore.dart::_$ExploreItemCopyWithImpl" <|-- "flame::entity::explore.dart::__$$_ExploreItemCopyWithImpl"
+"flame::entity::explore.dart::_$$_ExploreItemCopyWith" <|-- "flame::entity::explore.dart::__$$_ExploreItemCopyWithImpl"
+
+class "flame::entity::explore.dart::_$_ExploreItem" {
+  +String name
+  +int hashCode
+  +_$$_ExploreItemCopyWith<_$_ExploreItem> copyWith
+  +String toString()
+  +bool ==()
+  +Map<String, dynamic> toJson()
+}
+
+"flame::entity::explore.dart::_$_ExploreItem" o-- "flame::entity::explore.dart::_$$_ExploreItemCopyWith<_$_ExploreItem>"
+"flame::entity::explore.dart::_ExploreItem" <|-- "flame::entity::explore.dart::_$_ExploreItem"
+
+abstract class "flame::entity::explore.dart::_ExploreItem" {
+  +String name
+  +_$$_ExploreItemCopyWith<_$_ExploreItem> copyWith
+}
+
+"flame::entity::explore.dart::_ExploreItem" o-- "flame::entity::explore.dart::_$$_ExploreItemCopyWith<_$_ExploreItem>"
+"flame::entity::explore.dart::ExploreItem" <|-- "flame::entity::explore.dart::_ExploreItem"
+
+abstract class "flame::entity::explore.dart::_$ExploreItem" {
+  +String name
+  +$ExploreItemCopyWith<ExploreItem> copyWith
+  +Map<String, dynamic> toJson()
+}
+
+"flame::entity::explore.dart::_$ExploreItem" o-- "flame::entity::explore.dart::$ExploreItemCopyWith<ExploreItem>"
+
+class "flame::entity::chat.dart::Chat" {
+}
+
+"flame::entity::chat.dart::_$Chat" <|-- "flame::entity::chat.dart::Chat"
+
+abstract class "flame::entity::chat.dart::$ChatCopyWith" {
+  +$Res call()
+}
+
+class "flame::entity::chat.dart::_$ChatCopyWithImpl" {
+  -$Val _value
+  -$Res Function($Val) _then
+  +$Res call()
+}
+
+"flame::entity::chat.dart::_$ChatCopyWithImpl" o-- "null::$Res Function($Val)"
+"flame::entity::chat.dart::$ChatCopyWith" <|-- "flame::entity::chat.dart::_$ChatCopyWithImpl"
+
+abstract class "flame::entity::chat.dart::_$$_ChatCopyWith" {
+  +$Res call()
+}
+
+"flame::entity::chat.dart::$ChatCopyWith" <|-- "flame::entity::chat.dart::_$$_ChatCopyWith"
+
+class "flame::entity::chat.dart::__$$_ChatCopyWithImpl" {
+  +$Res call()
+}
+
+"flame::entity::chat.dart::_$ChatCopyWithImpl" <|-- "flame::entity::chat.dart::__$$_ChatCopyWithImpl"
+"flame::entity::chat.dart::_$$_ChatCopyWith" <|-- "flame::entity::chat.dart::__$$_ChatCopyWithImpl"
+
+class "flame::entity::chat.dart::_$_Chat" {
+  +String chatId
+  -List<String> _participant
+  +List<String> participant
+  +int hashCode
+  +_$$_ChatCopyWith<_$_Chat> copyWith
+  +String toString()
+  +bool ==()
+  +Map<String, dynamic> toJson()
+}
+
+"flame::entity::chat.dart::_$_Chat" o-- "flame::entity::chat.dart::_$$_ChatCopyWith<_$_Chat>"
+"flame::entity::chat.dart::_Chat" <|-- "flame::entity::chat.dart::_$_Chat"
+
+abstract class "flame::entity::chat.dart::_Chat" {
+  +String chatId
+  +List<String> participant
+  +_$$_ChatCopyWith<_$_Chat> copyWith
+}
+
+"flame::entity::chat.dart::_Chat" o-- "flame::entity::chat.dart::_$$_ChatCopyWith<_$_Chat>"
+"flame::entity::chat.dart::Chat" <|-- "flame::entity::chat.dart::_Chat"
+
+abstract class "flame::entity::chat.dart::_$Chat" {
+  +String chatId
+  +List<String> participant
+  +$ChatCopyWith<Chat> copyWith
+  +Map<String, dynamic> toJson()
+}
+
+"flame::entity::chat.dart::_$Chat" o-- "flame::entity::chat.dart::$ChatCopyWith<Chat>"
+
+class "flame::firebase_options.dart::DefaultFirebaseOptions" {
+  {static} +FirebaseOptions web
+  {static} +FirebaseOptions android
+  {static} +FirebaseOptions ios
+  {static} +FirebaseOptions currentPlatform
+}
+
+"flame::firebase_options.dart::DefaultFirebaseOptions" o-- "firebase_core_platform_interface::firebase_core_platform_interface.dart::FirebaseOptions"
+
+class "flame::internal::app_dependency.dart::AppDependency" {
+  +Widget app
+  +Widget build()
+}
+
+"flame::internal::app_dependency.dart::AppDependency" o-- "flutter::src::widgets::framework.dart::Widget"
+"flutter::src::widgets::framework.dart::StatelessWidget" <|-- "flame::internal::app_dependency.dart::AppDependency"
+
+class "flame::internal::app.dart::App" {
+  -AppRouter _router
+  +Widget build()
+}
+
+"flame::internal::app.dart::App" o-- "flame::page::router::app_router.dart::AppRouter"
+"flutter::src::widgets::framework.dart::StatelessWidget" <|-- "flame::internal::app.dart::App"
+
+class "flame::data::dto::photos_list_dto.dart::PhotosListDto" {
+}
+
+"flame::data::dto::photos_list_dto.dart::_$PhotosListDto" <|-- "flame::data::dto::photos_list_dto.dart::PhotosListDto"
+
+abstract class "flame::data::dto::photos_list_dto.dart::$PhotosListDtoCopyWith" {
+  +$PhotoPaginationDtoCopyWith<$Res> photos
+  +$Res call()
+}
+
+"flame::data::dto::photos_list_dto.dart::$PhotosListDtoCopyWith" o-- "flame::data::dto::photo_pagination_dto.dart::$PhotoPaginationDtoCopyWith<$Res>"
+
+class "flame::data::dto::photos_list_dto.dart::_$PhotosListDtoCopyWithImpl" {
+  -$Val _value
+  -$Res Function($Val) _then
+  +$PhotoPaginationDtoCopyWith<$Res> photos
+  +$Res call()
+}
+
+"flame::data::dto::photos_list_dto.dart::_$PhotosListDtoCopyWithImpl" o-- "null::$Res Function($Val)"
+"flame::data::dto::photos_list_dto.dart::_$PhotosListDtoCopyWithImpl" o-- "flame::data::dto::photo_pagination_dto.dart::$PhotoPaginationDtoCopyWith<$Res>"
+"flame::data::dto::photos_list_dto.dart::$PhotosListDtoCopyWith" <|-- "flame::data::dto::photos_list_dto.dart::_$PhotosListDtoCopyWithImpl"
+
+abstract class "flame::data::dto::photos_list_dto.dart::_$$_PhotosListDtoCopyWith" {
+  +$PhotoPaginationDtoCopyWith<$Res> photos
+  +$Res call()
+}
+
+"flame::data::dto::photos_list_dto.dart::_$$_PhotosListDtoCopyWith" o-- "flame::data::dto::photo_pagination_dto.dart::$PhotoPaginationDtoCopyWith<$Res>"
+"flame::data::dto::photos_list_dto.dart::$PhotosListDtoCopyWith" <|-- "flame::data::dto::photos_list_dto.dart::_$$_PhotosListDtoCopyWith"
+
+class "flame::data::dto::photos_list_dto.dart::__$$_PhotosListDtoCopyWithImpl" {
+  +$Res call()
+}
+
+"flame::data::dto::photos_list_dto.dart::_$PhotosListDtoCopyWithImpl" <|-- "flame::data::dto::photos_list_dto.dart::__$$_PhotosListDtoCopyWithImpl"
+"flame::data::dto::photos_list_dto.dart::_$$_PhotosListDtoCopyWith" <|-- "flame::data::dto::photos_list_dto.dart::__$$_PhotosListDtoCopyWithImpl"
+
+class "flame::data::dto::photos_list_dto.dart::_$_PhotosListDto" {
+  +PhotoPaginationDto photos
+  +int hashCode
+  +_$$_PhotosListDtoCopyWith<_$_PhotosListDto> copyWith
+  +String toString()
+  +bool ==()
+  +Map<String, dynamic> toJson()
+}
+
+"flame::data::dto::photos_list_dto.dart::_$_PhotosListDto" o-- "flame::data::dto::photo_pagination_dto.dart::PhotoPaginationDto"
+"flame::data::dto::photos_list_dto.dart::_$_PhotosListDto" o-- "flame::data::dto::photos_list_dto.dart::_$$_PhotosListDtoCopyWith<_$_PhotosListDto>"
+"flame::data::dto::photos_list_dto.dart::_PhotosListDto" <|-- "flame::data::dto::photos_list_dto.dart::_$_PhotosListDto"
+
+abstract class "flame::data::dto::photos_list_dto.dart::_PhotosListDto" {
+  +PhotoPaginationDto photos
+  +_$$_PhotosListDtoCopyWith<_$_PhotosListDto> copyWith
+}
+
+"flame::data::dto::photos_list_dto.dart::_PhotosListDto" o-- "flame::data::dto::photo_pagination_dto.dart::PhotoPaginationDto"
+"flame::data::dto::photos_list_dto.dart::_PhotosListDto" o-- "flame::data::dto::photos_list_dto.dart::_$$_PhotosListDtoCopyWith<_$_PhotosListDto>"
+"flame::data::dto::photos_list_dto.dart::PhotosListDto" <|-- "flame::data::dto::photos_list_dto.dart::_PhotosListDto"
+
+abstract class "flame::data::dto::photos_list_dto.dart::_$PhotosListDto" {
+  +PhotoPaginationDto photos
+  +$PhotosListDtoCopyWith<PhotosListDto> copyWith
+  +Map<String, dynamic> toJson()
+}
+
+"flame::data::dto::photos_list_dto.dart::_$PhotosListDto" o-- "flame::data::dto::photo_pagination_dto.dart::PhotoPaginationDto"
+"flame::data::dto::photos_list_dto.dart::_$PhotosListDto" o-- "flame::data::dto::photos_list_dto.dart::$PhotosListDtoCopyWith<PhotosListDto>"
+
+class "flame::data::dto::photo_dto.dart::PhotoDto" {
+  +Map<String, dynamic> toJson()
+}
+
+"flame::data::dto::photo_dto.dart::_$PhotoDto" <|-- "flame::data::dto::photo_dto.dart::PhotoDto"
+
+abstract class "flame::data::dto::photo_dto.dart::$PhotoDtoCopyWith" {
+  +$Res call()
+}
+
+class "flame::data::dto::photo_dto.dart::_$PhotoDtoCopyWithImpl" {
+  -$Val _value
+  -$Res Function($Val) _then
+  +$Res call()
+}
+
+"flame::data::dto::photo_dto.dart::_$PhotoDtoCopyWithImpl" o-- "null::$Res Function($Val)"
+"flame::data::dto::photo_dto.dart::$PhotoDtoCopyWith" <|-- "flame::data::dto::photo_dto.dart::_$PhotoDtoCopyWithImpl"
+
+abstract class "flame::data::dto::photo_dto.dart::_$$_PhotoDtoCopyWith" {
+  +$Res call()
+}
+
+"flame::data::dto::photo_dto.dart::$PhotoDtoCopyWith" <|-- "flame::data::dto::photo_dto.dart::_$$_PhotoDtoCopyWith"
+
+class "flame::data::dto::photo_dto.dart::__$$_PhotoDtoCopyWithImpl" {
+  +$Res call()
+}
+
+"flame::data::dto::photo_dto.dart::_$PhotoDtoCopyWithImpl" <|-- "flame::data::dto::photo_dto.dart::__$$_PhotoDtoCopyWithImpl"
+"flame::data::dto::photo_dto.dart::_$$_PhotoDtoCopyWith" <|-- "flame::data::dto::photo_dto.dart::__$$_PhotoDtoCopyWithImpl"
+
+class "flame::data::dto::photo_dto.dart::_$_PhotoDto" {
+  +String id
+  +String owner
+  +String secret
+  +String server
+  +int farm
+  +String title
+  +int hashCode
+  +_$$_PhotoDtoCopyWith<_$_PhotoDto> copyWith
+  +String toString()
+  +bool ==()
+  +Map<String, dynamic> toJson()
+}
+
+"flame::data::dto::photo_dto.dart::_$_PhotoDto" o-- "flame::data::dto::photo_dto.dart::_$$_PhotoDtoCopyWith<_$_PhotoDto>"
+"flame::data::dto::photo_dto.dart::_PhotoDto" <|-- "flame::data::dto::photo_dto.dart::_$_PhotoDto"
+
+abstract class "flame::data::dto::photo_dto.dart::_PhotoDto" {
+  +String id
+  +String owner
+  +String secret
+  +String server
+  +int farm
+  +String title
+  +_$$_PhotoDtoCopyWith<_$_PhotoDto> copyWith
+}
+
+"flame::data::dto::photo_dto.dart::_PhotoDto" o-- "flame::data::dto::photo_dto.dart::_$$_PhotoDtoCopyWith<_$_PhotoDto>"
+"flame::data::dto::photo_dto.dart::PhotoDto" <|-- "flame::data::dto::photo_dto.dart::_PhotoDto"
+
+abstract class "flame::data::dto::photo_dto.dart::_$PhotoDto" {
+  +String id
+  +String owner
+  +String secret
+  +String server
+  +int farm
+  +String title
+  +$PhotoDtoCopyWith<PhotoDto> copyWith
+  +Map<String, dynamic> toJson()
+}
+
+"flame::data::dto::photo_dto.dart::_$PhotoDto" o-- "flame::data::dto::photo_dto.dart::$PhotoDtoCopyWith<PhotoDto>"
+
+class "flame::data::dto::photo_pagination_dto.dart::PhotoPaginationDto" {
+}
+
+"flame::data::dto::photo_pagination_dto.dart::_$PhotoPaginationDto" <|-- "flame::data::dto::photo_pagination_dto.dart::PhotoPaginationDto"
+
+abstract class "flame::data::dto::photo_pagination_dto.dart::$PhotoPaginationDtoCopyWith" {
+  +$Res call()
+}
+
+class "flame::data::dto::photo_pagination_dto.dart::_$PhotoPaginationDtoCopyWithImpl" {
+  -$Val _value
+  -$Res Function($Val) _then
+  +$Res call()
+}
+
+"flame::data::dto::photo_pagination_dto.dart::_$PhotoPaginationDtoCopyWithImpl" o-- "null::$Res Function($Val)"
+"flame::data::dto::photo_pagination_dto.dart::$PhotoPaginationDtoCopyWith" <|-- "flame::data::dto::photo_pagination_dto.dart::_$PhotoPaginationDtoCopyWithImpl"
+
+abstract class "flame::data::dto::photo_pagination_dto.dart::_$$_PhotoPaginationDtoCopyWith" {
+  +$Res call()
+}
+
+"flame::data::dto::photo_pagination_dto.dart::$PhotoPaginationDtoCopyWith" <|-- "flame::data::dto::photo_pagination_dto.dart::_$$_PhotoPaginationDtoCopyWith"
+
+class "flame::data::dto::photo_pagination_dto.dart::__$$_PhotoPaginationDtoCopyWithImpl" {
+  +$Res call()
+}
+
+"flame::data::dto::photo_pagination_dto.dart::_$PhotoPaginationDtoCopyWithImpl" <|-- "flame::data::dto::photo_pagination_dto.dart::__$$_PhotoPaginationDtoCopyWithImpl"
+"flame::data::dto::photo_pagination_dto.dart::_$$_PhotoPaginationDtoCopyWith" <|-- "flame::data::dto::photo_pagination_dto.dart::__$$_PhotoPaginationDtoCopyWithImpl"
+
+class "flame::data::dto::photo_pagination_dto.dart::_$_PhotoPaginationDto" {
+  +int page
+  +int pages
+  +int perpage
+  +int total
+  -List<PhotoDto> _photo
+  +List<PhotoDto> photo
+  +int hashCode
+  +_$$_PhotoPaginationDtoCopyWith<_$_PhotoPaginationDto> copyWith
+  +String toString()
+  +bool ==()
+  +Map<String, dynamic> toJson()
+}
+
+"flame::data::dto::photo_pagination_dto.dart::_$_PhotoPaginationDto" o-- "flame::data::dto::photo_pagination_dto.dart::_$$_PhotoPaginationDtoCopyWith<_$_PhotoPaginationDto>"
+"flame::data::dto::photo_pagination_dto.dart::_PhotoPaginationDto" <|-- "flame::data::dto::photo_pagination_dto.dart::_$_PhotoPaginationDto"
+
+abstract class "flame::data::dto::photo_pagination_dto.dart::_PhotoPaginationDto" {
+  +int page
+  +int pages
+  +int perpage
+  +int total
+  +List<PhotoDto> photo
+  +_$$_PhotoPaginationDtoCopyWith<_$_PhotoPaginationDto> copyWith
+}
+
+"flame::data::dto::photo_pagination_dto.dart::_PhotoPaginationDto" o-- "flame::data::dto::photo_pagination_dto.dart::_$$_PhotoPaginationDtoCopyWith<_$_PhotoPaginationDto>"
+"flame::data::dto::photo_pagination_dto.dart::PhotoPaginationDto" <|-- "flame::data::dto::photo_pagination_dto.dart::_PhotoPaginationDto"
+
+abstract class "flame::data::dto::photo_pagination_dto.dart::_$PhotoPaginationDto" {
+  +int page
+  +int pages
+  +int perpage
+  +int total
+  +List<PhotoDto> photo
+  +$PhotoPaginationDtoCopyWith<PhotoPaginationDto> copyWith
+  +Map<String, dynamic> toJson()
+}
+
+"flame::data::dto::photo_pagination_dto.dart::_$PhotoPaginationDto" o-- "flame::data::dto::photo_pagination_dto.dart::$PhotoPaginationDtoCopyWith<PhotoPaginationDto>"
+
+class "flame::data::dto::temp_user.dart::TempUser" {
+}
+
+"flame::data::dto::temp_user.dart::_$TempUser" <|-- "flame::data::dto::temp_user.dart::TempUser"
+
+abstract class "flame::data::dto::temp_user.dart::$TempUserCopyWith" {
+  +$Res call()
+}
+
+class "flame::data::dto::temp_user.dart::_$TempUserCopyWithImpl" {
+  -$Val _value
+  -$Res Function($Val) _then
+  +$Res call()
+}
+
+"flame::data::dto::temp_user.dart::_$TempUserCopyWithImpl" o-- "null::$Res Function($Val)"
+"flame::data::dto::temp_user.dart::$TempUserCopyWith" <|-- "flame::data::dto::temp_user.dart::_$TempUserCopyWithImpl"
+
+abstract class "flame::data::dto::temp_user.dart::_$$_TempUserCopyWith" {
+  +$Res call()
+}
+
+"flame::data::dto::temp_user.dart::$TempUserCopyWith" <|-- "flame::data::dto::temp_user.dart::_$$_TempUserCopyWith"
+
+class "flame::data::dto::temp_user.dart::__$$_TempUserCopyWithImpl" {
+  +$Res call()
+}
+
+"flame::data::dto::temp_user.dart::_$TempUserCopyWithImpl" <|-- "flame::data::dto::temp_user.dart::__$$_TempUserCopyWithImpl"
+"flame::data::dto::temp_user.dart::_$$_TempUserCopyWith" <|-- "flame::data::dto::temp_user.dart::__$$_TempUserCopyWithImpl"
+
+class "flame::data::dto::temp_user.dart::_$_TempUser" {
+  +String id
+  +String? name
+  +String? bio
+  +int? minAge
+  +int? maxAge
+  +int? age
+  +DateTime? birthday
+  +Sex? sex
+  +Sex? search
+  +Orientation? orientation
+  -List<String>? _pictures
+  -List<String>? _interests
+  +bool verified
+  +List<String>? pictures
+  +List<String>? interests
+  +int hashCode
+  +_$$_TempUserCopyWith<_$_TempUser> copyWith
+  +String toString()
+  +bool ==()
+  +Map<String, dynamic> toJson()
+}
+
+"flame::data::dto::temp_user.dart::_$_TempUser" o-- "flame::entity::flame_user.dart::Sex"
+"flame::data::dto::temp_user.dart::_$_TempUser" o-- "flame::entity::flame_user.dart::Orientation"
+"flame::data::dto::temp_user.dart::_$_TempUser" o-- "flame::data::dto::temp_user.dart::_$$_TempUserCopyWith<_$_TempUser>"
+"flame::data::dto::temp_user.dart::_TempUser" <|-- "flame::data::dto::temp_user.dart::_$_TempUser"
+
+abstract class "flame::data::dto::temp_user.dart::_TempUser" {
+  +String id
+  +String? name
+  +String? bio
+  +int? minAge
+  +int? maxAge
+  +int? age
+  +DateTime? birthday
+  +Sex? sex
+  +Sex? search
+  +Orientation? orientation
+  +List<String>? pictures
+  +List<String>? interests
+  +bool verified
+  +_$$_TempUserCopyWith<_$_TempUser> copyWith
+}
+
+"flame::data::dto::temp_user.dart::_TempUser" o-- "flame::entity::flame_user.dart::Sex"
+"flame::data::dto::temp_user.dart::_TempUser" o-- "flame::entity::flame_user.dart::Orientation"
+"flame::data::dto::temp_user.dart::_TempUser" o-- "flame::data::dto::temp_user.dart::_$$_TempUserCopyWith<_$_TempUser>"
+"flame::data::dto::temp_user.dart::TempUser" <|-- "flame::data::dto::temp_user.dart::_TempUser"
+
+abstract class "flame::data::dto::temp_user.dart::_$TempUser" {
+  +String id
+  +String? name
+  +String? bio
+  +int? minAge
+  +int? maxAge
+  +int? age
+  +DateTime? birthday
+  +Sex? sex
+  +Sex? search
+  +Orientation? orientation
+  +List<String>? pictures
+  +List<String>? interests
+  +bool verified
+  +$TempUserCopyWith<TempUser> copyWith
+  +Map<String, dynamic> toJson()
+}
+
+"flame::data::dto::temp_user.dart::_$TempUser" o-- "flame::entity::flame_user.dart::Sex"
+"flame::data::dto::temp_user.dart::_$TempUser" o-- "flame::entity::flame_user.dart::Orientation"
+"flame::data::dto::temp_user.dart::_$TempUser" o-- "flame::data::dto::temp_user.dart::$TempUserCopyWith<TempUser>"
+
+class "flame::data::repository::like_repository.dart::LikeRepository" {
+  +dynamic findMatch()
+  +dynamic setLike()
+  +Stream<List<Like>> getLikes()
+  +Stream<int> countLikes()
+}
+
+class "flame::data::repository::explore_repository.dart::ExploreRepository" {
+  +dynamic getItems()
+}
+
+class "flame::data::repository::chat_repository.dart::ChatRepository" {
+  +dynamic createChat()
+  +Stream<List<Chat>> getChats()
+}
+
+class "flame::data::repository::message_repository.dart::MessageRepository" {
+  +dynamic postMessage()
+  +dynamic getLastMessage()
+  +Stream<List<Message>> getMessages()
+  +Stream<List<Message>> getAllUnReadMessages()
+}
+
+class "flame::data::repository::user_repository.dart::UserRepository" {
+  +dynamic getUser()
+  +dynamic saveUser()
+  +dynamic getUsers()
+  +Stream<FlameUser?> getUserStream()
+}
+
+abstract class "flame::data::service::api_client.dart::ApiService" {
+  +dynamic authEmailPart1()
+}
+
+class "flame::data::service::api_client.dart::_ApiService" {
+  -Dio _dio
+  +String? baseUrl
+  +dynamic authEmailPart1()
+  -RequestOptions _setStreamType()
+}
+
+"flame::data::service::api_client.dart::_ApiService" o-- "dio::src::dio.dart::Dio"
+"flame::data::service::api_client.dart::ApiService" <|-- "flame::data::service::api_client.dart::_ApiService"
+
+abstract class "flame::assets::resourses.dart::Resources" {
+  {static} +String gitHubLogo
+  {static} +String happyFlame
+  {static} +String swipe
+}
+
+class "flame::domain::photo_service.dart::PhotoService" {
+  +ApiService apiService
+  +ExploreRepository exploreRepository
+  +dynamic loadExplorePhotos()
+  -dynamic _buildUrl()
+}
+
+"flame::domain::photo_service.dart::PhotoService" o-- "flame::data::service::api_client.dart::ApiService"
+"flame::domain::photo_service.dart::PhotoService" o-- "flame::data::repository::explore_repository.dart::ExploreRepository"
+
+class "flame::domain::profile_service.dart::ProfileService" {
+  +UserRepository repository
+  +dynamic isLoggedIn()
+  +dynamic registered()
+  +dynamic getUser()
+}
+
+"flame::domain::profile_service.dart::ProfileService" o-- "flame::data::repository::user_repository.dart::UserRepository"
+
+class "flame::domain::error_handler.dart::MainErrorHandler" {
+  +void handleError()
+}
+
+"elementary::src::error::error_handler.dart::ErrorHandler" <|-- "flame::domain::error_handler.dart::MainErrorHandler"
+
+
+@enduml

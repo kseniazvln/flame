@@ -41,6 +41,8 @@ abstract class IRegistrationPageWidgetModel extends IWidgetModel
   void chosePhoto(int index);
 
   void saveProfile();
+
+  void logout();
 }
 
 RegistrationPageWidgetModel defaultRegistrationPageWidgetModelFactory(
@@ -257,5 +259,11 @@ class RegistrationPageWidgetModel
     }
 
     showSnackBar('All fields required');
+  }
+
+  @override
+  void logout() {
+    model.logout();
+    router.root.replace(AuthRoute());
   }
 }

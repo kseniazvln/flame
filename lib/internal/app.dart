@@ -18,6 +18,7 @@ class App extends StatelessWidget {
     final profile = context.read<ProfileService>();
     return MaterialApp.router(
       title: 'Flame',
+      debugShowCheckedModeBanner: false,
       theme: ThemeData(
         useMaterial3: true,
         colorScheme: lightColorScheme,
@@ -43,16 +44,14 @@ class App extends StatelessWidget {
 
             final registered = await profile.registered();
             if (!registered) {
-              page = RegistrationRoute();
+              page = RegistrationRoute(isProfile: false);
             }
           }
 
           page ??= AuthRoute();
 
           return DeepLink(
-            [
-              page,
-            ],
+            [page],
           );
         },
       ),

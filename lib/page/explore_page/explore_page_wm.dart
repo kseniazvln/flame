@@ -1,5 +1,6 @@
 import 'package:elementary/elementary.dart';
 import 'package:flame/entity/explore_photo.dart';
+import 'package:flame/page/router/app_router.dart';
 import 'package:flame/util/theme_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -59,6 +60,6 @@ class ExplorePageWidgetModel
 
   @override
   void openExplore(ExplorePhoto explorePhoto) {
-    // TODO: implement openExplore
+    router.push(SearchRoute());
   }
 }

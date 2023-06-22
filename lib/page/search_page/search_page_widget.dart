@@ -28,7 +28,7 @@ class SearchPageWidget extends ElementaryWidget<ISearchPageWidgetModel> {
             icon: const Icon(Icons.notifications),
           ),
           IconButton(
-            onPressed: () {},
+            onPressed: wm.openProfile,
             icon: const Icon(
               Icons.settings,
             ),

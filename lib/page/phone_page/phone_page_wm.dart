@@ -66,7 +66,7 @@ class PhonePageWidgetModel extends WidgetModel<PhonePageWidget, PhonePageModel>
         if (registered) {
           router.replace(const HomeRoute());
         } else {
-          router.replace(RegistrationRoute());
+          router.replace(RegistrationRoute(isProfile: false));
         }
       },
     );

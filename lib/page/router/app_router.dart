@@ -9,8 +9,10 @@ import 'package:flame/page/chat_page/chat_page.dart';
 import 'package:flame/page/code_page/code_page.dart';
 import 'package:flame/page/explore_page/explore_page.dart';
 import 'package:flame/page/home_page/home_page_widget.dart';
+import 'package:flame/page/notifications_page/notifications_page.dart';
 import 'package:flame/page/phone_page/phone_page.dart';
 import 'package:flame/page/profile_page/profile_page.dart';
+import 'package:flame/page/quick_settings_page/quick_settings_page.dart';
 import 'package:flame/page/search_page/search_page.dart';
 import 'package:flame/page/registration_page/registration_page.dart';
 import 'package:flutter/material.dart';
@@ -48,6 +50,12 @@ class AppRouter extends _$AppRouter {
                   page: SearchRoute.page,
                   initial: true,
                 ),
+                AutoRoute(
+                  page: RegistrationRoute.page,
+                ),
+                AutoRoute(
+                  page: NotificationsRoute.page,
+                ),
               ],
             ),
             AutoRoute(
@@ -56,6 +64,9 @@ class AppRouter extends _$AppRouter {
                 AutoRoute(
                   page: ExploreRoute.page,
                   initial: true,
+                ),
+                AutoRoute(
+                  page: SearchRoute.page,
                 ),
               ],
             ),
@@ -72,7 +83,7 @@ class AppRouter extends _$AppRouter {
               page: ProfileTab.page,
               children: [
                 AutoRoute(
-                  page: ProfileRoute.page,
+                  page: RegistrationRoute.page,
                   initial: true,
                 ),
               ],

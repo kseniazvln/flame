@@ -3,6 +3,7 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:elementary/elementary.dart';
 import 'package:flame/entity/explore.dart';
 import 'package:flame/entity/flame_user.dart';
+import 'package:flame/page/component/theme_switch.dart';
 import 'package:flutter/material.dart' hide Orientation;
 import 'package:flutter/services.dart';
 import 'registration_page_wm.dart';
@@ -13,9 +14,12 @@ import 'registration_page_wm.dart';
 class RegistrationPageWidget
     extends ElementaryWidget<IRegistrationPageWidgetModel> {
   const RegistrationPageWidget({
+    this.isProfile = true,
     Key? key,
     WidgetModelFactory wmFactory = defaultRegistrationPageWidgetModelFactory,
   }) : super(wmFactory, key: key);
+
+  final bool isProfile;
 
   @override
   Widget build(IRegistrationPageWidgetModel wm) {
@@ -39,13 +43,28 @@ class RegistrationPageWidget
                   SliverList(
                     delegate: SliverChildListDelegate(
                       [
-                        Text(
-                          wm.localizations.name,
-                          style: wm.textTheme.displayMedium?.copyWith(
-                            color: wm.colorScheme.onBackground,
-                            fontWeight: FontWeight.w700,
+                        if (isProfile)
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              Text(
+                                wm.localizations.name,
+                                style: wm.textTheme.displayMedium?.copyWith(
+                                  color: wm.colorScheme.onBackground,
+                                  fontWeight: FontWeight.w700,
+                                ),
+                              ),
+                              const ThemeSwitch(),
+                            ],
+                          )
+                        else
+                          Text(
+                            wm.localizations.name,
+                            style: wm.textTheme.displayMedium?.copyWith(
+                              color: wm.colorScheme.onBackground,
+                              fontWeight: FontWeight.w700,
+                            ),
                           ),
-                        ),
                         TextField(
                           controller: wm.nameController,
                           style: wm.textTheme.bodyLarge?.copyWith(
@@ -322,9 +341,21 @@ class RegistrationPageWidget
                   SliverToBoxAdapter(
                     child: FilledButton(
                       onPressed: wm.saveProfile,
-                      child: const Text('Register'),
+                      child: Text(
+                        isProfile ? 'Save' : 'Register',
+                      ),
                     ),
-                  )
+                  ),
+                  if (isProfile)
+                    SliverToBoxAdapter(
+                      child: Padding(
+                        padding: const EdgeInsets.symmetric(vertical: 10.0),
+                        child: OutlinedButton(
+                          onPressed: wm.logout,
+                          child: const Text('Logout'),
+                        ),
+                      ),
+                    ),
                 ],
               ),
             );

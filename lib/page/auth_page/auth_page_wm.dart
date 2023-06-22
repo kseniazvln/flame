@@ -46,7 +46,7 @@ class AuthPageWidgetModel extends WidgetModel<AuthPageWidget, AuthPageModel>
       if (registered) {
         router.replace(const HomeRoute());
       } else {
-        router.replace(RegistrationRoute());
+        router.replace(RegistrationRoute(isProfile: false));
       }
     } catch (e) {
       showSnackBar('Can`t log in');
